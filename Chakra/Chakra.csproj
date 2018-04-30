@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E7AC185-D29D-4161-BEA2-825942921D9E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZenProgramming.Chakra</RootNamespace>
+    <AssemblyName>Chakra</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurations\ApplicationConfigurationBase.cs" />
+    <Compile Include="Configurations\Attributes\ConfigurationSectionAttribute.cs" />
+    <Compile Include="Configurations\GenericConfigurationElementCollection.cs" />
+    <Compile Include="Configurations\KeyConfigurationElement.cs" />
+    <Compile Include="Configurations\KeyConfigurationElementCollection.cs" />
+    <Compile Include="Configurations\Utils\AppSettingsUtils.cs" />
+    <Compile Include="Linq\Dynamic\DynamicLibrary.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\WindowsIdentityUtils.cs" />
+    <Compile Include="Services\IteratorServiceBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\RunningServiceBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\Windows\Attributes\ManagedServiceTypeAttribute.cs" />
+    <Compile Include="Services\Windows\Events\ServiceErrorRaised.cs" />
+    <Compile Include="Services\Windows\Events\ServiceMessageRaised.cs" />
+    <Compile Include="Services\Windows\IManagedService.cs" />
+    <Compile Include="Services\Windows\Install\ManagedServiceInstallerBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\Server\ServiceControllerUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj">
+      <Project>{d563816e-d9d8-485e-b8b2-400657109680}</Project>
+      <Name>Chakra.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
