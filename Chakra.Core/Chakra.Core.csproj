@@ -4,14 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.7</Version>
+    <Version>2.0.8</Version>
+    <AssemblyVersion>2.0.8.0</AssemblyVersion>
+    <FileVersion>2.0.8.0</FileVersion>
     <Company>ZenProgramming.it</Company>
     <Authors>Mauro Bussini</Authors>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
-    <Copyright>© 2017 - ZenProgramming.it</Copyright>
+    <Copyright>© 2018 - ZenProgramming.it</Copyright>
     <Description>Framework and guidelines for build .NET 4.x and .NET Core based enterprise applications</Description>
-    <AssemblyVersion>2.0.7.0</AssemblyVersion>
-    <FileVersion>2.0.7.0</FileVersion>
+    
   </PropertyGroup>
 
   <ItemGroup>
