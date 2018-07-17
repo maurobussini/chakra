@@ -2,20 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>ZenProgramming.Chakra.OAuth</RootNamespace>
-    <Version>2.0.9</Version>
     <AssemblyVersion>2.0.10.0</AssemblyVersion>
-    <FileVersion>2.0.9.0</FileVersion>
+    <Version>2.0.10</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
-    <Description>Guidelines for build OAuth2 identity server</Description>
+    <Description>Provider for MongoDB in Chakra.Core framework</Description>
     <Copyright>© 2018 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
   </ItemGroup>
 
 </Project>

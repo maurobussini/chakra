@@ -1,44 +1,45 @@
-﻿Chakra.Core.EntityFramework
+﻿Chakra.Core.MongoDb
 ===
 
-Provider for Microsoft EntityFramework Core in Chakra.Core framework
+Provider for MongoDB in Chakra.Core framework
 ---
 
 Please checkout README.md on "Chakra.Core" package, first...
 Then:
 
-1) Define your own DbContext implementation like that:
+1) Define your own MongoDbOptions implementation like that:
 ```csharp
-public class ApplicationDbContext: DbContext
+public class ApplicationMongoDbOptions: IMongoDbOptions
 {
-    public DbSet<Product> Products { get; set; }
+    public string ConnectionString { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        //TODO...Insert here configuration
+    public ApplicationMongoDbOptions()
+    {        
+        //Set connection string from application configuration, xml files, hardcoded, etc.
+        ConnectionString = "mongodb://dbusername:dbpassword@servername/databasename?authSource=authenticationdatabase";
     }
 }
 ```
 
-2) Implement a concrete class for a storage provider on Entity Framework Core
+2) Implement a concrete class for a storage provider on MongoDb Core
 ```csharp
 [Repository]
-public class EntityFrameworkProductRepository: EntityFrameworkRepositoryBase<Product, ApplicationDbContext>, IProductRepository
+public class MongoDbProductRepository: MongoDbRepositoryBase<Product, ApplicationMongoDbOptions>, IProductRepository
 {
-    public EntityFrameworkProductRepository(IDataSession dataSession) 
-        : base(dataSession, dbcontext => dbcontext.Products) { }
+    public MongoDbProductRepository(IDataSession dataSession) 
+        : base(dataSession) { }
 
     public IList<Product> FetchAvailableProductsInPeriod(DateTime from, DateTime to) 
     {
         //TODO...Insert here the method implementation
-		//ex: => DataSession.Context.Products.Where(p => ...
+		//ex: => DataSession.Database.GetCollection<Product>().Where(p => ...
     }
 }
 ```
 
 3) Register default data session for application
 ```csharp
-SessionFactory.RegisterDefaultSession<EntityFrameworkDataSession<ApplicationDbContext>>();
+SessionFactory.RegisterDefaultSession<MongoDbDataSession<ApplicationMongoDbOptions>>();
 ```
 
 4) Open session on storage (ex. database) using default configured provider, resolve repository interface 

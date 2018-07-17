@@ -1,19 +1,19 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
+using Chakra.Core.MongoDb.Data.Options;
 using ZenProgramming.Chakra.Core.Data;
 
-namespace ZenProgramming.Chakra.Core.EntityFramework.Data
+namespace Chakra.Core.MongoDb.Data
 {
     /// <summary>
-    /// Represents Entity Framework implementation of data transaction
+    /// Represents MongoDb implementation of data transaction
     /// </summary>
-    /// <typeparam name="TDbContext">Type of DBContext used</typeparam>
-    public class EntityFrameworkDataTransaction<TDbContext> : IDataTransaction
-        where TDbContext : DbContext, new()
+    /// <typeparam name="TMongoDbOptions">Type of MongoDb options</typeparam>
+    public class MongoDbDataTransaction<TMongoDbOptions> : IDataTransaction
+        where TMongoDbOptions : class, IMongoDbOptions, new()
     {
         #region Private field
         private bool _IsDisposed;
-        private readonly IEntityFrameworkDataSession<TDbContext> _DataSession;
+        private readonly IMongoDbDataSession<TMongoDbOptions> _DataSession;
         #endregion
 
         #region Public properties
@@ -37,7 +37,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
         /// Constructor
         /// </summary>
         /// <param name="dataSession">Data session instance</param>
-        public EntityFrameworkDataTransaction(IEntityFrameworkDataSession<TDbContext> dataSession)
+        public MongoDbDataTransaction(IMongoDbDataSession<TMongoDbOptions> dataSession)
         {
             //Validazione argomenti
             if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
@@ -72,8 +72,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
             if (WasRolledBack)
                 throw new InvalidOperationException("Current transaction was already rolled back.");
 
-            //Eseguo il commit dei cambiamenti sul context
-            _DataSession.Context.SaveChanges();
+            //ATTENZIONE! In un database documentale non esiste il concetto di
+            //transazione quindo le operazioni di rollback e commit sono fittizie
 
             //Imposto il flag di commit
             WasCommitted = true;
@@ -101,33 +101,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
             if (WasCommitted)
                 throw new InvalidOperationException("Current transaction was already committed.");
 
-            //Scorro tutti gli elementi tracciati
-            foreach (var entry in _DataSession.Context.ChangeTracker.Entries())
-            {
-                //A seconda dello stato
-                switch (entry.State)
-                {
-                    //Ripristino lo stato originale
-                    case EntityState.Modified:
-                        {
-                            entry.CurrentValues.SetValues(entry.OriginalValues);
-                            entry.State = EntityState.Unchanged;
-                            break;
-                        }
-                    //Rimuovo il flag di cancellazione
-                    case EntityState.Deleted:
-                        {
-                            entry.State = EntityState.Unchanged;
-                            break;
-                        }
-                    //Scollego gli elementi aggiunti
-                    case EntityState.Added:
-                        {
-                            entry.State = EntityState.Detached;
-                            break;
-                        }
-                }
-            }
+            //ATTENZIONE! In un database documentale non esiste il concetto di
+            //transazione quindo le operazioni di rollback e commit sono fittizie
 
             //Imposto il flag di rollback
             WasRolledBack = true;
@@ -140,7 +115,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
         /// <summary>
         /// Finalizer that ensures the object is correctly disposed of.
 		/// </summary>
-        ~EntityFrameworkDataTransaction()
+        ~MongoDbDataTransaction()
 		{
             //Richiamo i dispose implicito
 			Dispose(false);

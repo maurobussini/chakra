@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using ZenProgramming.Chakra.Core.Diagnostic;
 
 namespace ZenProgramming.Chakra.Core.Data.Mockups
 {
@@ -132,7 +134,7 @@ namespace ZenProgramming.Chakra.Core.Data.Mockups
             {
                 //Se l'istanza è proprietaria e non ho chiuso, eccezione
                 if (IsTransactionOwner && IsActive)
-                    throw new InvalidOperationException("Transaction was opened but never commited or rolled back.");
+                    Tracer.Error("Transaction was opened but never commited or rolled back.");
             }
 
             //Marco il dispose e invoco il GC
