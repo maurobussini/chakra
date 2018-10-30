@@ -34,3 +34,9 @@ variable (ex. 'appsettings.Development.json', 'appsettings.Production.json', 'ap
 var apiKey = ConfigurationFactory<ApplicationConfiguration>.Instance.ApiKey;
 var enviromentName = ConfigurationFactory<ApplicationConfiguration>.Instance.EnvironmentName;
 ```
+
+**NOTE:** For unit testing purpose, you can also "force" a specific configuration without
+providing **appsettings.json** file. Just do the following on unit test initialize:
+```csharp
+ConfigurationFactory<ApplicationConfiguration>.Set(new ApplicationConfiguration{ ... });
+```

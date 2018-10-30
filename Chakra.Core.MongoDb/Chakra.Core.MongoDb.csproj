@@ -2,14 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2.0.10.0</AssemblyVersion>
-    <Version>2.0.10</Version>
+    <AssemblyVersion>2.0.11.0</AssemblyVersion>
+    <Version>2.0.11</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Provider for MongoDB in Chakra.Core framework</Description>
     <Copyright>© 2018 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <FileVersion>2.0.11.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

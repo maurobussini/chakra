@@ -129,7 +129,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
         }        
 
         /// <summary>
-        /// Resolve a repository dipendency using provided
+        /// Resolve a repository dependency using provided
         /// </summary>
         /// <typeparam name="TRepositoryInterface">Type of repository interface</typeparam>
         /// <typeparam name="TSpecificDataSessionRepository">Type of interface of repository specific for data session implementation</typeparam>
@@ -139,6 +139,13 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
             where TRepositoryInterface : IRepository
             where TSpecificDataSessionRepository: IRepository
         {
+            #region NEW VERSION (2.0.11)
+            ////Utilizzo il metodo base
+            //return (TRepositoryInterface)Resolve<TSpecificDataSessionRepository>(typeof(TRepositoryInterface), dataSession);
+            #endregion
+
+            #region OLD VERSION (2.0.10)
+
             //Tento il recupero del tipo implementato dall'interfaccia
             var implementedType = FindImplementedType<TRepositoryInterface, TSpecificDataSessionRepository>();
 
@@ -146,7 +153,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
             if (implementedType == null)
                 throw new InvalidProgramException(string.Format("Unable to find concrete types that " +
                     "implements repository interface '{0}' and data session interface '{1}' on current application " +
-                    "domain. Please verify also that implementation if marked with attribute '[Repository]'.", 
+                    "domain. Please verify also that implementation if marked with attribute '[Repository]'.",
                     typeof(TRepositoryInterface).FullName, typeof(TSpecificDataSessionRepository).FullName));
 
             //Eseguo la creazione dell'istanza della classe di repository specifico
@@ -159,6 +166,40 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
 
             //Ritorno l'istanza
             return (TRepositoryInterface)instance;
+
+            #endregion
+        }
+
+        /// <summary>
+        /// Resolve a repository dependency using provided
+        /// </summary>
+        /// <typeparam name="TSpecificDataSessionRepository">Type of interface of repository specific for data session implementation</typeparam>
+        /// <param name="repositoryInterface">Type of repository</param>
+        /// <param name="dataSession">Active data session</param>
+        /// <returns>Returns concrete instance of repository</returns>
+        public static IRepository Resolve<TSpecificDataSessionRepository>(Type repositoryInterface, IDataSession dataSession)
+            where TSpecificDataSessionRepository: IRepository
+        {
+            //Tento il recupero del tipo implementato dall'interfaccia
+            var implementedType = FindImplementedType<TSpecificDataSessionRepository>(repositoryInterface);
+
+            //Se non ho nessun elemento, emetto eccezione
+            if (implementedType == null)
+                throw new InvalidProgramException(string.Format("Unable to find concrete types that " +
+                    "implements repository interface '{0}' and data session interface '{1}' on current application " +
+                    "domain. Please verify also that implementation if marked with attribute '[Repository]'.",
+                    repositoryInterface.FullName, typeof(TSpecificDataSessionRepository).FullName));
+
+            //Eseguo la creazione dell'istanza della classe di repository specifico
+            object instance = Activator.CreateInstance(implementedType, dataSession);
+
+            //Se l'istanza non è convertibile a repostory, emetto eccezione
+            if (!(instance.GetType() == repositoryInterface))
+                throw new InvalidCastException($"Unable to cast type of '{instance.GetType().FullName}' to " +
+                                               $"interface '{repositoryInterface.FullName}'.");
+
+            //Ritorno l'istanza
+            return (IRepository)instance;
         }
 
         /// <summary>
@@ -166,6 +207,10 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
         /// </summary>
         private static readonly Lazy<IList<RepositoryInterfaceMap>> _RepositoryInterfaceMaps = new Lazy<IList<RepositoryInterfaceMap>>(InitializeRepositoryInterfaceMap);
 
+        /// <summary>
+        /// Initialize repositories interface maps
+        /// </summary>
+        /// <returns>Returns list of mappings</returns>
         private static IList<RepositoryInterfaceMap> InitializeRepositoryInterfaceMap() 
         {
             //Istanzio il discover dei tipi esportati con MEF e recupero
@@ -194,6 +239,12 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
         /// <returns>Returns implemented type or null</returns>
         private static Type FindImplementedType<TRepositoryInterface, TSpecificDataSessionRepository>()
         {
+            #region NEW VERSION (2.0.11)
+            ////Utilizzo il metodo overloaded
+            //return FindImplementedType<TSpecificDataSessionRepository>(typeof(TRepositoryInterface));
+            #endregion
+
+            #region OLD VERSION (2.0.10)
             //Scorro tutte le mappature esistenti (che non hanno riferimenti all'interfaccia
             //specifica di DataSession e all'interfaccia del repository, ma solo all'implementazione)
             IList<Type> matchingTypes = new List<Type>();
@@ -209,13 +260,59 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
                 bool hasSpecifi = inters.Any(i => i == typeof(TSpecificDataSessionRepository));
 
                 //Se il tipo corrente non ha entrambi i match, passo al prossimo
-                if (!hasGeneric || !hasSpecifi) 
+                if (!hasGeneric || !hasSpecifi)
                     continue;
 
                 //Aggiungo alla lista dei match e aggiorno la mappatura
                 matchingTypes.Add(currentMap.RepositoryImplementationType);
-                currentMap.DataSessionType = typeof (TSpecificDataSessionRepository);
+                currentMap.DataSessionType = typeof(TSpecificDataSessionRepository);
                 currentMap.RepositoryInterfaceType = typeof(TRepositoryInterface);
+            }
+
+            //Se ho più di un elemento, emetto eccezione
+            if (matchingTypes.Count > 1)
+                throw new InvalidProgramException($"Found {matchingTypes.Count} types that implements repository " +
+                    $"interface '{typeof(TRepositoryInterface).FullName}' and data session interfacce " + 
+                    $"'{typeof(TSpecificDataSessionRepository).FullName}'. Just one type matching specified " +
+                    "criteria must be contained on application domain.");
+
+            //Ritorno il primo elemento (o nessuno)
+            return matchingTypes.SingleOrDefault();
+            #endregion
+        }
+
+        /// <summary>
+        /// Find implemented type using provided generic repository class and specific type
+        /// </summary>
+        /// <typeparam name="TSpecificDataSessionRepository">Type of interface of repository specific for data session implementation</typeparam>
+        /// <returns>Returns implemented type or null</returns>
+        private static Type FindImplementedType<TSpecificDataSessionRepository>(Type repositoryType)
+        {
+            //Validazione argomenti
+            if (repositoryType == null) throw new ArgumentNullException(nameof(repositoryType));
+
+            //Scorro tutte le mappature esistenti (che non hanno riferimenti all'interfaccia
+            //specifica di DataSession e all'interfaccia del repository, ma solo all'implementazione)
+            IList<Type> matchingTypes = new List<Type>();
+            foreach (var currentMap in _RepositoryInterfaceMaps.Value)
+            {
+                //Recupero le interfacce
+                var inters = currentMap.RepositoryImplementationType.GetInterfaces();
+
+                //Verifico se esiste un'interfaccia nella lista che corrisponde al tipo
+                //generico dell'interfaccia di repository richiesto (es. "IUserRepository") e se 
+                //esiste un'interfaccia che corrisponde al topo della data session (es. "MockupDataSession")
+                bool hasGeneric = inters.Any(i => i == repositoryType);
+                bool hasSpecifi = inters.Any(i => i == typeof(TSpecificDataSessionRepository));
+
+                //Se il tipo corrente non ha entrambi i match, passo al prossimo
+                if (!hasGeneric || !hasSpecifi)
+                    continue;
+
+                //Aggiungo alla lista dei match e aggiorno la mappatura
+                matchingTypes.Add(currentMap.RepositoryImplementationType);
+                currentMap.DataSessionType = typeof(TSpecificDataSessionRepository);
+                currentMap.RepositoryInterfaceType = repositoryType;
             }
 
             //Se ho più di un elemento, emetto eccezione
@@ -223,7 +320,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
                 throw new InvalidProgramException(string.Format("Found {0} types that implements repository " +
                     "interface '{1}' and data session interfacce '{2}'. Just one type matching specified " +
                     "criteria must be contained on application domain.", matchingTypes.Count,
-                    typeof(TRepositoryInterface).FullName, typeof(TSpecificDataSessionRepository).FullName));
+                    repositoryType.FullName, typeof(TSpecificDataSessionRepository).FullName));
 
             //Ritorno il primo elemento (o nessuno)
             return matchingTypes.SingleOrDefault();

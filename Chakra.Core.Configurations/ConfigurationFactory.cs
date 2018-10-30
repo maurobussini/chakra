@@ -18,9 +18,27 @@ namespace Chakra.Core.Configurations
         private static readonly Lazy<TApplicationConfiguration> _Instance = new Lazy<TApplicationConfiguration>(Initialize);
 
         /// <summary>
+        /// Forced valued used instead of lazy loading
+        /// </summary>
+        private static TApplicationConfiguration _ForcedValue = null;
+
+        /// <summary>
         /// Singleton instance for configuration
         /// </summary>
         public static TApplicationConfiguration Instance => _Instance.Value;
+
+        /// <summary>
+        /// Set value of configuration using provided instance
+        /// </summary>
+        /// <param name="instance">Instance</param>
+        public static void Set(TApplicationConfiguration instance)
+        {
+            //Validazione argomenti
+            if (instance == null) throw new ArgumentNullException(nameof(instance));
+
+            //Imposto il valore nella variabile di forzatura
+            _ForcedValue = instance;
+        }
 
         /// <summary>
         /// Initializes application configuration
@@ -28,6 +46,10 @@ namespace Chakra.Core.Configurations
         /// <returns>Returns instance</returns>
         private static TApplicationConfiguration Initialize()
         {
+            //Se il valore "forced" è inizializzato, utilizzo quello
+            if (_ForcedValue != null)
+                return _ForcedValue;
+
             //Recupero le variabili di ambiente possibili
             var aspNetCore = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var dotNetCore = Environment.GetEnvironmentVariable("DOTNETCORE_ENVIRONMENT");

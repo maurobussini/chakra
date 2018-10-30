@@ -216,6 +216,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Mockups
 
                 //Incremento il massimo di uno ed assegno
                 classic.Id = max + 1;
+                return;
             }
 
             //in tutti gli altri casi emetto eccezione perchè non è una casistica implementata

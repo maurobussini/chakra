@@ -44,7 +44,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
         }
 
         /// <summary>
-        /// Execute resolution of repository interface using specified clas
+        /// Execute resolution of repository interface using specified class
         /// </summary>
         /// <typeparam name="TRepositoryInterface">Type of repository interface</typeparam>
         /// <returns>Returns repository instance</returns>
@@ -53,6 +53,17 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
         {
             //Utilizzo il metodo presente sull'helper
             return RepositoryHelper.Resolve<TRepositoryInterface, IEntityFrameworkRepository>(this);
+        }
+
+        /// <summary>
+        /// Execute resolution of repository interface using specified interface type
+        /// </summary>
+        /// <returns>Returns repository instance</returns>
+        public IRepository ResolveRepository<TRepositoryInterface>(Type repositoryInterface)
+            where TRepositoryInterface : IRepository
+        {
+            //Utilizzo il metodo presente sull'helper
+            return RepositoryHelper.Resolve<IEntityFrameworkRepository>(repositoryInterface, this);
         }
 
         /// <summary>
