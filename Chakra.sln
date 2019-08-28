@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.MongoDb", "Chak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.Configurations", "Chakra.Core.Configurations\Chakra.Core.Configurations.csproj", "{FE52BE22-AC90-4022-907C-BA05F6183710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.WebApi", "Chakra.Core.WebApi\Chakra.Core.WebApi.csproj", "{DFEEC9B2-ED9F-49B2-BAB8-97A592ADA800}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.WebApi", "Chakra.Core.WebApi\Chakra.Core.WebApi.csproj", "{DFEEC9B2-ED9F-49B2-BAB8-97A592ADA800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.Windows", "Chakra.Core.Windows\Chakra.Core.Windows.csproj", "{B007310D-3422-4982-80BB-311F7C65EE08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{DFEEC9B2-ED9F-49B2-BAB8-97A592ADA800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFEEC9B2-ED9F-49B2-BAB8-97A592ADA800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFEEC9B2-ED9F-49B2-BAB8-97A592ADA800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B007310D-3422-4982-80BB-311F7C65EE08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B007310D-3422-4982-80BB-311F7C65EE08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B007310D-3422-4982-80BB-311F7C65EE08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B007310D-3422-4982-80BB-311F7C65EE08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{62930DBF-23E7-40FC-A554-40D158960DD0} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 		{FE52BE22-AC90-4022-907C-BA05F6183710} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 		{DFEEC9B2-ED9F-49B2-BAB8-97A592ADA800} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
+		{B007310D-3422-4982-80BB-311F7C65EE08} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A54C3E0E-2F55-4712-B617-01BCFB78E2C9}

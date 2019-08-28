@@ -135,7 +135,7 @@ namespace ZenProgramming.Chakra.Core.Reflection
                 catch (Exception exc)
                 {
                     //Traccio l'eccezione di caricamento
-                    Tracer.Warn($"Unable to get exported types on {currentAssembly.FullName}: {exc}");
+                    Tracer.Debug($"Unable to get exported types on {currentAssembly.FullName}: {exc}");
                 }
             }
 

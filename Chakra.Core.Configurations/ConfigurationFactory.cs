@@ -69,7 +69,7 @@ namespace Chakra.Core.Configurations
                 : string.Format(TemplatedAppSettings, environmentName).ToLower();
 
             //Composizione del percorso del file
-            string path = Path.Combine(Directory.GetCurrentDirectory(), settingsFileName);
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, settingsFileName);
 
             //Se il file non esiste, imposto il default
             if (!File.Exists(path))
@@ -78,7 +78,7 @@ namespace Chakra.Core.Configurations
             //Creo il builder della configurazione
             Debug.WriteLine($"Using setting file '{settingsFileName}' with environment '{environmentName}'...");
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile(settingsFileName, optional: true, reloadOnChange: true);
 
             //Buildo la configurazione

@@ -1,21 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core.EntityFramework</RootNamespace>
-    <Version>2.0.11</Version>
-    <AssemblyVersion>2.0.11.0</AssemblyVersion>
-    <FileVersion>2.0.11.0</FileVersion>
+    <Version>2.0.14</Version>
+    <AssemblyVersion>2.0.14</AssemblyVersion>
+    <FileVersion>2.0.14</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>ZenProgramming.it</Company>
     <Description>Provider for Microsoft EntityFramework Core in Chakra.Core framework</Description>
-    <Copyright>© 2018 - ZenProgramming.it</Copyright>
+    <Copyright>© 2019 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>

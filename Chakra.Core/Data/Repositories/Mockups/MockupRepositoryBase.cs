@@ -270,7 +270,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Mockups
             if (entity.GetId() == null) throw new InvalidProgramException("Specified entity has invalid identifier.");
 
             //Cerco l'entità all'interno della lista di quelle mockate
-            var onMemory = MockedEntities.Single(e => e.GetId() == entity.GetId());
+            var onMemory = MockedEntities.SingleOrDefault(e => e.GetId().Equals(entity.GetId()));
 
             //Se trovata, la rimuovo
             if (onMemory != null)

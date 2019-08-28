@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.OAuth</RootNamespace>
-    <Version>2.0.11</Version>
-    <AssemblyVersion>2.0.11.0</AssemblyVersion>
-    <FileVersion>2.0.11.0</FileVersion>
+    <Version>2.0.14</Version>
+    <AssemblyVersion>2.0.14</AssemblyVersion>
+    <FileVersion>2.0.14</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Guidelines for build OAuth2 identity server</Description>
-    <Copyright>© 2018 - ZenProgramming.it</Copyright>
+    <Copyright>© 2019 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
