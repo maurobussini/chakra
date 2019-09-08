@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using ZenProgramming.Chakra.Core.Reflection;
 
@@ -12,7 +13,7 @@ namespace ZenProgramming.Chakra.Core.Persistences
 		/// <summary>
 		/// Element cache
 		/// </summary>
-        private static readonly IDictionary<Type, IPersistenceInitializer> _Cache = new Dictionary<Type, IPersistenceInitializer>();
+        private static readonly IDictionary<Type, IPersistenceInitializer> _Cache = new ConcurrentDictionary<Type, IPersistenceInitializer>();
 
         private static IList<Type> _AllPersistenceInitializerTypes;
         
