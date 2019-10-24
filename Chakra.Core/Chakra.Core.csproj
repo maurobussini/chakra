@@ -4,9 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.14</Version>
-    <AssemblyVersion>2.0.14</AssemblyVersion>
-    <FileVersion>2.0.14</FileVersion>
+    <Version>2.0.15</Version>
+    <AssemblyVersion>2.0.15</AssemblyVersion>
+    <FileVersion>2.0.15</FileVersion>
     <Company>ZenProgramming.it</Company>
     <Authors>Mauro Bussini</Authors>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>

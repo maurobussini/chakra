@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using ZenProgramming.Chakra.WebApi.Filters.Helpers;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 
@@ -26,7 +27,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             //Imposto le opzioni base
             EnableRequestTrace = false;
             EnableResponseTrace = true;
-            TargetFolder = @"App_Data\traced-errors";
+            TargetFolder = Path.Combine("App_Data", "traced-errors");
         }
 
         /// <summary>

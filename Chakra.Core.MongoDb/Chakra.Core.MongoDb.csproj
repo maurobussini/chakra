@@ -2,19 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2.0.14</AssemblyVersion>
-    <Version>2.0.14</Version>
+    <AssemblyVersion>2.0.15</AssemblyVersion>
+    <Version>2.0.15</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Provider for MongoDB in Chakra.Core framework</Description>
     <Copyright>© 2019 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <FileVersion>2.0.14</FileVersion>
+    <FileVersion>2.0.15</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.7.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.9.2" />
   </ItemGroup>
 
   <ItemGroup>

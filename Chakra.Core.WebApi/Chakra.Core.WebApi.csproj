@@ -2,21 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2.0.14</AssemblyVersion>
-    <Version>2.0.14</Version>
+    <!--<TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>-->
+    <AssemblyVersion>2.0.15</AssemblyVersion>
+    <Version>2.0.15</Version>
     <Authors>Mauro Bussini</Authors>
     <Description>A bunch of utilities for ASP.NET Core</Description>
     <Copyright>© 2019 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <FileVersion>2.0.14</FileVersion>
+    <FileVersion>2.0.15</FileVersion>
     <Company>ZenProgramming.it</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
 </Project>
