@@ -1,12 +1,12 @@
 ﻿using System;
-using Chakra.Core.MongoDb.Data.Options;
-using Chakra.Core.MongoDb.Data.Repositories;
 using MongoDB.Driver;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
+using ZenProgramming.Chakra.Core.MongoDb.Data.Options;
+using ZenProgramming.Chakra.Core.MongoDb.Data.Repositories;
 
-namespace Chakra.Core.MongoDb.Data
+namespace ZenProgramming.Chakra.Core.MongoDb.Data
 {
     /// <summary>
     /// Entity Framework implementation of data session

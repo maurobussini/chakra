@@ -1,7 +1,7 @@
-﻿using Chakra.Core.MongoDb.Data.Options;
-using ZenProgramming.Chakra.Core.Data;
+﻿using ZenProgramming.Chakra.Core.Data;
+using ZenProgramming.Chakra.Core.MongoDb.Data.Options;
 
-namespace Chakra.Core.MongoDb.Data
+namespace ZenProgramming.Chakra.Core.MongoDb.Data
 {
     /// <summary>
     /// MongoDB data session interface

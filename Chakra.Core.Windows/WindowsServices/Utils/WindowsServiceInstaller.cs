@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Chakra.Core.Windows.WindowsServices.Utils
+namespace ZenProgramming.Chakra.Core.Windows.WindowsServices.Utils
 {
     /// <summary>
     /// Installer class for windows services

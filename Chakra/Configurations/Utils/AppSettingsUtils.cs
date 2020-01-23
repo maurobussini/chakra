@@ -7,7 +7,7 @@ namespace ZenProgramming.Chakra.Configurations.Utils
 	/// <summary>
 	/// Utilities for manage app settings
 	/// </summary>
-	public class AppSettingsUtils
+	public static class AppSettingsUtils
 	{
 		/// <summary>
 		/// Execute switch of actions using value of provided key, invoking

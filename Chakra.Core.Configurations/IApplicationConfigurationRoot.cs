@@ -1,4 +1,4 @@
-﻿namespace Chakra.Core.Configurations
+﻿namespace ZenProgramming.Chakra.Core.Configurations
 {
     /// <summary>
     /// Interface for application configuration root

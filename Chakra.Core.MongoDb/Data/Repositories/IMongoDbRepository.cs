@@ -1,6 +1,6 @@
 ﻿using ZenProgramming.Chakra.Core.Data.Repositories;
 
-namespace Chakra.Core.MongoDb.Data.Repositories
+namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
 {
     /// <summary>
     /// Public interface for MongoDb repositories

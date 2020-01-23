@@ -1,4 +1,4 @@
-﻿namespace Chakra.Core.MongoDb.Data.Options
+﻿namespace ZenProgramming.Chakra.Core.MongoDb.Data.Options
 {
     /// <summary>
     /// Interface for store options for MongoDB

@@ -1,6 +1,6 @@
-﻿using Chakra.Core.Windows.WindowsServices.Events;
+﻿using ZenProgramming.Chakra.Core.Windows.WindowsServices.Events;
 
-namespace Chakra.Core.Windows.WindowsServices
+namespace ZenProgramming.Chakra.Core.Windows.WindowsServices
 {
     /// <summary>
     /// Interface for managed windows services

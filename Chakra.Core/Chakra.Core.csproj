@@ -4,19 +4,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.15</Version>
-    <AssemblyVersion>2.0.15</AssemblyVersion>
-    <FileVersion>2.0.15</FileVersion>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
     <Company>ZenProgramming.it</Company>
     <Authors>Mauro Bussini</Authors>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
-    <Copyright>© 2019 - ZenProgramming.it</Copyright>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <Description>Framework and guidelines for build .NET enterprise applications using .NET Standard</Description>
     
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +32,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Mockups\" />
   </ItemGroup>
 
 </Project>

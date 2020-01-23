@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
-using System.Web;
 using Newtonsoft.Json;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 

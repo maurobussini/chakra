@@ -3,19 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.15</Version>
+    <Version>3.0.0</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Configuration extensions for Chakra.Core</Description>
-    <Copyright>© 2019 - ZenProgramming.it</Copyright>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
-    <AssemblyVersion>2.0.15</AssemblyVersion>
-    <FileVersion>2.0.15</FileVersion>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.2.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>

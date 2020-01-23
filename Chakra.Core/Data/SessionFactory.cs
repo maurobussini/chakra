@@ -1,5 +1,4 @@
 ﻿using System;
-using ZenProgramming.Chakra.Core.Data.Mockups;
 
 namespace ZenProgramming.Chakra.Core.Data
 {
@@ -11,16 +10,8 @@ namespace ZenProgramming.Chakra.Core.Data
         /// <summary>
         /// Type of default data session registered
         /// </summary>
-        public static Type DefaultDataSessionType { get; private set; }
-
-        /// <summary>
-        /// Static constructor
-        /// </summary>
-        static SessionFactory()
-        {
-            //Eseguo la registrazione del tipo della data session di default
-            RegisterDefaultDataSession<MockupDataSession>();
-        }        
+        public static Type DefaultDataSessionType { get; private set; }             
+        private readonly static object lockObj = new object();
 
         /// <summary>
         /// Execute register of default data session type
@@ -29,8 +20,11 @@ namespace ZenProgramming.Chakra.Core.Data
         public static void RegisterDefaultDataSession<TDataSession>()
             where TDataSession : class, IDataSession, new()
         {
-            //Eseguo la registrazione del tipo di default
-            DefaultDataSessionType = typeof (TDataSession);
+            lock (lockObj) 
+            {
+                //Eseguo la registrazione del tipo di default
+                DefaultDataSessionType = typeof(TDataSession);
+            }
         }
 
         /// <summary>
@@ -53,6 +47,11 @@ namespace ZenProgramming.Chakra.Core.Data
         /// <returns>Returns data session instance</returns>
         public static IDataSession OpenSession()
         {
+            //Verifica della presenza della sessione di default
+            if (DefaultDataSessionType == null)
+                throw new InvalidProgramException("Default data session not found." + 
+                    "Please register with 'RegisterDefaultDataSession<TDataSession>'");
+
             //Eseguo la creazione dell'istanza
             var instance = Activator.CreateInstance(DefaultDataSessionType) as IDataSession;
             if (instance == null) throw new InvalidCastException(string.Format("Unable to cast " +
