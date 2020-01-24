@@ -3,7 +3,9 @@ Chakra
 
 Framework and guidelines for build enterprise applications using .NET and .NET Core
 
-![.NET Core](https://github.com/maurobussini/chakra/workflows/.NET%20Core/badge.svg)
+![.NET Core Build](https://github.com/maurobussini/chakra/workflows/.NET%20Core%20Build/badge.svg)
+
+![.NET Core Tests](https://github.com/maurobussini/chakra/workflows/.NET%20Core%20Tests/badge.svg)
 
 ## Packages documentations
 
