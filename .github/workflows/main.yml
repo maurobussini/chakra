@@ -1,0 +1,22 @@
+name: Update NuGet
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    name: Update NuGet 
+    steps:
+      - uses: actions/checkout@develop
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.101'
+      - name: Package Release
+        run: |  
+          cd chakra
+          cd Chakra.Core.WebApi
+          dotnet pack -c Release -o out
