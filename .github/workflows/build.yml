@@ -1,4 +1,4 @@
-name: .NET Core
+name: .NET Core Build
 
 on: [push]
 
@@ -68,9 +68,4 @@ jobs:
     - name: Build 'Chakra.Core.Windows'
       run: |
         cd Chakra.Core.Windows
-        dotnet build --configuration Release
-
-    - name: Build 'Chakra.Core.OAuth'
-      run: |
-        cd Chakra.Core.OAuth
         dotnet build --configuration Release
