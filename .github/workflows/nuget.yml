@@ -26,6 +26,8 @@ jobs:
         dotnet pack -c Release -o out
 
     - name: Publish Chakra.Core.WebApi to Nuget
-      run: dotnet nuget push ./out/$(ls ./) -s https://nuget.pkg.github.com/maurobussini/index.json -k ${APIKEY}  
+      run: |
+        cd Chakra.Core.WebApi
+        dotnet nuget push ./out/$(ls .) -s https://nuget.pkg.github.com/maurobussini/index.json -k ${APIKEY}  
       env:
         APIKEY: ${{ secrets.NUGET_APIKEY }} 
