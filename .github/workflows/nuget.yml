@@ -16,12 +16,15 @@ jobs:
         dotnet-version: 3.0.101
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: |
+        cd Chakra.Core.WebApi
+        dotnet build --configuration Release
 
     - name: Package Chakra.Core.WebApi
       run: |  
         cd Chakra.Core.WebApi
         dotnet pack -c Release -o out
+
     - name: Publish Chakra.Core.WebApi to Nuget
       run: dotnet nuget push ./out -s https://nuget.pkg.github.com/maurobussini/index.json -k ${APIKEY}  
       env:
