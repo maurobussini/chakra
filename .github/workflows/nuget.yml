@@ -28,6 +28,6 @@ jobs:
     - name: Publish Chakra.Core.WebApi to Nuget
       run: |
         cd Chakra.Core.WebApi
-        dotnet nuget push ./out/$(ls .) -s https://nuget.pkg.github.com/maurobussini/index.json -k ${APIKEY}  
+        dotnet nuget push ./out/$(ls ./out) -s https://api.nuget.org/v3/index.json -k ${APIKEY}  
       env:
         APIKEY: ${{ secrets.NUGET_APIKEY }} 
