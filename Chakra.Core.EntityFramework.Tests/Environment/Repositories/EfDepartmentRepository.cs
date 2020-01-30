@@ -2,15 +2,15 @@
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories.Attributes;
 using ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories;
-using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
 using ZenProgramming.Chakra.Core.Tests.Environment.Repositories;
+using Chakra.Core.Tests.Environment.Entities;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Repositories
 {
     [Repository]
-    public class EfPersonRepository : EntityFrameworkRepositoryBase<Person, ChakraDbContext>, IPersonRepository
+    public class EfDepartmentRepository : EntityFrameworkRepositoryBase<Department, ChakraDbContext>, IDepartmentRepository
     {
-        public EfPersonRepository(IDataSession dataSession) 
-            : base(dataSession, dbc => dbc.Persons) { }
+        public EfDepartmentRepository(IDataSession dataSession) 
+            : base(dataSession, dbc => dbc.Departments) { }
     }
 }

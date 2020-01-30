@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Chakra.Core.Tests.Environment.Entities;
+using Microsoft.EntityFrameworkCore;
 using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
@@ -13,6 +14,11 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
         /// </summary>
         public DbSet<Person> Persons { get; set; }
 
+        /// <summary>
+        /// Departments
+        /// </summary>
+        public DbSet<Department> Departments { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Add SQL configuration
@@ -24,8 +30,9 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Mappo le entità
+            //Map of entities
             modelBuilder.Entity<Person>().ToTable("icCHAKRA_Persons");
+            modelBuilder.Entity<Department>().ToTable("icCHAKRA_Departments");
         }
     }
 }

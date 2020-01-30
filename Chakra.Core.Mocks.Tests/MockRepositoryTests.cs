@@ -2,9 +2,9 @@
 using Xunit;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
-using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 using ZenProgramming.Chakra.Core.Tests.Environment.Repositories;
 using ZenProgramming.Chakra.Core.Tests.Environment.Repositories.Mocks;
+using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
@@ -14,13 +14,12 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         [Fact]
         public void VerifyThatRepositoryCanBeCreated()
         {
-            var scenario = new SimpleScenario();
-            ScenarioFactory.Initialize(scenario);
-            SessionFactory.RegisterDefaultDataSession<MockDataSession>();
+            SessionFactory.RegisterDefaultDataSession<MockDataSession<
+                IChakraScenario, ScopedScenarioOption<SimpleScenario>>>();
             var DataSession = SessionFactory.OpenSession();
 
             var repository = DataSession.ResolveRepository<IPersonRepository>();
             Assert.True(repository is MockPersonRepository);
-        }
+        }        
     }
 }

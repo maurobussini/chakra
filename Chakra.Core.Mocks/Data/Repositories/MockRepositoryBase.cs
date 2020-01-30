@@ -9,13 +9,17 @@ using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
 using ZenProgramming.Chakra.Core.Entities;
 using ZenProgramming.Chakra.Core.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios;
-using ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
 {
-    public class MockRepositoryBase<TEntity, TScenario> : IRepository<TEntity>, IMockRepository
+    /// <summary>
+    /// Base class for repositories with mock engine
+    /// </summary>
+    /// <typeparam name="TEntity">Type of entity</typeparam>
+    /// <typeparam name="TScenarioInterface">Type of scenario interface (ex: IChakraScenario)</typeparam>
+    public class MockRepositoryBase<TEntity, TScenarioInterface> : IRepository<TEntity>, IMockRepository
         where TEntity : class, IEntity, new()
-        where TScenario: IScenario
+        where TScenarioInterface: IScenario
     {
         #region Private fields
         private bool _IsDisposed;
@@ -23,9 +27,9 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
 
         #region Protected properties
         /// <summary>
-        /// Get NHibernate data session
+        /// Get mock data session
         /// </summary>
-        protected MockDataSession DataSession { get; }
+        protected IMockDataSession<TScenarioInterface> DataSession { get; }
 
         /// <summary>
         /// List of mocked entities
@@ -35,7 +39,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
 		/// <summary>
 		/// Used scenario instance
 		/// </summary>
-		protected TScenario Scenario { get; }
+		protected TScenarioInterface Scenario { get; }
 		#endregion
 
 		/// <summary>
@@ -43,25 +47,26 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
 		/// </summary>
 		/// <param name="dataSession">Active data session</param>
 		/// <param name="entitiesExpression">Entities expression</param>
-		protected MockRepositoryBase(IDataSession dataSession, Func<TScenario, IList<TEntity>> entitiesExpression)        
+		protected MockRepositoryBase(IDataSession dataSession, Func<TScenarioInterface, IList<TEntity>> entitiesExpression)        
         {
             //Validazione argomenti
             if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
 
             //Tento il cast della sessione generica a MockDataSession
-            var mockupSession = dataSession as MockDataSession;
+            var mockupSession = dataSession as IMockDataSession<TScenarioInterface>;
             if (mockupSession == null)
                 throw new InvalidCastException(string.Format("Specified session of type '{0}' cannot be converted to type '{1}'.",
-                    dataSession.GetType().FullName, typeof(MockDataSession).FullName));
+                    dataSession.GetType().FullName, typeof(IMockDataSession<TScenarioInterface>).FullName));
 
             //Imposto la proprietà della sessione
             DataSession = mockupSession;
 
 			//Recupero lo scenario in uso
-			Scenario = ScenarioFactory.Default.OfType<TScenario>();
+			//Scenario = ScenarioFactory.Default.OfType<TScenario>();
+            Scenario = (TScenarioInterface)DataSession.Scenario;
 
-			//Recupero l'istanza delle entità
-			MockedEntities = entitiesExpression(Scenario);
+            //Recupero l'istanza delle entità
+            MockedEntities = entitiesExpression(Scenario);
         }
 
         /// <summary>
@@ -171,15 +176,19 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
                 {
                     //Eseguo l'assegnazione dell'identificatore primario
                     AssignPrimaryIdentifier(entity);
-                }                
-                else
+                }
+                else 
                 {
-                    //Eseguo la cancellazione dalla memoria
+                    //Remove element
                     Delete(entity);
                 }
 
                 //Accodo l'entità
                 MockedEntities.Add(entity);
+
+
+                //ATTENTION! In case of update, do nothing because
+                //entity is already on the list and the reference is updated
             });
         }
 

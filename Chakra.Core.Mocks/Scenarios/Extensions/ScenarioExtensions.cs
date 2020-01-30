@@ -20,7 +20,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions
         public static TScenario OfType<TScenario>(this IScenario instance)
             where TScenario : IScenario
         {
-            //Validazione argomenti
+            //Arguments validation
             if (instance == null) throw new ArgumentNullException(nameof(instance));
 
             try

@@ -7,11 +7,11 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
     /// <summary>
     /// Data transaction implementation for mockup
     /// </summary>
-    public class MockDataTransaction: IDataTransaction
+    public class MockDataTransaction : IDataTransaction
     {
         #region Private fields
         private bool _IsDisposed;
-        private MockDataSession _DataSession;
+        private IMockDataSession _DataSession;
         #endregion
 
         #region Public properties
@@ -40,7 +40,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// <summary>
         /// Constructor
         /// </summary>
-        public MockDataTransaction(MockDataSession dataSession)
+        public MockDataTransaction(IMockDataSession dataSession)
         {
             //Validazione argomenti
             if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
@@ -99,13 +99,13 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         }
 
         /// <summary>
-        /// Finalizer that ensures the object is correctly disposed of.
+        /// Finalizes that ensures the object is correctly disposed of.
 		/// </summary>
         ~MockDataTransaction()
-		{
-            //Richiamo i dispose implicito
-			Dispose(false);
-		}
+        {
+            //Implicit dispose
+            Dispose(false);
+        }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, 
@@ -113,7 +113,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// </summary>
         public void Dispose()
         {
-            //Eseguo una dispose esplicita
+            //Explicit dispose
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -125,20 +125,20 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// <param name="isDisposing">Explicit dispose</param>
         protected virtual void Dispose(bool isDisposing)
         {
-            //Se l'oggetto è già rilasciato, esco
+            //If already disposed, exit
             if (_IsDisposed)
                 return;
 
-            //Se è richiesto il rilascio esplicito
+            //If explicit dispose
             if (isDisposing)
             {
-                //Se l'istanza è proprietaria e non ho chiuso, eccezione
+                //If owns instance but was not closed, trace error
                 if (IsTransactionOwner && IsActive)
                     Tracer.Error("Transaction was opened but never commited or rolled back.");
             }
 
-            //Marco il dispose e invoco il GC
-            _IsDisposed = true;            
+            //Set as disposed
+            _IsDisposed = true;
         }
     }
 }
