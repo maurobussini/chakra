@@ -33,4 +33,4 @@ jobs:
         cd Chakra.Core.Configurations
         dotnet nuget push ./out/$(ls ./out) -s https://api.nuget.org/v3/index.json -k ${API_KEY}
       env:
-        APIKEY: ${{ secrets.NUGET_APIKEY }} 
+        API_KEY: ${{ secrets.NUGET_APIKEY }}
