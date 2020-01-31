@@ -9,33 +9,53 @@ namespace ZenProgramming.Chakra.Core.Tests
     public class MockDataSessionTests
     {
         [Fact]
-        public void VerifyThatMockDataSessionCanBeCreated()
+        public void ShouldMockDataSessionBeOpenedWithRegisterDefaultUsingImplicitScopedMode()
         {
+            //Register data session using "implicit mode" (scoped)
             SessionFactory.RegisterDefaultDataSession<MockDataSession<SimpleScenario>>();
+
+            //Open session
             IDataSession session = SessionFactory.OpenSession();
-            Assert.True(session is MockDataSession<SimpleScenario>);
+
+            //Check that session is created and is valid
+            Assert.NotNull(session);
+            Assert.True(session is IMockDataSession);
         }
 
         [Fact]
-        public void ShouldMockDataSessionBeOpenedUsingRegisteredDefault()
+        public void ShouldMockDataSessionBeOpenedWithRegisterDefaultUsingExplicitScopedMode()
         {
+            //Register data session using "implicit mode" (scoped)
             SessionFactory.RegisterDefaultDataSession<MockDataSession<IChakraScenario, ScopedScenarioOption<SimpleScenario>>>();
+
+            //Open session
             IDataSession session = SessionFactory.OpenSession();
+
+            //Check that session is created and is valid
             Assert.NotNull(session);
+            Assert.True(session is IMockDataSession);
         }
 
+        [Fact]
+        public void ShouldMockDataSessionBeOpenedDirectlyUsingImplicitScopedMode()
+        {
+            //Open session directly
+            IDataSession session = SessionFactory.OpenSession<MockDataSession<SimpleScenario>>();
+
+            //Check that session is created and is valid
+            Assert.NotNull(session);
+            Assert.True(session is IMockDataSession);
+        }
 
         [Fact]
-        public void ShouldMockDataSessionBeCreatedUsingExplicitOnOpen()
+        public void ShouldMockDataSessionBeOpenedDirectlyUsingExplicitScopedMode() 
         {
+            //Open session directly
             IDataSession session = SessionFactory.OpenSession<MockDataSession<IChakraScenario, ScopedScenarioOption<SimpleScenario>>>();
-            Assert.NotNull(session);
-        }
 
-        [Fact]
-        public void ShouldMockDataSessionWithScopedScenarioBeCreated() 
-        {
-            
+            //Check that session is created and is valid
+            Assert.NotNull(session);
+            Assert.True(session is IMockDataSession);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Chakra.Core.Mocks.Tests
 {
     public class MockPersonRepositoryTests : IDisposable
     {
-        private IDataSession _DataSession { get; set; }
+        private IDataSession _DataSession;
 
         public MockPersonRepositoryTests()
         {

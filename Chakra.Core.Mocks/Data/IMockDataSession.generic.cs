@@ -8,7 +8,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
     /// that owns a specific scenario for data
     /// </summary>
     /// <typeparam name="TScenario">Type of scenario</typeparam>
-    public interface IMockDataSession<TScenario> : IDataSession
+    public interface IMockDataSession<TScenario> : IMockDataSession
         where TScenario : IScenario
     {
         /// <summary>
