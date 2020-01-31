@@ -1,4 +1,4 @@
-name: Nuget Push
+name: Push to NuGet
 
 on:
   push:
@@ -31,4 +31,4 @@ jobs:
     - name: Publish Chakra.Core.Mocks to Nuget
       run: |
         cd Chakra.Core.Mocks
-        dotnet nuget push ./Chakra.Core.3.0.0.nupkg -s https://api.nuget.org/v3/index.json -k oy2c24gaod2kmcwlviwqbpv4wbjbrqlenf45pgpjglm37q
+        dotnet nuget push ./Chakra.Core.Mocks.3.0.0.nupkg -s https://api.nuget.org/v3/index.json -k oy2c24gaod2kmcwlviwqbpv4wbjbrqlenf45pgpjglm37q

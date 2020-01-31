@@ -1,4 +1,4 @@
-name: .NET Core Tests
+name: Test .NET Core Projects
 
 on: [push]
 
