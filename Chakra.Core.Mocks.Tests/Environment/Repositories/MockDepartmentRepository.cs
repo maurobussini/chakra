@@ -2,21 +2,21 @@
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories.Attributes;
 using ZenProgramming.Chakra.Core.Mocks.Data.Repositories;
-using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
+using Chakra.Core.Tests.Environment.Entities;
 
 namespace ZenProgramming.Chakra.Core.Tests.Environment.Repositories.Mocks
 {
     /// <summary>
-    /// Repository for Person on mock engine
+    /// Repository for Department on mock engine
     /// </summary>
     [Repository]
-    public class MockPersonRepository: MockRepositoryBase<Person, IChakraScenario>, IPersonRepository
+    public class MockDepartmentRepository: MockRepositoryBase<Department, IChakraScenario>, IDepartmentRepository
     {
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="dataSession">Active data session</param>
-        public MockPersonRepository(IDataSession dataSession) 
-            : base(dataSession, sc => sc.Persons) { }
+        public MockDepartmentRepository(IDataSession dataSession) 
+            : base(dataSession, sc => sc.Departments) { }
     }
 }

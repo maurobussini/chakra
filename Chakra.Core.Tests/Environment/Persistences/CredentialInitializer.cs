@@ -22,9 +22,9 @@ namespace ZenProgramming.Chakra.Core.Tests.Environment.Persistences
             if (elements == null) throw new ArgumentNullException(nameof(elements));
 
             //Accodo gli elementi
-            elements.Add(new Credential { Key = "maurob@icubed.it", Password = ShaProcessor.Sha1Encrypt("P4ssw0rd") });
-            elements.Add(new Credential { Key = "davidem@icubed.it", Password = ShaProcessor.Sha1Encrypt("P@ssw0rdDavide") });
-            elements.Add(new Credential { Key = "lucaq@icubed.it", Password = ShaProcessor.Sha1Encrypt("P@ssw0rd4") });
+            elements.Add(new Credential { Key = "john@doe.it", Password = ShaProcessor.Sha1Encrypt("ABC") });
+            elements.Add(new Credential { Key = "jane@doe.it", Password = ShaProcessor.Sha1Encrypt("CDE") });
+            elements.Add(new Credential { Key = "jack@doe.it", Password = ShaProcessor.Sha1Encrypt("FGH") });
         }
     }
 }

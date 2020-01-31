@@ -13,7 +13,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Scenarios
         /// <param name="filePath">Source file path</param>
         protected FromFileScenarioBase(string filePath)
         {
-            //Validazione argomenti
+            //Arguments validation
             if (string.IsNullOrEmpty(filePath)) throw new ArgumentNullException(nameof(filePath));
         }
 
@@ -23,8 +23,8 @@ namespace ZenProgramming.Chakra.Core.Mocks.Scenarios
         /// </summary>
         public void InitializeEntities()
         {
-            throw new NotImplementedException("Lettura da file di un JSON con il contenuto delle informazioni");
-
+            //TODO: Should read a local file (ex. YAML, JSON) to build scenario
+            throw new NotImplementedException("TODO: Should read a local file (ex. YAML, JSON) to build scenario");
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Scenarios
         /// </summary>
         public virtual void InitializeAssets()
         {
-            //Questo metodo può essere sovrascritto nella classe derivata
+            //Not required here, but overridable
         }
     }
 }

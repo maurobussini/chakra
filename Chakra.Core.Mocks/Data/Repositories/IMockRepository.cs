@@ -3,7 +3,7 @@
 namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
 {
     /// <summary>
-    /// Public for mockup repositories
+    /// Public interface for mock repositories (used for auto-discovery!)
     /// </summary>
     public interface IMockRepository : IRepository
     {

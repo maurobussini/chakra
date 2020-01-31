@@ -27,13 +27,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.Windows", "Chak
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.AspnetCore", "Chakra.Core.AspnetCore\Chakra.Core.AspnetCore.csproj", "{11F9E79F-5B39-4E53-85CC-6A0B4895A82C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.Tests", "Chakra.Core.Tests\Chakra.Core.Tests.csproj", "{AD6760C7-0088-49DC-BA04-7DD192C87AD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.Tests", "Chakra.Core.Tests\Chakra.Core.Tests.csproj", "{AD6760C7-0088-49DC-BA04-7DD192C87AD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.Mocks", "Chakra.Core.Mocks\Chakra.Core.Mocks.csproj", "{5268F3BC-2A98-49E6-9F3C-C16F6EE27322}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.Mocks", "Chakra.Core.Mocks\Chakra.Core.Mocks.csproj", "{5268F3BC-2A98-49E6-9F3C-C16F6EE27322}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.Mocks.Tests", "Chakra.Core.Mocks.Tests\Chakra.Core.Mocks.Tests.csproj", "{9418C076-3A88-4BDD-9526-0A82C7707BB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.Mocks.Tests", "Chakra.Core.Mocks.Tests\Chakra.Core.Mocks.Tests.csproj", "{9418C076-3A88-4BDD-9526-0A82C7707BB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.EntityFramework.Tests", "Chakra.Core.EntityFramework.Tests\Chakra.Core.EntityFramework.Tests.csproj", "{E7F14FD8-E11B-4042-8093-93CB2B849D88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.EntityFramework.Tests", "Chakra.Core.EntityFramework.Tests\Chakra.Core.EntityFramework.Tests.csproj", "{E7F14FD8-E11B-4042-8093-93CB2B849D88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{0DF4848D-C5B7-45BA-BDD1-15DE5DA5AB8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{07C8F1F4-C3C6-4FE7-96D2-55B36178ABCE}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\nuget.yml = .github\workflows\nuget.yml
+		.github\workflows\tests.yml = .github\workflows\tests.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +125,7 @@ Global
 		{5268F3BC-2A98-49E6-9F3C-C16F6EE27322} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 		{9418C076-3A88-4BDD-9526-0A82C7707BB6} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 		{E7F14FD8-E11B-4042-8093-93CB2B849D88} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
+		{07C8F1F4-C3C6-4FE7-96D2-55B36178ABCE} = {0DF4848D-C5B7-45BA-BDD1-15DE5DA5AB8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A54C3E0E-2F55-4712-B617-01BCFB78E2C9}
