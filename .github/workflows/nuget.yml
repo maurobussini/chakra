@@ -20,17 +20,17 @@ jobs:
 
     - name: Build with dotnet
       run: |
-        cd Chakra.Core
+        cd Chakra.Core.Mocks
         dotnet build --configuration Release
 
-    - name: Package Chakra.Core
+    - name: Package Chakra.Core.Mocks
       run: |  
-        cd Chakra.Core
+        cd Chakra.Core.Mocks
         dotnet pack -c Release -o out
 
-    - name: Publish Chakra.Core to Nuget
+    - name: Publish Chakra.Core.Mocks to Nuget
       run: |
-        cd Chakra.Core
-        dotnet nuget push ./out/$(ls ./out) -s https://api.nuget.org/v3/index.json -k ${APIKEY}  
+        cd Chakra.Core.Mocks
+        dotnet nuget push ./out/$(ls ./out) -s https://api.nuget.org/v3/index.json -k ${APIKEY}
       env:
         APIKEY: ${{ secrets.NUGET_APIKEY }} 
