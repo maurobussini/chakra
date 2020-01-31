@@ -8,6 +8,7 @@ using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
 using ZenProgramming.Chakra.Core.Entities;
 using ZenProgramming.Chakra.Core.Extensions;
+using ZenProgramming.Chakra.Core.Mocks.Data.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
@@ -29,7 +30,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
         /// <summary>
         /// Get mock data session
         /// </summary>
-        protected IMockDataSession<TScenarioInterface> DataSession { get; }
+        protected IMockDataSession DataSession { get; }
 
         /// <summary>
         /// List of mocked entities
@@ -49,23 +50,26 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
 		/// <param name="entitiesExpression">Entities expression</param>
 		protected MockRepositoryBase(IDataSession dataSession, Func<TScenarioInterface, IList<TEntity>> entitiesExpression)        
         {
-            //Validazione argomenti
+            //Arguments validation
             if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
 
-            //Tento il cast della sessione generica a MockDataSession
-            var mockupSession = dataSession as IMockDataSession<TScenarioInterface>;
-            if (mockupSession == null)
-                throw new InvalidCastException(string.Format("Specified session of type '{0}' cannot be converted to type '{1}'.",
-                    dataSession.GetType().FullName, typeof(IMockDataSession<TScenarioInterface>).FullName));
+            //Convert to IMockDataSession
+            var mockupSession = dataSession.AsMockDataSession();
 
-            //Imposto la proprietà della sessione
+            //Get scenario from data session
+            IScenario scenarioFromDataSession = mockupSession.GetScenario();
+
+            //Try cast of scenario to provided interface
+            if (!(scenarioFromDataSession is TScenarioInterface castedScenario))
+                throw new InvalidCastException("Scenario contained on data session is of " + 
+                    $"type '{scenarioFromDataSession.GetType().FullName}' and cannot be converted "+ 
+                    $"to type '{typeof(TScenarioInterface).FullName}'.");
+
+            //Set data session and scenario
             DataSession = mockupSession;
+            Scenario = castedScenario;
 
-			//Recupero lo scenario in uso
-			//Scenario = ScenarioFactory.Default.OfType<TScenario>();
-            Scenario = (TScenarioInterface)DataSession.Scenario;
-
-            //Recupero l'istanza delle entità
+            //Initialize working mocked entities
             MockedEntities = entitiesExpression(Scenario);
         }
 

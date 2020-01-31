@@ -5,10 +5,11 @@
     /// </summary>
     public interface IScenarioOption
     {
-        /// <summary>
-        /// Get instance of scenario working
-        /// </summary>
-        /// <returns>Returns scenario instance</returns>
-        IScenario GetInstance();
+        ///// <summary>
+        ///// Get instance of scenario working
+        ///// </summary>
+        ///// <returns>Returns scenario instance</returns>
+        //TScenarioImplementation GetInstance<TScenarioImplementation>()
+        //    where TScenarioImplementation: class, IScenario, new();
     }
 }

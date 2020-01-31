@@ -5,7 +5,7 @@
     /// for each new data session will be created)
     /// </summary>
     /// <typeparam name="TScenarioImplementation">Type of scenario implementation</typeparam>
-    public class TransientScenarioOption<TScenarioImplementation> : IScenarioOption, ITransientScenarioOption
+    public class TransientScenarioOption<TScenarioImplementation> : IScenarioOption<TScenarioImplementation>
         where TScenarioImplementation : class, IScenario, new()
     {
         //Private instance of scenario
@@ -15,7 +15,7 @@
         /// Get instance of scenario working
         /// </summary>
         /// <returns>Returns scenario instance</returns>
-        public IScenario GetInstance()
+        public TScenarioImplementation GetInstance()
         {
             //If instance does not exists
             if (_LocalInstance == null)

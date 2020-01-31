@@ -10,13 +10,69 @@ using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Data
 {
-    public class MockDataSession<TScenario, TScenarioOption> : IMockDataSession<TScenario>
-        where TScenario : IScenario
-        where TScenarioOption : class, IScenarioOption, new()
+    /// <summary>
+    /// Generic implementation of data session on "Mock" engine with injectable scenario option
+    /// </summary>
+    /// <typeparam name="TScenarioImplementation">Type of scenario instance (ex: SimpleScenario)</typeparam>
+    /// <typeparam name="TScenarioOption">Type of scenario option (ex: TransientScenarioOption[SimpleScenario])</typeparam>
+    public class MockDataSession<TScenarioImplementation, TScenarioOption> : IMockDataSession<TScenarioImplementation, TScenarioOption>
+        where TScenarioImplementation : class, IScenario, new()
+        where TScenarioOption : class, IScenarioOption<TScenarioImplementation>, new()
     {
         #region Private fields
         private bool _IsDisposed;
+        private TScenarioOption _Option;
         #endregion        
+        
+        #region Public properties
+        /// <summary>
+        /// Active transaction on session
+        /// </summary>
+        public IDataTransaction Transaction { get; private set; }
+
+        /// <summary>
+        /// Option for scenario
+        /// </summary>
+        public TScenarioOption Option 
+        {
+            get 
+            {
+                if (_Option == null)
+                    _Option = new TScenarioOption();
+                return _Option;
+            }
+        }
+
+        /// <summary>
+        /// Active scenario
+        /// </summary>
+        public TScenarioImplementation Scenario
+        {
+            get
+            {
+                //Get instance of scenario from option
+                var scenario = Option.GetInstance();
+
+                //Safe cast to specified scenario
+                if (!(scenario is TScenarioImplementation casted))
+                    throw new InvalidProgramException($"Scenario provided inside option " +
+                        $"is of type '{scenario.GetType().FullName}' but should be of type '{typeof(TScenarioImplementation).FullName}'");
+
+                //Returns instance 
+                return casted;
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// Get (or creates) scenario instance
+        /// </summary>
+        /// <returns>Returns instance of scenario</returns>
+        public IScenario GetScenario()
+        {
+            //Get instance of scenario from option
+            return Option.GetInstance();
+        }
 
         /// <summary>
         /// Execute resolution of repository interface using specified clas
@@ -28,36 +84,6 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         {
             //Utilizzo il metodo presente sull'helper
             return RepositoryHelper.Resolve<TRepositoryInterface, IMockRepository>(this);
-        }
-
-        /// <summary>
-        /// Active transaction on session
-        /// </summary>
-        public IDataTransaction Transaction { get; private set; }
-
-        private TScenarioOption _ScenarioOption;
-
-        public TScenarioOption ScenarioOption
-        {
-            get
-            {
-                if (_ScenarioOption == null)
-                {
-                    _ScenarioOption = new TScenarioOption();
-                }
-                return _ScenarioOption;
-            }
-        }
-
-        /// <summary>
-        /// Active scenario
-        /// </summary>
-        public TScenario Scenario
-        {
-            get
-            {
-                return (TScenario)ScenarioOption.GetInstance();
-            }
         }
 
         /// <summary>
@@ -140,6 +166,6 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
 
             //Marco il dispose e invoco il GC
             _IsDisposed = true;
-        }
+        }        
     }
 }

@@ -26,7 +26,7 @@ namespace ZenProgramming.Chakra.Core.Tests
         public void ShouldMockDataSessionBeOpenedWithRegisterDefaultUsingExplicitScopedMode()
         {
             //Register data session using "implicit mode" (scoped)
-            SessionFactory.RegisterDefaultDataSession<MockDataSession<IChakraScenario, ScopedScenarioOption<SimpleScenario>>>();
+            SessionFactory.RegisterDefaultDataSession<MockDataSession<SimpleScenario, ScopedScenarioOption<SimpleScenario>>>();
 
             //Open session
             IDataSession session = SessionFactory.OpenSession();
@@ -51,7 +51,7 @@ namespace ZenProgramming.Chakra.Core.Tests
         public void ShouldMockDataSessionBeOpenedDirectlyUsingExplicitScopedMode() 
         {
             //Open session directly
-            IDataSession session = SessionFactory.OpenSession<MockDataSession<IChakraScenario, ScopedScenarioOption<SimpleScenario>>>();
+            IDataSession session = SessionFactory.OpenSession<MockDataSession<SimpleScenario, ScopedScenarioOption<SimpleScenario>>>();
 
             //Check that session is created and is valid
             Assert.NotNull(session);

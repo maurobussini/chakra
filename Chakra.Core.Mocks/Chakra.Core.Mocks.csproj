@@ -12,4 +12,8 @@
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scenarios\Options\Common\" />
+  </ItemGroup>
+
 </Project>

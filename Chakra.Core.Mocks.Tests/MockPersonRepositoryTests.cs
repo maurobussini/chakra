@@ -3,6 +3,7 @@ using System.Linq;
 using Xunit;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
+using ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
 using ZenProgramming.Chakra.Core.Mocks.Tests.Scenarios;
 using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
@@ -18,7 +19,7 @@ namespace Chakra.Core.Mocks.Tests
         {
             //Register default session and open
             _DataSession = SessionFactory.OpenSession<MockDataSession<
-                IChakraScenario,
+                SimpleScenario,
                 TransientScenarioOption<SimpleScenario>>>();
         }
 
@@ -56,7 +57,7 @@ namespace Chakra.Core.Mocks.Tests
             var repository = _DataSession.ResolveRepository<IPersonRepository>();
 
             //Get number of elements before create
-            var countBefore = (_DataSession as IMockDataSession<IChakraScenario>).Scenario.Persons.Count;
+            var countBefore = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
 
             //Define new element
             var element = new Person 
@@ -69,7 +70,7 @@ namespace Chakra.Core.Mocks.Tests
             repository.Save(element);
 
             //Get number of elements after create
-            var countAfter = (_DataSession as IMockDataSession<IChakraScenario>).Scenario.Persons.Count;
+            var countAfter = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
 
             //Assert
             Assert.Equal(countBefore + 1, countAfter);
@@ -93,8 +94,8 @@ namespace Chakra.Core.Mocks.Tests
             repository.Save(existing);
 
             //Get element from scenario
-            var fromScenario = (_DataSession as IMockDataSession<IChakraScenario>)
-                .Scenario.Persons.SingleOrDefault(e => e.Id == existingId);
+            var fromScenario = _DataSession.GetScenario<IChakraScenario>()
+                .Persons.SingleOrDefault(e => e.Id == existingId);
 
             //Assert
             Assert.Equal(existing.Name, fromScenario.Name);
@@ -107,7 +108,7 @@ namespace Chakra.Core.Mocks.Tests
             var repository = _DataSession.ResolveRepository<IPersonRepository>();
 
             //Get number of elements before create
-            var countBefore = (_DataSession as IMockDataSession<IChakraScenario>).Scenario.Persons.Count;
+            var countBefore = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
 
             //Get existing element
             var all = repository.Fetch();
@@ -117,7 +118,7 @@ namespace Chakra.Core.Mocks.Tests
             repository.Delete(existing);
 
             //Get number of elements after create
-            var countAfter = (_DataSession as IMockDataSession<IChakraScenario>).Scenario.Persons.Count;
+            var countAfter = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
 
             //Assert
             Assert.Equal(countBefore - 1, countAfter);

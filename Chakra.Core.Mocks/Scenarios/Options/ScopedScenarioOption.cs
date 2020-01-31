@@ -6,7 +6,7 @@
     /// data session, then the instance is singleton)
     /// </summary>
     /// <typeparam name="TScenarioImplementation">Type of scenario implementation</typeparam>
-    public class ScopedScenarioOption<TScenarioImplementation> : IScenarioOption<TScenarioImplementation>, IScopedScenarioOption
+    public class ScopedScenarioOption<TScenarioImplementation> : IScenarioOption<TScenarioImplementation>
         where TScenarioImplementation : class, IScenario, new()
     {
         //Singleton scenario
@@ -16,7 +16,7 @@
         /// Get instance of scenario working
         /// </summary>
         /// <returns>Returns scenario instance</returns>
-        public IScenario GetInstance()
+        public TScenarioImplementation GetInstance()
         {
             //If instance does not exists
             if (_SingletonInstance == null)
