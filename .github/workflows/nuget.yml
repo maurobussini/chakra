@@ -31,6 +31,4 @@ jobs:
     - name: Publish Chakra.Core.Mocks to Nuget
       run: |
         cd Chakra.Core.Mocks
-        dotnet nuget push ./out/$(ls ./out) -s https://api.nuget.org/v3/index.json -k oy2c24gaod2kmcwlviwqbpv4wbjbrqlenf45pgpjglm37q
-      env:
-        APIKEY: ${{ secrets.NUGET_APIKEY }} 
+        dotnet nuget push ./Chakra.Core.3.0.0.nupkg -s https://api.nuget.org/v3/index.json -k oy2c24gaod2kmcwlviwqbpv4wbjbrqlenf45pgpjglm37q
