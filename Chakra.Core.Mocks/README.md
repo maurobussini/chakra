@@ -17,7 +17,6 @@ public interface IChakraScenario: IScenario
 }
 ```
 
-
 Just register a default data session with Mock engine...
 
 ```csharp

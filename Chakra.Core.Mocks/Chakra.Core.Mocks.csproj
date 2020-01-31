@@ -3,9 +3,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core.Mocks</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>3.0.0</Version>
-    <FileVersion>3.0.0</FileVersion>
     <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
+    <Company>ZenProgramming.it</Company>
+    <Authors>Mauro Bussini</Authors>
+    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <Description>Data providers and structures for mock data and scenarios</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Mocks</RepositoryUrl>
+    <PackageTags>.net, core, mock, scenario, data</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
