@@ -14,7 +14,7 @@
     <Description>Data providers and structures for mock data and scenarios</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Mocks</RepositoryUrl>
-    <PackageTags>.net, core, mock, scenario, data</PackageTags>
+    <PackageTags>.net, core, mock, scenario, data, test, bdd</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +23,10 @@
 
   <ItemGroup>
     <Folder Include="Scenarios\Options\Common\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

@@ -2,13 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>ZenProgramming.Chakra.Core</RootNamespace>
     <Version>3.0.0</Version>
     <FileVersion>3.0.0</FileVersion>
     <AssemblyVersion>3.0.0</AssemblyVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Company>ZenProgramming.it</Company>
+    <Authors>Mauro Bussini</Authors>
+    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <Description>Extensions and adapters for Chakra framework for ASP.NET Core</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.AspnetCore</RepositoryUrl>
+    <PackageTags>asp, core, middleware, dependency, transient, singleton, web</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

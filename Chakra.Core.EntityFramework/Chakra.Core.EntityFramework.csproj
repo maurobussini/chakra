@@ -12,6 +12,9 @@
     <Description>Provider for Microsoft EntityFramework Core in Chakra.Core framework</Description>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</RepositoryUrl>
+    <PackageTags>ef, core, entity, framework, relationa, orm</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +23,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

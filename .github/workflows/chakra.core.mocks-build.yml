@@ -1,0 +1,21 @@
+name: Build Chakra.Core.Mocks
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.101
+
+    - name: Build 'Chakra.Core.Mocks'
+      run: |
+        cd Chakra.Core.Mocks
+        dotnet build --configuration Release
