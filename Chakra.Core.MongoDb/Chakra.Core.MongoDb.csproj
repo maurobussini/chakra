@@ -9,8 +9,11 @@
     <Description>Provider for MongoDB in Chakra.Core framework</Description>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <FileVersion>3.0.0</FileVersion>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.MongoDb</RepositoryUrl>
+    <PackageTags>mongo, repository, driver, chakra, data</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +22,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

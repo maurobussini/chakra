@@ -1,0 +1,37 @@
+name: Push Chakra.Core.Windows to NuGet
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.0.101
+
+    # Chakra.Core.Windows
+    - name: Build Chakra.Core.Windows
+      run: |
+        cd Chakra.Core.Windows
+        dotnet build --configuration Release
+
+    - name: Package Chakra.Core.Windows
+      run: |  
+        cd Chakra.Core.Windows
+        dotnet pack -c Release -o out
+
+    - name: Publish Chakra.Core.Windows to Nuget
+      run: |
+        cd Chakra.Core.Windows
+        dotnet nuget push ./out/$(ls ./out) -s https://api.nuget.org/v3/index.json -k ${API_KEY}
+      env:
+        API_KEY: ${{ secrets.NUGET_APIKEY }}

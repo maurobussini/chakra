@@ -9,7 +9,7 @@
     <FileVersion>3.0.0</FileVersion>
     <Company>ZenProgramming.it</Company>
     <Authors>Mauro Bussini</Authors>
-    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core</PackageProjectUrl>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <Description>Framework and guidelines for build .NET enterprise applications using .NET Standard</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
