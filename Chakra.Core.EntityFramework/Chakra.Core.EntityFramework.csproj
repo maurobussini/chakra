@@ -14,7 +14,7 @@
     <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</RepositoryUrl>
-    <PackageTags>ef, core, entity, framework, relationa, orm</PackageTags>
+    <PackageTags>ef, core, entity, framework, relational, orm</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
