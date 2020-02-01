@@ -3,7 +3,7 @@ name: Push to NuGet
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build:

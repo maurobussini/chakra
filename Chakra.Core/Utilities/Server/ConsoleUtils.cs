@@ -99,57 +99,6 @@ namespace ZenProgramming.Chakra.Core.Utilities.Server
             Environment.Exit(-1);
         }
 
-        ///// <summary>
-        ///// Launch console installation for service
-        ///// </summary>
-        ///// <param name="windowsServiceName">Windows service name</param>
-        ///// <param name="executableLocation">Service executable</param>
-        //public static void InstallService(string windowsServiceName, string executableLocation)
-        //{
-        //    //Se il servizio è già installato, esco
-        //    if (ServiceControllerUtils.IsServiceInstalled(windowsServiceName))
-        //    {
-        //        //Visualizzo il messaggio e attendo per la terminazione
-        //        WriteColorLine(ConsoleColor.Red, "Service '{0}' is already installed.", windowsServiceName);
-        //    }
-        //    else
-        //    {
-        //        //Avvio l'installazione del servizio e confermo
-        //        ServiceControllerUtils.InstallService(windowsServiceName, executableLocation);
-        //        WriteColorLine(ConsoleColor.Green, "Service '{0}' installation completed.", windowsServiceName);
-        //    }
-
-        //    //Metto in standby l'esecuzione
-        //    Pause();
-        //}
-
-        ///// <summary>
-        ///// Launch console uninstallation for service
-        ///// </summary>
-        ///// <param name="windowsServiceName">Windows service name</param>
-        ///// <param name="executableLocation">Service executable</param>
-        //public static void UninstallService(string windowsServiceName, string executableLocation)
-        //{
-        //    //Se il servizio non è installato, esco
-        //    if (!ServiceControllerUtils.IsServiceInstalled(windowsServiceName))
-        //    {
-        //        //Visualizzo il messaggio e attendo per la terminazione
-        //        WriteColorLine(ConsoleColor.Red, "Service '{0}' is not installed.", windowsServiceName);
-                
-        //    }
-        //    else
-        //    {
-        //        //Avvio la disinstallazione del servizio
-        //        ServiceControllerUtils.UninstallService(windowsServiceName, executableLocation);
-        //        WriteColorLine(ConsoleColor.Green, "Service '{0}' installation completed.", windowsServiceName);
-                
-        //    }
-
-        //    //Metto in standby l'esecuzione
-        //    Pause();
-        //}
-
-        
 
         /// <summary>
         /// Executes render of a simple console menu on standard output
@@ -164,7 +113,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Server
             //Se il numero di elementi è uguale a zero, emetto eccezione
             if (menuElements.Count == 0) 
                 throw new InvalidOperationException("At least one menu element must be provided.");
-            
+
             //Variabile per il comando impartito
             string commandName;
 
@@ -191,7 +140,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Server
                 commandName = Console.ReadLine() ?? String.Empty;
 
                 //Tento il recupero dell'elemento di console corrispondente
-                ConsoleMenuElement single = menuElements.SingleOrDefault(e => e.CommandName.ToLower() == commandName.ToLower());
+                ConsoleMenuElement single = menuElements.SingleOrDefault(e => string.Equals(e.CommandName,
+                    commandName, StringComparison.CurrentCulture));
 
                 //Se ho trovato l'elemento, lo eseguo
                 if (single == null) continue;

@@ -12,7 +12,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
     /// <summary>
     /// Utilities for trace action
     /// </summary>
-    internal class TraceUtils
+    internal static class TraceUtils
     {
         /// <summary>
         /// Executes generation of request trace using provided data

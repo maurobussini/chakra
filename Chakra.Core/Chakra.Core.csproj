@@ -12,7 +12,9 @@
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <Description>Framework and guidelines for build .NET enterprise applications using .NET Standard</Description>
-    
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core</RepositoryUrl>
+    <PackageTags>architecture, core, repository, database, agnostic, pattern</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Mockups\" />
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
