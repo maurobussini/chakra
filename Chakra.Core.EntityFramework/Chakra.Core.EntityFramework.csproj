@@ -3,23 +3,30 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core.EntityFramework</RootNamespace>
-    <Version>2.0.14</Version>
-    <AssemblyVersion>2.0.14</AssemblyVersion>
-    <FileVersion>2.0.14</FileVersion>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <FileVersion>3.0.0</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>ZenProgramming.it</Company>
     <Description>Provider for Microsoft EntityFramework Core in Chakra.Core framework</Description>
-    <Copyright>© 2019 - ZenProgramming.it</Copyright>
-    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</RepositoryUrl>
+    <PackageTags>ef, core, entity, framework, relationa, orm</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

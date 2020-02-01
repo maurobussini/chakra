@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ServiceProcess;
-using Chakra.Core.Windows.WindowsServices.Events;
+using ZenProgramming.Chakra.Core.Windows.WindowsServices.Events;
 
-namespace Chakra.Core.Windows.WindowsServices.Common
+namespace ZenProgramming.Chakra.Core.Windows.WindowsServices.Common
 {
     /// <summary>
     /// Represents base class for windows service used

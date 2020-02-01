@@ -2,21 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>2.0.14</AssemblyVersion>
-    <Version>2.0.14</Version>
+    <AssemblyVersion>3.0.0</AssemblyVersion>
+    <Version>3.0.0</Version>
     <Authors>Mauro Bussini</Authors>
-    <Description>A bunch of utilities for ASP.NET Core</Description>
-    <Copyright>© 2019 - ZenProgramming.it</Copyright>
-    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
+    <Description>A bunch of ASP.NET Core action filters and utilities for trace request, responses, durations and detailed exceptions, in the super-easy and super-pragmatic way.</Description>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.WebApi</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <FileVersion>2.0.14</FileVersion>
+    <FileVersion>3.0.0</FileVersion>
     <Company>ZenProgramming.it</Company>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.WebApi</RepositoryUrl>
+    <PackageTags>asp.net, core, webapi, tracing, exceptions</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="3.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

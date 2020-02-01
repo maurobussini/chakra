@@ -4,7 +4,6 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
-using System.Web;
 using Newtonsoft.Json;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 
@@ -13,7 +12,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
     /// <summary>
     /// Utilities for trace action
     /// </summary>
-    internal class TraceUtils
+    internal static class TraceUtils
     {
         /// <summary>
         /// Executes generation of request trace using provided data

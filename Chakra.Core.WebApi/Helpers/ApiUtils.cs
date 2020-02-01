@@ -1,10 +1,7 @@
 ﻿using CSDetermineOSAndBrowserASPNETCore.UserAgent;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections;
-using System.Collections.Specialized;
 using System.Net;
-using System.Net.Http;
 
 namespace ZenProgramming.Chakra.WebApi.Helpers
 {

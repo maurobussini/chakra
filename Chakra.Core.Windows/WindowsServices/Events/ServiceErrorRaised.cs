@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chakra.Core.Windows.WindowsServices.Events
+namespace ZenProgramming.Chakra.Core.Windows.WindowsServices.Events
 {
     /// <summary>
     /// Delegate used to handle 'ServiceErrorRaised' event

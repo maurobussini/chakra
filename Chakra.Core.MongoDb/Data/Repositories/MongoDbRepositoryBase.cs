@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
-using Chakra.Core.MongoDb.Data.Options;
 using MongoDB.Driver;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
 using ZenProgramming.Chakra.Core.Entities;
+using ZenProgramming.Chakra.Core.MongoDb.Data.Options;
 
-namespace Chakra.Core.MongoDb.Data.Repositories
+namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
 {
     /// <summary>
     /// Represents base repository for access to storage based on MongoDb

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 
-namespace Chakra.Core.Configurations
+namespace ZenProgramming.Chakra.Core.Configurations
 {
     /// <summary>
     /// Factory for read configuration of current application

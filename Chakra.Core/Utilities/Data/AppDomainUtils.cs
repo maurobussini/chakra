@@ -70,8 +70,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
             //Recupero la lista dei file ".dll" e ".exe" contenuti nella directory corrente
             FileInfo[] files = new DirectoryInfo(path)
                 .GetFiles("*.*", SearchOption.AllDirectories)
-                .Where(file => file.Name.ToLower().EndsWith(".dll") || 
-                               file.Name.ToLower().EndsWith(".exe"))
+                .Where(file => file.Name.EndsWith(".dll", StringComparison.CurrentCultureIgnoreCase) ||
+                               file.Name.EndsWith(".exe", StringComparison.CurrentCultureIgnoreCase))
                 .ToArray();
 
             //Predispongo la lista di uscita

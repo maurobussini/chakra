@@ -1,10 +1,11 @@
-﻿Chakra.Core
-===
+﻿# Chakra.Core
 
-Framework and guidelines for build .NET 4.x and .NET Core based enterprise applications.
----
+Framework and guidelines for build .NET Core and .NET 4.x based enterprise applications.
 
-1) Given a defined set of entities and model for your application workflow...
+------------------------------------------------------
+
+Given a defined set of entities and model for your application workflow...
+
 ```csharp
 public class Product: IEntity
 {
@@ -15,7 +16,8 @@ public class Product: IEntity
 }
 ```
 
-2) Define a repository interface for retrieve your domain entities
+Define a repository interface for retrieve your domain entities
+
 ```csharp
 public interface IProductRepository: IRepository<Product>
 {
@@ -23,7 +25,9 @@ public interface IProductRepository: IRepository<Product>
 }
 ```
 
-3) Define one or more fake scenarios with a common interface for test (ad unit test) your application layers
+Define one or more fake scenarios with a common interface for test (ad unit test)
+your application layers (requires package **Chakra.Core.Mocks**)
+
 ```csharp
 public class IApplicationScenario: IScenario
 {
@@ -38,16 +42,17 @@ public class SimpleScenario: IApplicationScenario
     {
         Products.Add(new Product
         {
-            Id = Product.Count + 1, 
-            Code = "ABC", 
-            Name = "Product ABC", 
+            Id = Product.Count + 1,
+            Code = "ABC",
+            Name = "Product ABC",
             Description = "Non important..."
         });
     }
 }
 ```
 
-4) Implement a concrete class for a storage provider (ex: fake provider)
+Implement a concrete class for a storage provider (ex: fake provider)
+
 ```csharp
 [Repository]
 public class MockupProductRepository: MockupRepositoryBase<Product, IApplicationScenario>, IProductRepository
@@ -55,32 +60,33 @@ public class MockupProductRepository: MockupRepositoryBase<Product, IApplication
     public MockupProductRepository(IDataSession dataSession) 
         : base(dataSession, scenario => scenario.Products) { }
 
-    public IList<Product> FetchAvailableProductsInPeriod(DateTime from, DateTime to) 
+    public IList<Product> FetchAvailableProductsInPeriod(DateTime from, DateTime to)
     {
         //TODO...Insert here the method implementation
-		//ex. => Scenario.Products.Where(p => p...
+        //ex. => Scenario.Products.Where(p => p...
     }
 }
 ```
 
-5) Register default data session for application (ex. fake data provider, specifying default scenario)
+Register default data session for application (ex. fake data provider, specifying default scenario)
+
 ```csharp
-ScenarioFactory.Initialize(new SimpleScenario());
-SessionFactory.RegisterDefaultSession<MockupDataSession>();
+SessionFactory.RegisterDefaultSession<MockupDataSession<SimpleScenario>>();
 ```
 
-6) Open session on storage (ex. database) using default configured provider, resolve repository interface 
+Open session on storage (ex. database) using default configured provider, resolve repository interface 
 using registered storage provider and obtain concrete repository implementation
+
 ```csharp
 using (IDataSession dataSession = SessionFactory.OpenSession())
 {
     var productRepository = dataSession.ResolveRepository<IProductRepository>();
 
     var entities = productRepository.FetchAvailableProductsInPeriod(
-        new DateTime(2013, 8, 1), DateTime.Now);
+        new DateTime(2020, 1, 23), DateTime.Now);
 }
 ```
 
-You have the opportunity to switch a provider (ex. from fake to Entity Framework, from NHibernate 
-to MongoDb) changing a single line of code on your application that can be really **database agnostic** 
+You have the opportunity to switch a provider (ex. from fake, to Entity Framework, from NHibernate
+to MongoDb) changing a single line of code. Your application can be really **database agnostic**,
 and every single part can be tested in its own isolated context.

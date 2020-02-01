@@ -1,0 +1,2 @@
+Chakra.Core.AspnetCore
+===
