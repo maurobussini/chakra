@@ -7,6 +7,7 @@ Framework and guidelines for build enterprise applications using .NET and .NET C
 - Chakra.Core [README.md](./Chakra.Core/README.md)
 - Chakra.Core.Configurations [README.md](./Chakra.Core.Configurations/README.md)
 - Chakra.Core.EntityFramework [README.md](./Chakra.Core.EntityFramework/README.md)
+- Chakra.Core.Mocks [README.md](./Chakra.Core.Mocks/README.md)
 - Chakra.Core.MongoDb [README.md](./Chakra.Core.MongoDb/README.md)
 - Chakra.Core.WebApi [README.md](./Chakra.Core.WebApi/README.md)
 

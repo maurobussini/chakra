@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.EntityFramework
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.OAuth", "Chakra.OAuth\Chakra.OAuth.csproj", "{CD8F1B41-1E9D-4E26-919E-6F932EEAD2E0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet-core", "dotnet-core", "{FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetFull", "NetFull", "{F4BDE198-0950-4ECE-8DF2-A18FF2CBF8A5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet-full", "dotnet-full", "{F4BDE198-0950-4ECE-8DF2-A18FF2CBF8A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.MongoDb", "Chakra.Core.MongoDb\Chakra.Core.MongoDb.csproj", "{62930DBF-23E7-40FC-A554-40D158960DD0}"
 EndProject
@@ -37,9 +37,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{0DF4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{07C8F1F4-C3C6-4FE7-96D2-55B36178ABCE}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\build.yml = .github\workflows\build.yml
-		.github\workflows\nuget.yml = .github\workflows\nuget.yml
-		.github\workflows\tests.yml = .github\workflows\tests.yml
+		.github\workflows\chakra.core-build.yml = .github\workflows\chakra.core-build.yml
+		.github\workflows\chakra.core-nuget.yml = .github\workflows\chakra.core-nuget.yml
+		.github\workflows\chakra.core-test.yml = .github\workflows\chakra.core-test.yml
+		.github\workflows\chakra.core.aspnetcore-build.yml = .github\workflows\chakra.core.aspnetcore-build.yml
+		.github\workflows\chakra.core.configurations-build.yml = .github\workflows\chakra.core.configurations-build.yml
+		.github\workflows\chakra.core.configurations-nuget.yml = .github\workflows\chakra.core.configurations-nuget.yml
+		.github\workflows\chakra.core.entityframework-build.yml = .github\workflows\chakra.core.entityframework-build.yml
+		.github\workflows\chakra.core.entityframework-nuget.yml = .github\workflows\chakra.core.entityframework-nuget.yml
+		.github\workflows\chakra.core.entityframework-test.yml = .github\workflows\chakra.core.entityframework-test.yml
+		.github\workflows\chakra.core.mocks-build.yml = .github\workflows\chakra.core.mocks-build.yml
+		.github\workflows\chakra.core.mocks-nuget.yml = .github\workflows\chakra.core.mocks-nuget.yml
+		.github\workflows\chakra.core.mocks-test.yml = .github\workflows\chakra.core.mocks-test.yml
+		.github\workflows\chakra.core.mongodb-build.yml = .github\workflows\chakra.core.mongodb-build.yml
+		.github\workflows\chakra.core.mongodb-nuget.yml = .github\workflows\chakra.core.mongodb-nuget.yml
+		.github\workflows\chakra.core.webapi-build.yml = .github\workflows\chakra.core.webapi-build.yml
+		.github\workflows\chakra.core.webapi-nuget.yml = .github\workflows\chakra.core.webapi-nuget.yml
+		.github\workflows\chakra.core.windows-build.yml = .github\workflows\chakra.core.windows-build.yml
+		.github\workflows\chakra.core.windows-nuget.yml = .github\workflows\chakra.core.windows-nuget.yml
 	EndProjectSection
 EndProject
 Global
