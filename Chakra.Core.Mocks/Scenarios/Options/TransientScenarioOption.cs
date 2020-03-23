@@ -1,7 +1,7 @@
 ﻿namespace ZenProgramming.Chakra.Core.Mocks.Scenarios.Options
 {
     /// <summary>
-    /// Interface of scenario option with "transient" life (a new instance 
+    /// Interface of scenario option with "transient" life (a new instance
     /// for each new data session will be created)
     /// </summary>
     /// <typeparam name="TScenarioImplementation">Type of scenario implementation</typeparam>

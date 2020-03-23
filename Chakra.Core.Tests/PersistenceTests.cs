@@ -10,7 +10,7 @@ namespace ZenProgramming.Chakra.Core.Tests
         public void ShouldInitializePersistence()
         {
             var credentials = PersistenceInitializerFactory.Fetch<Credential>();
-            Assert.True(credentials != null && credentials.Count > 0);
+            Assert.True(credentials?.Count > 0);
         }
     }
 }

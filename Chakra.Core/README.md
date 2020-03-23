@@ -55,9 +55,9 @@ Implement a concrete class for a storage provider (ex: fake provider)
 
 ```csharp
 [Repository]
-public class MockupProductRepository: MockupRepositoryBase<Product, IApplicationScenario>, IProductRepository
+public class MockProductRepository: MockRepositoryBase<Product, IApplicationScenario>, IProductRepository
 {
-    public MockupProductRepository(IDataSession dataSession) 
+    public MockProductRepository(IDataSession dataSession) 
         : base(dataSession, scenario => scenario.Products) { }
 
     public IList<Product> FetchAvailableProductsInPeriod(DateTime from, DateTime to)
@@ -71,7 +71,7 @@ public class MockupProductRepository: MockupRepositoryBase<Product, IApplication
 Register default data session for application (ex. fake data provider, specifying default scenario)
 
 ```csharp
-SessionFactory.RegisterDefaultSession<MockupDataSession<SimpleScenario>>();
+SessionFactory.RegisterDefaultSession<MockDataSession<SimpleScenario>>();
 ```
 
 Open session on storage (ex. database) using default configured provider, resolve repository interface 
