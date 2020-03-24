@@ -4,9 +4,9 @@ using System.Diagnostics;
 using ZenProgramming.Chakra.WebApi.Filters.Helpers;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc.Internal;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Newtonsoft.Json;
 
 namespace ZenProgramming.Chakra.WebApi.Filters
