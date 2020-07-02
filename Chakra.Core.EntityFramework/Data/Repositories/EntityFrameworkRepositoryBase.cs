@@ -8,7 +8,7 @@ using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
 using ZenProgramming.Chakra.Core.Entities;
-using ZenProgramming.Chakra.Core.Extensions;
+using ZenProgramming.Chakra.Core.EntityFramework.Extensions;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
 {
