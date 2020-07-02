@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>3.0.2</Version>
+    <Version>3.0.3</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Configuration extensions for Chakra.Core</Description>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Configurations</PackageProjectUrl>
-    <AssemblyVersion>3.0.2</AssemblyVersion>
-    <FileVersion>3.0.2</FileVersion>
+    <AssemblyVersion>3.0.3</AssemblyVersion>
+    <FileVersion>3.0.3</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Configurations</RepositoryUrl>
     <PackageTags>configuration, core, appsettings</PackageTags>
