@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Security.Principal;
-using Newtonsoft.Json;
+using System.Text.Json;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 
 namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
@@ -107,7 +107,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
                     //Eseguo la serializzazione per testare se l'elemento da 
                     //errore o meno; se non lo da il contenuto è immutato, 
                     //altrimenti verrà rimpiazzato con il messaggio di errore
-                    JsonConvert.SerializeObject(value);
+                    JsonSerializer.Serialize(value);
 
                     //Se la serializzazione non ha dato problemi, accetto il value
                     cleanValue = value;
@@ -126,7 +126,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
             request.ActionParameters = cleanedParams;
 
             //Eseguo la serializzazione della struttura dei parametri e dell'autenticazione
-            string jsonParam = JsonConvert.SerializeObject(request.ActionParameters, Formatting.Indented);
+            string jsonParam = JsonSerializer.Serialize(request.ActionParameters,new JsonSerializerOptions{WriteIndented = true});
             string authentication = StringifyAuthentication(request.Authentication);
 
             //Formatto i valori del verb, controller e azione

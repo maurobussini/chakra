@@ -5,9 +5,9 @@ using ZenProgramming.Chakra.WebApi.Filters.Helpers;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Linq;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using Newtonsoft.Json;
 
 namespace ZenProgramming.Chakra.WebApi.Filters
 {
@@ -186,7 +186,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             if (result is OkObjectResult okobj)
             {
                 //Set values
-                content.Value = okobj.Value == null ? "null" : JsonConvert.SerializeObject(okobj.Value, Formatting.Indented);
+                content.Value = okobj.Value == null ? "null" : JsonSerializer.Serialize(okobj.Value,new JsonSerializerOptions{WriteIndented = true});
                 content.Type = okobj.Value == null ? null : okobj.Value.GetType().Name;
                 return content;
             }
