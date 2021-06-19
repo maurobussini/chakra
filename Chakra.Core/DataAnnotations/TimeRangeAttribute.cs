@@ -93,7 +93,7 @@ namespace ZenProgramming.Chakra.Core.DataAnnotations
 
             //Se il valore passato non è una data, emetto eccezione
             if (!(value is DateTime))
-                throw new FormatException(string.Format("Specified value '{0}' can not be recognized as a valid date/time.", value));
+                throw new FormatException($"Specified value '{value}' can not be recognized as a valid date/time.");
 
             //Eseguo la composizione della data di riferimento (limite) ed 
             //eseguo la conversione, poi eseguo il cast dell'elemento

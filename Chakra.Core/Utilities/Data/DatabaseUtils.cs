@@ -55,8 +55,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione è nulla, emetto eccezione
             if (connection == null)
-                throw new NullReferenceException(string.Format("Unable to generate a valid database " +
-                    "connection using provider '{0}'", provider.GetType().FullName));
+                throw new NullReferenceException("Unable to generate a valid database " +
+                                                 $"connection using provider '{provider.GetType().FullName}'");
 
             //Imposto la connectiostring passata e tento l'apertura
             connection.ConnectionString = connectionString;
@@ -64,7 +64,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione è chiusa (o rotta), emetto eccezione
             if (connection.State == ConnectionState.Closed || connection.State == ConnectionState.Broken)
-                throw new InvalidOperationException(string.Format("Connection with database is not opened: current state is '{0}'", connection.State));
+                throw new InvalidOperationException(
+                    $"Connection with database is not opened: current state is '{connection.State}'");
 
             //Ritorno la connessione aperta
             return connection;
@@ -89,8 +90,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se il parametro è nullo, emetto eccezione
             if (param == null)
-                throw new NullReferenceException(string.Format("Unable to generate a valid parameter " +
-                    "using provider '{0}'", provider.GetType().FullName));
+                throw new NullReferenceException("Unable to generate a valid parameter " +
+                                                 $"using provider '{provider.GetType().FullName}'");
 
             //Inserisco nell'oggetto le informazioni necessarie
             param.DbType = type;
@@ -117,8 +118,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione non è aperta, emetto eccezione
             if (connection.State != ConnectionState.Open)
-                throw new InvalidOperationException(string.Format("Unable to generate a valid data adapter: " +
-                    "connection state is '{0}'.", connection.State));
+                throw new InvalidOperationException("Unable to generate a valid data adapter: " +
+                                                    $"connection state is '{connection.State}'.");
 
             //Creo un nuovo oggetto DataAdapter sulla connessione e query passate
             DbDataAdapter dataAdapter = provider.CreateDataAdapter();
@@ -219,8 +220,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione non è aperta, emetto eccezione
             if (connection.State != ConnectionState.Open)
-                throw new InvalidOperationException(string.Format("Unable to execute the statement on database: " +
-                    "connection state is '{0}'.", connection.State));
+                throw new InvalidOperationException("Unable to execute the statement on database: " +
+                                                    $"connection state is '{connection.State}'.");
 
             //Predispongo la variabile di ritorno
             int resultValue;
@@ -272,8 +273,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione non è aperta, emetto eccezione
             if (connection.State != ConnectionState.Open)
-                throw new InvalidOperationException(string.Format("Unable to execute the statement on database: " +
-                    "connection state is '{0}'.", connection.State));
+                throw new InvalidOperationException("Unable to execute the statement on database: " +
+                                                    $"connection state is '{connection.State}'.");
 
             //Creo un nuovo oggetto DbCommand sulla connessione e query passate
             using (DbCommand command = provider.CreateCommand())
@@ -318,8 +319,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione non è aperta, emetto eccezione
             if (connection.State != ConnectionState.Open)
-                throw new InvalidOperationException(string.Format("Unable to recover a scalar data: " +
-                    "connection state is '{0}'.", connection.State));
+                throw new InvalidOperationException("Unable to recover a scalar data: " +
+                                                    $"connection state is '{connection.State}'.");
 
             //Predispongo la variabile di ritorno
             object resultValue;
@@ -370,8 +371,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la connessione non è aperta, emetto eccezione
             if (connection.State != ConnectionState.Open)
-                throw new InvalidOperationException(string.Format("Unable to data on storage: " +
-                    "connection state is '{0}'.", connection.State));
+                throw new InvalidOperationException("Unable to data on storage: " +
+                                                    $"connection state is '{connection.State}'.");
 
             //Predispongo il numero di righe "affected"
             int rowsAffected;
@@ -571,7 +572,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
             int ordinal = reader.GetOrdinal(fieldName);
 
             //Se l'ordinale è minore di 0, emetto eccezione (non trovata)
-            if (ordinal < 0) throw new InvalidOperationException(string.Format("Column '{0}' not found on datareader.", fieldName));
+            if (ordinal < 0) throw new InvalidOperationException($"Column '{fieldName}' not found on datareader.");
 
             //Eseguo il recupero del valore indicato
             object sourceValue = reader.GetValue(ordinal);

@@ -130,8 +130,8 @@ namespace ZenProgramming.Chakra.Core.ServicesLayers
                 IList<ValidationResult> results = new List<ValidationResult>();
 
                 //Se l'entità non ha un id primario non si può cancellare
-                if (entity.GetId() == null) throw new InvalidOperationException(string
-                    .Format("Cannot delete entity of type '{0}' with null identifier.", typeof(TEntity).FullName));
+                if (entity.GetId() == null) throw new InvalidOperationException(
+                    $"Cannot delete entity of type '{typeof(TEntity).FullName}' with null identifier.");
 
                 //Eseguo il delete dell'oggetto
                 repository.Delete(entity);

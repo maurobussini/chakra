@@ -51,8 +51,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
             //Tento il cast della sessione generica ad EntityFramework
             var efSession = dataSession as EntityFrameworkDataSession<TDbContext>;
             if (efSession == null)
-                throw new InvalidCastException(string.Format("Specified session of type '{0}' cannot be converted to type '{1}'.",
-                    dataSession.GetType().FullName, typeof(EntityFrameworkDataSession<TDbContext>).FullName));
+                throw new InvalidCastException(
+                    $"Specified session of type '{dataSession.GetType().FullName}' cannot be converted to type '{typeof(EntityFrameworkDataSession<TDbContext>).FullName}'.");
 
             //Imposto la proprietà della sessione
             DataSession = efSession;
@@ -192,8 +192,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             //Se l'elemento non ha id, emetto eccezione
-            if (entity.GetId() == null) throw new InvalidOperationException(string.Format(
-                "Unable to delete entity of type '{0}' with invalid id.", typeof(TEntity).FullName));
+            if (entity.GetId() == null) throw new InvalidOperationException(
+                $"Unable to delete entity of type '{typeof(TEntity).FullName}' with invalid id.");
 
             //Rimuovo l'elemento dal set
             Collection.Remove(entity);

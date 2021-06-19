@@ -81,9 +81,7 @@ namespace ZenProgramming.Chakra.Core.Entities
         {
             //Eseguo la renderizzazione formattata della stringa dell'entità corrente
             //come nome completo del tipo di dato, più Id primario dell'oggetto
-            return string.Format("{0} [ Id : {1} ]",
-                GetType().FullName,
-                Id ?? "null");
+            return $"{GetType().FullName} [ Id : {Id ?? "null"} ]";
         }
 
         /// <summary>

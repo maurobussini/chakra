@@ -70,9 +70,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
 
             //Set authentication data or anonymous
             return !authentication.IsAuthenticated ?
-                "authentication:Anonymous" :
-                string.Format("authentication:{0}->{1}", authentication.AuthenticationType,
-                authentication.IdentityName);
+                "authentication:Anonymous" : $"authentication:{authentication.AuthenticationType}->{authentication.IdentityName}";
         }
 
         /// <summary>
@@ -115,7 +113,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
                 catch (Exception exc)
                 {
                     //Imposto il messaggio di errore in serializzazione
-                    cleanValue = string.Format("[Serialization error: {0}]", exc.Message);
+                    cleanValue = $"[Serialization error: {exc.Message}]";
                 }
 
                 //Accodo i valori nella lista "clean"
@@ -130,8 +128,8 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
             string authentication = StringifyAuthentication(request.Authentication);
 
             //Formatto i valori del verb, controller e azione
-            return string.Format("(uid: {0}) {1} - [{2}] {3}/{4}({5})", request.UniqueId, authentication,
-                request.HttpMethod, request.ControllerName, request.ActionName, jsonParam);
+            return
+                $"(uid: {request.UniqueId}) {authentication} - [{request.HttpMethod}] {request.ControllerName}/{request.ActionName}({jsonParam})";
         }
 
         /// <summary>
@@ -169,8 +167,8 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
                     foreach (var current in reflection.LoaderExceptions)
                     {
                         //Accodo messaggio e stacktrace
-                        exceptionMessage = string.Format("{0}{1}=>{2}", exceptionMessage, Environment.NewLine, current.Message);
-                        exceptionStackTrace = string.Format("{0}{1}=>{2}", exceptionStackTrace, Environment.NewLine, current);
+                        exceptionMessage = $"{exceptionMessage}{Environment.NewLine}=>{current.Message}";
+                        exceptionStackTrace = $"{exceptionStackTrace}{Environment.NewLine}=>{current}";
                     }
                 }
             }
@@ -211,9 +209,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
             if (error == null) throw new ArgumentNullException(nameof(error));
 
             //Specifico l'errore, solo se presente
-            return !error.HasError ? "OK" :
-                string.Format("ERROR: {0}{1}{2}", error.Message,
-                Environment.NewLine, error.StackTrace);
+            return !error.HasError ? "OK" : $"ERROR: {error.Message}{Environment.NewLine}{error.StackTrace}";
         }
 
         /// <summary>
@@ -230,12 +226,12 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
             string resultValue = string.IsNullOrEmpty(response.BodyContent) ? "-" : response.BodyContent;
 
             //Eseguo la serializzazione della struttura di errore
-            string result = string.IsNullOrEmpty(response.BodyType) ? "null" : string.Format("{0}:{1}", response.BodyType, resultValue);
+            string result = string.IsNullOrEmpty(response.BodyType) ? "null" : $"{response.BodyType}:{resultValue}";
             string error = StringifyError(response.Error);
 
             //Formatto i valori della request
-            return string.Format("(uid: {0}) duration:{1}ms - {2} [{3}]", response.Request.UniqueId,
-                Math.Round(response.Duration.TotalMilliseconds, 0), result, error);
+            return
+                $"(uid: {response.Request.UniqueId}) duration:{Math.Round(response.Duration.TotalMilliseconds, 0)}ms - {result} [{error}]";
         }
 
         /// <summary>
@@ -270,14 +266,13 @@ namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
                 Directory.CreateDirectory(dayFolder);
 
             //Compongo il nome del file con l'eccezione
-            string errorFile = Path.Combine(dayFolder, string.Format("Error_{0}_{1}.log",
-                DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss"),
-                DateTime.Now.Millisecond.ToString(CultureInfo.InvariantCulture).PadLeft(3, '0')));
+            string errorFile = Path.Combine(dayFolder,
+                $"Error_{DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss")}_{DateTime.Now.Millisecond.ToString(CultureInfo.InvariantCulture).PadLeft(3, '0')}.log");
 
             //Il contenuto è un elenco di stringhe con tutti i dettagli
             IList<string> content = new List<string>();
-            content.Add(string.Format("REQUEST : {0}", StringifyRequest(response.Request)));
-            content.Add(string.Format("RESPONSE : {0}", StringifyResponse(response)));
+            content.Add($"REQUEST : {StringifyRequest(response.Request)}");
+            content.Add($"RESPONSE : {StringifyResponse(response)}");
 
             //Scrivo il contenuto sul file
             File.WriteAllLines(errorFile, content);

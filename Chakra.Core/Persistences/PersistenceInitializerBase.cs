@@ -44,9 +44,8 @@ namespace ZenProgramming.Chakra.Core.Persistences
 			where TOutput: class, IPersistence
         {
             //Verifico che il tipo richiesto per il fetch sia lo stesso registrato
-            if (typeof(TElement) != typeof(TOutput)) throw new InvalidProgramException(string.Format(
-                "Persistence element '{0}' is different from type '{1}' requested for fetch on initializer '{2}'.", 
-                typeof(TElement).FullName, typeof(TOutput).FullName, GetType().FullName));
+            if (typeof(TElement) != typeof(TOutput)) throw new InvalidProgramException(
+                $"Persistence element '{typeof(TElement).FullName}' is different from type '{typeof(TOutput).FullName}' requested for fetch on initializer '{GetType().FullName}'.");
 
             //Se la lista non è inizializzata, procedo
             if (Elements == null)

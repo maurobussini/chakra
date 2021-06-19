@@ -47,8 +47,8 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //Tento il cast della sessione generica a FileSystemDataSession
             var fileSystemDataSession = dataSession as FileSystemDataSession;
             if (fileSystemDataSession == null)
-                throw new InvalidCastException(string.Format("Specified session of type '{0}' cannot be converted to type '{1}'.",
-                    dataSession.GetType().FullName, typeof(FileSystemDataSession).FullName));
+                throw new InvalidCastException(
+                    $"Specified session of type '{dataSession.GetType().FullName}' cannot be converted to type '{typeof(FileSystemDataSession).FullName}'.");
 
             //Imposto la proprietà della sessione
             DataSession = fileSystemDataSession;

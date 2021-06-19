@@ -54,8 +54,8 @@ namespace ZenProgramming.Chakra.Core.Data
 
             //Eseguo la creazione dell'istanza
             var instance = Activator.CreateInstance(DefaultDataSessionType) as IDataSession;
-            if (instance == null) throw new InvalidCastException(string.Format("Unable to cast " +
-                "instance of type '{0}' to target type '{1}'.", DefaultDataSessionType.FullName, typeof(IDataSession).FullName));
+            if (instance == null) throw new InvalidCastException("Unable to cast " +
+                                                                 $"instance of type '{DefaultDataSessionType.FullName}' to target type '{typeof(IDataSession).FullName}'.");
 
             //Ritorno l'istanza
             return instance;

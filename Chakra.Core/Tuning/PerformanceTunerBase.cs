@@ -199,8 +199,8 @@ namespace ZenProgramming.Chakra.Core.Tuning
         private void OnTracingInitialized(object sender, MeasuringEventRaisedEventArgs e)
         {
             //Compongo il messaggio da mandare in uscita sulla console
-            string feedback = string.Format("[{0}] Tracing of '{1}' initialized.\r\n",
-                e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss"), e.Data.Message);
+            string feedback =
+                $"[{e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss")}] Tracing of '{e.Data.Message}' initialized.\r\n";
 
             //Emetto il messaggio sulla console applicativa
             if (IsConsoleFeedbackEnabled)
@@ -222,9 +222,9 @@ namespace ZenProgramming.Chakra.Core.Tuning
             TracingMeasures.Add(e.Data);
 
             //Compongo il messaggio da mandare in uscita sulla console
-            string feedback = string.Format("[{0}] Tracing of '{1}' completed.\n" + 
-                "Duration : {2}. Sleeping for {3}...\r\n", e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss"),
-                e.Data.Message, e.Data.Duration, DelayBetweenIterations);
+            string feedback =
+                $"[{e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss")}] Tracing of '{e.Data.Message}' completed.\n" +
+                $"Duration : {e.Data.Duration}. Sleeping for {DelayBetweenIterations}...\r\n";
 
             //Emetto il messaggio sulla console applicativa
             if (IsConsoleFeedbackEnabled)
@@ -309,9 +309,8 @@ namespace ZenProgramming.Chakra.Core.Tuning
         private void OnIterationInitialized(object sender, MeasuringEventRaisedEventArgs e)
         {
             //Compongo il messaggio da mandare in uscita sulla console
-            string feedback = string.Format("[{0}] Iteration {1}/{2} initialized...\r\n",
-                e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss"),
-                e.Data.IterationNumber, e.Data.TotalIterations);
+            string feedback =
+                $"[{e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss")}] Iteration {e.Data.IterationNumber}/{e.Data.TotalIterations} initialized...\r\n";
 
             //Emetto il messaggio sulla console applicativa
             if (IsConsoleFeedbackEnabled)
@@ -333,10 +332,9 @@ namespace ZenProgramming.Chakra.Core.Tuning
             IterationMeasures.Add(e.Data);
 
             //Compongo il messaggio da mandare in uscita sulla console
-            string feedback = string.Format("[{0}] Iteration {1}/{2} completed.\n" + 
-                "Duration : {3}\r\n",
-                e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss"),
-                e.Data.IterationNumber, e.Data.TotalIterations, e.Data.Duration);
+            string feedback =
+                $"[{e.Data.StartDate.ToString("yyyy/MM/dd HH:mm:ss")}] Iteration {e.Data.IterationNumber}/{e.Data.TotalIterations} completed.\n" +
+                $"Duration : {e.Data.Duration}\r\n";
 
             //Emetto il messaggio sulla console applicativa
             if (IsConsoleFeedbackEnabled)
@@ -361,10 +359,9 @@ namespace ZenProgramming.Chakra.Core.Tuning
         private void OnProcessingErrorRaised(object sender, ProcessingErrorRaisedEventArgs e) 
         {
             //Compongo il messaggio da mandare in uscita sulla console
-            string feedback = string.Format("[{0}] Exception raised during iteration {1}/{2}.\n" +
-                "Exception : {3}\r\n",
-                DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),
-                CompletedIterations + 1, TotalIterations, e.Error);
+            string feedback =
+                $"[{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}] Exception raised during iteration {CompletedIterations + 1}/{TotalIterations}.\n" +
+                $"Exception : {e.Error}\r\n";
 
             //Emetto il messaggio sulla console applicativa
             if (IsConsoleFeedbackEnabled)

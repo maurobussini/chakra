@@ -108,8 +108,9 @@ namespace ZenProgramming.Chakra.Core.Reflection
 
             //Se ho trovato più di un attributo, emetto eccezione
             if (attributes.Length > 1)
-                throw new InvalidProgramException(string.Format("Found {0} attributes of type '{1}' on source type '{2}': " +
-                    "a single attribute must be provided.", attributes.Length,  typeof(TAttribute).FullName, sourceType.FullName));
+                throw new InvalidProgramException(
+                    $"Found {attributes.Length} attributes of type '{typeof(TAttribute).FullName}' on source type '{sourceType.FullName}': " +
+                    "a single attribute must be provided.");
 
             //Recupero l'attributo di relational per l'oggetto corrente
             return attributes[0] as TAttribute;
@@ -137,8 +138,8 @@ namespace ZenProgramming.Chakra.Core.Reflection
 
             //Se ho trovato più di un elemento, emetto eccezione
             if (attributes.Length > 1)
-                throw new InvalidOperationException(string.Format("Unable to recover a single attribute " +
-                    "of type '{0}' on property '{1}'. Found {2} elements.", typeof(TAttribute), property.Name, attributes.Length));
+                throw new InvalidOperationException("Unable to recover a single attribute " +
+                                                    $"of type '{typeof(TAttribute)}' on property '{property.Name}'. Found {attributes.Length} elements.");
 
             //Recupero l'attributo di relational per l'oggetto corrente
             return attributes[0] as TAttribute;
@@ -162,8 +163,8 @@ namespace ZenProgramming.Chakra.Core.Reflection
             var memberInfo = enumElementType.GetMember(enumValue.ToString());
 
             //Se non ho trovato il membro cercato, emetto eccezione
-            if (memberInfo.Length == 0) throw new NullReferenceException(string.Format("Unable to " +
-                "find element '{0}' on type '{1}'.", enumValue, typeof(TEnum).FullName));
+            if (memberInfo.Length == 0) throw new NullReferenceException("Unable to " +
+                                                                         $"find element '{enumValue}' on type '{typeof(TEnum).FullName}'.");
 
             //Recupero l'istanza dell'attributo
             TAttribute attributeInstance = memberInfo[0].GetCustomAttribute<TAttribute>(false);

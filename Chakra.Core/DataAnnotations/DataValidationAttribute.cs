@@ -44,17 +44,16 @@ namespace ZenProgramming.Chakra.Core.DataAnnotations
         {
             //Tento il recupero della chiave dal dizionario
             if (!validationContext.Items.ContainsKey(DataSessionKey))
-                throw new InvalidOperationException(string.Format("Unable to use validator of type '{0}' without " +
-                    "specify a custom item with key '{1}' and instance of '{2}' in validation context.", GetType().FullName,
-                    DataSessionKey, typeof(IDataSession).FullName));
+                throw new InvalidOperationException($"Unable to use validator of type '{GetType().FullName}' without " +
+                                                    $"specify a custom item with key '{DataSessionKey}' and instance of '{typeof(IDataSession).FullName}' in validation context.");
 
             //Recupero il data session di riferimento
             IDataSession dataSession = validationContext.Items[DataSessionKey] as IDataSession;
 
             //Se non ho un session holder, emetto eccezione
             if (dataSession == null)
-                throw new InvalidOperationException(string.Format("Unable to find a valid '{0}' on " +
-                    "item with key '{1}' in validation context.", typeof(IDataSession).FullName, DataSessionKey));
+                throw new InvalidOperationException($"Unable to find a valid '{typeof(IDataSession).FullName}' on " +
+                                                    $"item with key '{DataSessionKey}' in validation context.");
 
             //Ritorno il valore
             return dataSession;

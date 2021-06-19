@@ -76,7 +76,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
             string firstLevel = GetRandomElement(new[] {"com", "it", "net"}, random);
 
             //Ritorno l'indirizzo composto
-            return string.Format("{0}@{1}.{2}", username, secondLevel, firstLevel);
+            return $"{username}@{secondLevel}.{firstLevel}";
         }
 
         /// <summary>
@@ -94,8 +94,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Se la data di inizio è maggiore di quella di fine, errore
             if (from > to)
-                throw new InvalidOperationException(string.Format(
-                    "From date '{0}' cannot be greater than to date '{1}'.", from, to));
+                throw new InvalidOperationException($"From date '{@from}' cannot be greater than to date '{to}'.");
 
             //Calcolo la differenza in giorni tra le date
             int differenceDays = (int)Math.Round(to.Value.Subtract(from.Value).TotalDays, 0);

@@ -55,8 +55,8 @@ namespace ZenProgramming.Chakra.Core.Data.FileSystems
             //Se il tipo di destinazione non è lo stesso dell'istanza 
             //corrente emetto un'eccezione per indicare errore
             if (GetType() != typeof(TOutput))
-                throw new InvalidCastException(string.Format("Unable to convert data session of " +
-                    "type '{0}' to requested type '{1}'.", GetType().FullName, typeof(TOutput).FullName));
+                throw new InvalidCastException("Unable to convert data session of " +
+                                               $"type '{GetType().FullName}' to requested type '{typeof(TOutput).FullName}'.");
 
             //Eseguo la conversione e ritorno
             return this as TOutput;
