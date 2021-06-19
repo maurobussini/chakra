@@ -138,6 +138,64 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
         }
 
         /// <summary>
+        /// Fetch list of entities matching criteria on repository
+        /// </summary>
+        /// <param name="select">Select expression</param>
+        /// <param name="filterExpression">Filter expression</param>
+        /// <param name="selectFilterExpression">Select filter expression</param>
+        /// <param name="startRowIndex">Start row index</param>
+        /// <param name="maximumRows">Maximum rows</param>
+        /// <param name="sortExpression">Filter expression</param>
+        /// <param name="isDescending">Is descending sorting</param>
+        /// <returns>Returns list of all available entities</returns>
+        public IList<TProjection> Fetch<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
+            Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
+            Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+        {
+            //Query base
+            IList<TEntity> query = MockedEntities;
+                
+            //Se ho un filtro, compilo l'expression e lo imposto
+            if (filterExpression != null)
+            {
+                //Compilo l'espressione di filtro
+                var compiled = filterExpression.Compile();
+
+                //Filtro e converto
+                query = query
+                    .Where(compiled)
+                    .ToList();
+            }            
+
+            //Se specificato, applico anche il sort
+            if (sortExpression != null)
+            {
+                //Compilo l'espressione di sort
+                var compiledSort = sortExpression.Compile();
+
+                //Accodo all'enumeble precedente
+                query = isDescending
+                    ? query.OrderByDescending(compiledSort).ToList()
+                    : query.OrderBy(compiledSort).ToList();
+            }
+
+            //Eseguo la proiezione dei dati
+            var compiledSelect = select.Compile();
+            var projectionQuery = query.Select(compiledSelect);
+
+            //Se ho un filtro sulla proiezione, lo imposto
+            if (selectFilterExpression != null)
+            {
+                var compiledSelectFilterExpression = selectFilterExpression.Compile();
+                projectionQuery = projectionQuery.Where(compiledSelectFilterExpression);
+            }
+
+            return projectionQuery
+                .Paging(startRowIndex, maximumRows)
+                .ToList();
+        }
+
+        /// <summary>
         /// Count entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>

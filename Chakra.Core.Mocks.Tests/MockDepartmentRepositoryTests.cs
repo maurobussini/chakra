@@ -51,6 +51,20 @@ namespace Chakra.Core.Mocks.Tests
         }
 
         [Fact]
+        public void ShouldFetchAndProjectAtLeastOneElement()
+        {
+            //Resolve repo
+            var repository = _DataSession.ResolveRepository<IDepartmentRepository>();
+
+            //Execute operation
+            var result = repository.Fetch(x=>new{x.Name});
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.True(result.Count > 0);
+        }
+
+        [Fact]
         public void ShouldCreateIncrementElements()
         {
             //Resolve repo

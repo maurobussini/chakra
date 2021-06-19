@@ -109,6 +109,46 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         }
 
         /// <summary>
+        /// Fetch list of entities matching criteria on repository
+        /// </summary>
+        /// <param name="select">Select expression</param>
+        /// <param name="filterExpression">Filter expression</param>
+        /// <param name="selectFilterExpression">Select filter expression</param>
+        /// <param name="startRowIndex">Start row index</param>
+        /// <param name="maximumRows">Maximum rows</param>
+        /// <param name="sortExpression">Filter expression</param>
+        /// <param name="isDescending">Is descending sorting</param>
+        /// <returns>Returns list of all available entities</returns>
+        public IList<TProjection> Fetch<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
+            int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+        {
+            //Query con filtro e paginazione
+            IQueryable<TEntity> query = Collection;
+
+            //Se ho un filtro, lo imposto
+            if (filterExpression != null)
+                query = query.Where(filterExpression).AsQueryable();
+
+            //Se specificato, applico anche il sort
+            if (sortExpression != null)
+                query = isDescending
+                    ? query.OrderByDescending(sortExpression)
+                    : query.OrderBy(sortExpression);
+
+            //Eseguo la proiezione dei dati
+            var projectionQuery = query
+                .Select(select).AsQueryable();
+
+            //Se ho un filtro sulla proiezione, lo imposto
+            if (selectFilterExpression != null)
+                projectionQuery = projectionQuery.Where(selectFilterExpression).AsQueryable();
+
+            return projectionQuery
+                .Paging(startRowIndex, maximumRows)
+                .ToList();
+        }
+
+        /// <summary>
         /// Count entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
