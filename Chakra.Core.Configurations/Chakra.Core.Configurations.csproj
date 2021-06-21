@@ -11,7 +11,7 @@
     <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Configurations</PackageProjectUrl>
     <AssemblyVersion>5.0.0</AssemblyVersion>
     <FileVersion>5.0.0</FileVersion>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Configurations</RepositoryUrl>
     <PackageTags>configuration, core, appsettings</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -34,8 +34,10 @@
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
   </ItemGroup>
 
+
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+
 
 </Project>
