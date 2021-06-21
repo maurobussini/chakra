@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <AssemblyVersion>3.0.3</AssemblyVersion>
-    <Version>3.0.3</Version>
+    <AssemblyVersion>3.0.4</AssemblyVersion>
+    <Version>3.0.4</Version>
     <Authors>Mauro Bussini</Authors>
     <Description>A bunch of ASP.NET Core action filters and utilities for trace request, responses, durations and detailed exceptions, in the super-easy and super-pragmatic way.</Description>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.WebApi</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <FileVersion>3.0.3</FileVersion>
+    <FileVersion>3.0.4</FileVersion>
     <Company>ZenProgramming.it</Company>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.WebApi</RepositoryUrl>
