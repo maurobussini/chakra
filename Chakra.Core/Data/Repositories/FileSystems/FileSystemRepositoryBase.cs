@@ -80,10 +80,31 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //Cerco l'elemento nella lista delle entità mockate
             return MockedEntities
                 .SingleOrDefault(compiled);
+<<<<<<< HEAD
         }     
 
         /// <summary>
         /// Fetch list of entities matching criteria on repository
+=======
+        }        
+
+        /// <summary>
+        /// Fetch and project list of all entities on repository
+        /// </summary>
+        /// <param name="startRowIndex">Start row index</param>
+        /// <param name="maximumRows">Maximum rows</param>
+        /// <returns>Returns list of all available entities</returns>
+        public IList<TEntity> FetchAll(int? startRowIndex = null, int? maximumRows = null)
+        {
+            //Recupero tutte le entità
+            return MockedEntities
+                .Paging(startRowIndex, maximumRows)
+                .ToList();
+        }
+
+        /// <summary>
+        /// Fetch and project list of entities matching criteria on repository
+>>>>>>> 02b6da9... description typo
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>

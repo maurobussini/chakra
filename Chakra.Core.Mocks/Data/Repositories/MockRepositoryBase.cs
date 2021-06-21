@@ -93,7 +93,11 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
         }        
 
         /// <summary>
+<<<<<<< HEAD
         /// Fetch list of entities matching criteria on repository
+=======
+        /// Fetch and project list of entities matching criteria on repository
+>>>>>>> 02b6da9... description typo
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
