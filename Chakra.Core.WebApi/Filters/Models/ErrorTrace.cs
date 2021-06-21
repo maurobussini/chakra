@@ -1,4 +1,4 @@
-﻿namespace ZenProgramming.Chakra.WebApi.Filters.Models
+﻿namespace ZenProgramming.Chakra.Core.WebApi.Filters.Models
 {
     /// <summary>
     /// Represents error trace

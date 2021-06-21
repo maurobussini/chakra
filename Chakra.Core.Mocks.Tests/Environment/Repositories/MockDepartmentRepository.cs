@@ -1,10 +1,11 @@
-﻿using ZenProgramming.Chakra.Core.Mocks.Tests.Scenarios;
-using ZenProgramming.Chakra.Core.Data;
+﻿using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories.Attributes;
 using ZenProgramming.Chakra.Core.Mocks.Data.Repositories;
-using Chakra.Core.Tests.Environment.Entities;
+using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
+using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
+using ZenProgramming.Chakra.Core.Tests.Environment.Repositories;
 
-namespace ZenProgramming.Chakra.Core.Tests.Environment.Repositories.Mocks
+namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Repositories
 {
     /// <summary>
     /// Repository for Department on mock engine

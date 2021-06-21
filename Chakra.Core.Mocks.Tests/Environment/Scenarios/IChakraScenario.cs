@@ -1,9 +1,8 @@
-﻿using Chakra.Core.Tests.Environment.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
 
-namespace ZenProgramming.Chakra.Core.Mocks.Tests.Scenarios
+namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
 {
     /// <summary>
     /// Interface for sample mock scenario (for a better

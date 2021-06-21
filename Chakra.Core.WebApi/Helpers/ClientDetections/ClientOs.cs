@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections;
 
-namespace CSDetermineOSAndBrowserASPNETCore.UserAgent
+namespace ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections
 {
     /// <summary>
     /// Class for detect client operative system

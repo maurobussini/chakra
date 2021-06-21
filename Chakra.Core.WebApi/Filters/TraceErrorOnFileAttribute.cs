@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
-using ZenProgramming.Chakra.WebApi.Filters.Helpers;
-using ZenProgramming.Chakra.WebApi.Filters.Models;
+using ZenProgramming.Chakra.Core.WebApi.Filters.Helpers;
+using ZenProgramming.Chakra.Core.WebApi.Filters.Models;
+using ZenProgramming.Chakra.Core.WebApi.Filters;
 
-namespace ZenProgramming.Chakra.WebApi.Filters
+namespace ZenProgramming.Chakra.Core.WebApi.Filters
 {
     /// <summary>
     /// Represents an WebAPI filter to trace on separate, self contained, files

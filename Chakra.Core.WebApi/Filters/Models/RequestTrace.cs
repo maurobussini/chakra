@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using ZenProgramming.Chakra.Core.WebApi.Filters.Models;
 
-namespace ZenProgramming.Chakra.WebApi.Filters.Models
+namespace ZenProgramming.Chakra.Core.WebApi.Filters.Models
 {
     /// <summary>
     /// Represents trace of single request

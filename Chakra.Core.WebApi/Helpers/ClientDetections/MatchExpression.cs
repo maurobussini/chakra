@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace CSDetermineOSAndBrowserASPNETCore.UserAgent
+namespace ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections
 {
     /// <summary>
     /// Class for matxh expression

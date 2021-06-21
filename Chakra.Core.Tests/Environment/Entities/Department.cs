@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ZenProgramming.Chakra.Core.Entities;
 
-namespace Chakra.Core.Tests.Environment.Entities
+namespace ZenProgramming.Chakra.Core.Tests.Environment.Entities
 {
     /// <summary>
     /// Entity for department

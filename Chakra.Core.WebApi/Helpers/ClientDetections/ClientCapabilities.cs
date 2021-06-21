@@ -1,6 +1,7 @@
 ﻿using System;
+using ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections;
 
-namespace CSDetermineOSAndBrowserASPNETCore.UserAgent
+namespace ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections
 {
     /// <summary>
     /// Class for detect client capabilities

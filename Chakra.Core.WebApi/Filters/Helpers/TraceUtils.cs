@@ -5,9 +5,9 @@ using System.IO;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text.Json;
-using ZenProgramming.Chakra.WebApi.Filters.Models;
+using ZenProgramming.Chakra.Core.WebApi.Filters.Models;
 
-namespace ZenProgramming.Chakra.WebApi.Filters.Helpers
+namespace ZenProgramming.Chakra.Core.WebApi.Filters.Helpers
 {
     /// <summary>
     /// Utilities for trace action
