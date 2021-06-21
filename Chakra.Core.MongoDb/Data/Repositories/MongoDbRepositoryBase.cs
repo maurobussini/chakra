@@ -75,7 +75,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// FetchAndProject list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -117,7 +117,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// FetchAndProject list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
@@ -127,7 +127,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public IList<TProjection> Fetch<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
+        public IList<TProjection> FetchAndProject<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
             Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
         {

@@ -64,7 +64,7 @@ namespace ZenProgramming.Chakra.Core.Persistences
         }
 
         /// <summary>
-        /// Fetch list of elements registered with initializer
+        /// FetchAndProject list of elements registered with initializer
         /// </summary>
         /// <typeparam name="TElement">Type of element</typeparam>
         /// <returns>Returns list of elements</returns>

@@ -21,7 +21,7 @@ namespace ZenProgramming.Chakra.Core.ServicesLayers
             where TRepository : IRepository<TEntity>;
 
         /// <summary>
-        /// Fetch list of all entities
+        /// FetchAndProject list of all entities
         /// </summary>
         /// <typeparam name="TEntity">Type of entity</typeparam>
         /// <typeparam name="TRepository">Type of repository</typeparam>

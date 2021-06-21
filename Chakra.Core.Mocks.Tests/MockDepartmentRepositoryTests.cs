@@ -57,7 +57,7 @@ namespace Chakra.Core.Mocks.Tests
             var repository = _DataSession.ResolveRepository<IDepartmentRepository>();
 
             //Execute operation
-            var result = repository.Fetch(x=>new{x.Name});
+            var result = repository.FetchAndProject(x=>new{x.Name});
 
             //Assert
             Assert.NotNull(result);
