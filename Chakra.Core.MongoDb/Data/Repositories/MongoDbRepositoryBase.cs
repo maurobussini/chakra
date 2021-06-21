@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
@@ -113,6 +114,58 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
             
             //Ritorno il valore
             return query.ToList();
+        }
+
+        /// <summary>
+        /// Fetch list of entities matching criteria on repository
+        /// </summary>
+        /// <param name="select">Select expression</param>
+        /// <param name="filterExpression">Filter expression</param>
+        /// <param name="selectFilterExpression">Select filter expression</param>
+        /// <param name="startRowIndex">Start row index</param>
+        /// <param name="maximumRows">Maximum rows</param>
+        /// <param name="sortExpression">Filter expression</param>
+        /// <param name="isDescending">Is descending sorting</param>
+        /// <returns>Returns list of all available entities</returns>
+        public IList<TProjection> Fetch<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
+            Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
+            Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+        {
+
+            var query = Collection.AsQueryable();
+
+            if (filterExpression != null)
+            {
+                query = query.Where(filterExpression);
+            }
+            
+            //Se ho un ordinamento
+            if (sortExpression != null)
+            {
+                //Applico ascendente o discendente
+                query = isDescending
+                    ? query.OrderByDescending(sortExpression)
+                    : query.OrderBy(sortExpression);
+            }
+            
+            //Eseguo la proiezione dei dati
+            var projectionQuery = query.Select(select);
+            
+            //Se ho un filtro sulla proiezione, lo imposto
+            if (selectFilterExpression != null)
+                projectionQuery = projectionQuery.Where(selectFilterExpression);
+            
+            //Se ho impostato la riga di inizio
+            if (startRowIndex != null)
+                projectionQuery = projectionQuery.Skip(startRowIndex.Value);
+
+            //Se ho impostato la riga di fine
+            if (maximumRows != null)
+                projectionQuery = projectionQuery.Take(maximumRows.Value);
+            
+            //Ritorno il valore
+
+            return projectionQuery.ToList();
         }
 
         /// <summary>

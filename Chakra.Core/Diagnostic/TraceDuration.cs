@@ -46,7 +46,7 @@ namespace ZenProgramming.Chakra.Core.Diagnostic
             _Parameters = parameters;
 
             //Modifico il messaggio aggiungendo la durata
-            string outMessage = string.Format("{0} -> Duration start...", message);
+            string outMessage = $"{message} -> Duration start...";
 
             //Eseguo il tracciamento dell'inizio operazione
             foreach (ITracer current in _Tracers)
@@ -62,7 +62,7 @@ namespace ZenProgramming.Chakra.Core.Diagnostic
             End = DateTime.Now;
 
             //Modifico il messaggio aggiungendo la durata
-            string outMessage = string.Format("{0} -> Duration end. {1}", _Message, End.Subtract(Start));
+            string outMessage = $"{_Message} -> Duration end. {End.Subtract(Start)}";
 
             //Eseguo il tracciamento della fine operazione
             foreach (ITracer current in _Tracers)

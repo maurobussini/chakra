@@ -40,10 +40,10 @@ namespace ZenProgramming.Chakra.Core.Bio
 
             //La popolazione in ingresso deve essere almeno di 4 elementi per permettere
             //l'esecuzione della selezione e l'accoppiamento della metà migliore
-            if (population.Count < 4) throw new InvalidOperationException(string.Format("Unable to " + 
-                "execute evolution on population with less than 4 individuals. At least 4 elements are " + 
-                "required in order to execute selection of the best half of population and complete " + 
-                "crossovers in order to generate new generation. Found '{0}' individuals.", population.Count));
+            if (population.Count < 4) throw new InvalidOperationException("Unable to " +
+                                                                          "execute evolution on population with less than 4 individuals. At least 4 elements are " +
+                                                                          "required in order to execute selection of the best half of population and complete " +
+                                                                          $"crossovers in order to generate new generation. Found '{population.Count}' individuals.");
 
             //Imposto i valori nelle proprietà
             Population = population;
@@ -212,8 +212,8 @@ namespace ZenProgramming.Chakra.Core.Bio
 
             //Se le selezioni per qualche motivo sono dispari, emetto eccezione
             if (selections.Count % 2 == 1)
-                throw new InvalidProgramException(string.Format("Individuals selected " + 
-                    "must be even to execute crossover. Found '{0}' elements.", selections.Count));
+                throw new InvalidProgramException("Individuals selected " +
+                                                  $"must be even to execute crossover. Found '{selections.Count}' elements.");
 
             //Calcolo il numero di iterazioni necessarie al crossover
             int iterations = selections.Count / 2;

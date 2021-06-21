@@ -223,7 +223,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Server
 
             //Recupero il nome del membro se il 
             string messageToDisplay = message != null
-                ? string.Format("[{0}] : {1}", memberExpression.Member.Name, message)
+                ? $"[{memberExpression.Member.Name}] : {message}"
                 : memberExpression.Member.Name;
 
             //Richiedo l'immissione del valore da console
@@ -231,8 +231,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Server
 
             //Recupero il property info della proprietà di istanza
             PropertyInfo info = typeof(TTarget).GetProperty(memberExpression.Member.Name);
-            if (info == null) throw new InvalidOperationException(string.Format("Unable to find " +
-                "property '{0}' on type '{1}'.", memberExpression.Member.Name, typeof(TTarget).FullName));
+            if (info == null) throw new InvalidOperationException("Unable to find " +
+                                                                  $"property '{memberExpression.Member.Name}' on type '{typeof(TTarget).FullName}'.");
 
             //Imposto il valore nell'oggetto
             info.SetValue(targetInstance, value, null);

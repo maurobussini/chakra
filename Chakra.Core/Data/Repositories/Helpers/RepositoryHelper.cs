@@ -151,18 +151,17 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
 
             //Se non ho nessun elemento, emetto eccezione
             if (implementedType == null)
-                throw new InvalidProgramException(string.Format("Unable to find concrete types that " +
-                    "implements repository interface '{0}' and data session interface '{1}' on current application " +
-                    "domain. Please verify also that implementation if marked with attribute '[Repository]'.",
-                    typeof(TRepositoryInterface).FullName, typeof(TSpecificDataSessionRepository).FullName));
+                throw new InvalidProgramException("Unable to find concrete types that " +
+                                                  $"implements repository interface '{typeof(TRepositoryInterface).FullName}' and data session interface '{typeof(TSpecificDataSessionRepository).FullName}' on current application " +
+                                                  "domain. Please verify also that implementation if marked with attribute '[Repository]'.");
 
             //Eseguo la creazione dell'istanza della classe di repository specifico
             object instance = Activator.CreateInstance(implementedType, dataSession);
 
             //Se l'istanza non è convertibile a repostory, emetto eccezione
             if (!(instance is TRepositoryInterface))
-                throw new InvalidCastException(string.Format("Unable to cast type of '{0}' to " +
-                    "interface '{1}'.", instance.GetType().FullName, typeof(TRepositoryInterface).FullName));
+                throw new InvalidCastException($"Unable to cast type of '{instance.GetType().FullName}' to " +
+                                               $"interface '{typeof(TRepositoryInterface).FullName}'.");
 
             //Ritorno l'istanza
             return (TRepositoryInterface)instance;
@@ -185,10 +184,9 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
 
             //Se non ho nessun elemento, emetto eccezione
             if (implementedType == null)
-                throw new InvalidProgramException(string.Format("Unable to find concrete types that " +
-                    "implements repository interface '{0}' and data session interface '{1}' on current application " +
-                    "domain. Please verify also that implementation if marked with attribute '[Repository]'.",
-                    repositoryInterface.FullName, typeof(TSpecificDataSessionRepository).FullName));
+                throw new InvalidProgramException("Unable to find concrete types that " +
+                                                  $"implements repository interface '{repositoryInterface.FullName}' and data session interface '{typeof(TSpecificDataSessionRepository).FullName}' on current application " +
+                                                  "domain. Please verify also that implementation if marked with attribute '[Repository]'.");
 
             //Eseguo la creazione dell'istanza della classe di repository specifico
             object instance = Activator.CreateInstance(implementedType, dataSession);
@@ -317,10 +315,9 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
 
             //Se ho più di un elemento, emetto eccezione
             if (matchingTypes.Count > 1)
-                throw new InvalidProgramException(string.Format("Found {0} types that implements repository " +
-                    "interface '{1}' and data session interfacce '{2}'. Just one type matching specified " +
-                    "criteria must be contained on application domain.", matchingTypes.Count,
-                    repositoryType.FullName, typeof(TSpecificDataSessionRepository).FullName));
+                throw new InvalidProgramException($"Found {matchingTypes.Count} types that implements repository " +
+                                                  $"interface '{repositoryType.FullName}' and data session interfacce '{typeof(TSpecificDataSessionRepository).FullName}'. Just one type matching specified " +
+                                                  "criteria must be contained on application domain.");
 
             //Ritorno il primo elemento (o nessuno)
             return matchingTypes.SingleOrDefault();

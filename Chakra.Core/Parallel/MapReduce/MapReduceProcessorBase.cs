@@ -59,8 +59,8 @@ namespace ZenProgramming.Chakra.Core.Parallel.MapReduce
 
             //Se il numero di elementi è minore del numero di processori, non ha senso eseguire
             if (count < numberOfProcessors)
-                throw new InvalidOperationException(string.Format("Number or " + 
-                    "processors ({0}) is greater that input elements ('{1}').",numberOfProcessors, count));
+                throw new InvalidOperationException("Number or " +
+                                                    $"processors ({numberOfProcessors}) is greater that input elements ('{count}').");
 
             //Inserisco i valori nelle proprietà
             NumberOfProcessors = numberOfProcessors;

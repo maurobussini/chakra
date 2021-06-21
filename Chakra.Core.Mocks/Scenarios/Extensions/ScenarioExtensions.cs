@@ -35,9 +35,9 @@ namespace ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions
             catch (InvalidCastException exc)
             {
                 //Sollevo l'evento di cast invalido
-                throw new InvalidCastException(string.Format("Unable to " + 
-                    "cast instance of type '{0}' to target type '{1}'.", 
-                    instance.GetType().FullName, typeof(TScenario).FullName), exc);
+                throw new InvalidCastException(
+                    "Unable to " +
+                    $"cast instance of type '{instance.GetType().FullName}' to target type '{typeof(TScenario).FullName}'.", exc);
             }
         }
 

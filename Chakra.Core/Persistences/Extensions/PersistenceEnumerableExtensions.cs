@@ -28,9 +28,8 @@ namespace ZenProgramming.Chakra.Core.Persistences.Extensions
 
 			//Se non è stato trovato, eccezione
 			if (result == null)
-				throw new NullReferenceException(string.Format("Unable to find " + 
-					"persistence of type '{0}' with key '{1}'", 
-					typeof(TPersistence).FullName, key));
+				throw new NullReferenceException("Unable to find " +
+                                                 $"persistence of type '{typeof(TPersistence).FullName}' with key '{key}'");
 
 			//Ritorno il valore
 			return result;

@@ -51,8 +51,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
             //Tento il cast della sessione generica ad EntityFramework
             var efSession = dataSession as EntityFrameworkDataSession<TDbContext>;
             if (efSession == null)
-                throw new InvalidCastException(string.Format("Specified session of type '{0}' cannot be converted to type '{1}'.",
-                    dataSession.GetType().FullName, typeof(EntityFrameworkDataSession<TDbContext>).FullName));
+                throw new InvalidCastException(
+                    $"Specified session of type '{dataSession.GetType().FullName}' cannot be converted to type '{typeof(EntityFrameworkDataSession<TDbContext>).FullName}'.");
 
             //Imposto la proprietà della sessione
             DataSession = efSession;
@@ -104,6 +104,46 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
 
             //Eseguo l'estrazione dati
             return query
+                .Paging(startRowIndex, maximumRows)
+                .ToList();
+        }
+
+        /// <summary>
+        /// Fetch list of entities matching criteria on repository
+        /// </summary>
+        /// <param name="select">Select expression</param>
+        /// <param name="filterExpression">Filter expression</param>
+        /// <param name="selectFilterExpression">Select filter expression</param>
+        /// <param name="startRowIndex">Start row index</param>
+        /// <param name="maximumRows">Maximum rows</param>
+        /// <param name="sortExpression">Filter expression</param>
+        /// <param name="isDescending">Is descending sorting</param>
+        /// <returns>Returns list of all available entities</returns>
+        public IList<TProjection> Fetch<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
+            int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+        {
+            //Query con filtro e paginazione
+            IQueryable<TEntity> query = Collection;
+
+            //Se ho un filtro, lo imposto
+            if (filterExpression != null)
+                query = query.Where(filterExpression).AsQueryable();
+
+            //Se specificato, applico anche il sort
+            if (sortExpression != null)
+                query = isDescending
+                    ? query.OrderByDescending(sortExpression)
+                    : query.OrderBy(sortExpression);
+
+            //Eseguo la proiezione dei dati
+            var projectionQuery = query
+                .Select(select).AsQueryable();
+
+            //Se ho un filtro sulla proiezione, lo imposto
+            if (selectFilterExpression != null)
+                projectionQuery = projectionQuery.Where(selectFilterExpression).AsQueryable();
+
+            return projectionQuery
                 .Paging(startRowIndex, maximumRows)
                 .ToList();
         }
@@ -192,8 +232,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             //Se l'elemento non ha id, emetto eccezione
-            if (entity.GetId() == null) throw new InvalidOperationException(string.Format(
-                "Unable to delete entity of type '{0}' with invalid id.", typeof(TEntity).FullName));
+            if (entity.GetId() == null) throw new InvalidOperationException(
+                $"Unable to delete entity of type '{typeof(TEntity).FullName}' with invalid id.");
 
             //Rimuovo l'elemento dal set
             Collection.Remove(entity);

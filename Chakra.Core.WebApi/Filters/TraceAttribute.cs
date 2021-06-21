@@ -5,9 +5,9 @@ using ZenProgramming.Chakra.WebApi.Filters.Helpers;
 using ZenProgramming.Chakra.WebApi.Filters.Models;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Linq;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using Newtonsoft.Json;
 
 namespace ZenProgramming.Chakra.WebApi.Filters
 {
@@ -54,7 +54,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             string value = TraceUtils.StringifyRequest(request);
 
             //Di base eseguo il tracciamento sul tracer impostato
-            Debug.Write(string.Format("[{0}] REQUEST: {1}", GetType().Name, value));
+            Debug.Write($"[{GetType().Name}] REQUEST: {value}");
         }
         
         /// <summary>
@@ -67,7 +67,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             string value = TraceUtils.StringifyResponse(response);
 
             //Di base eseguo il tracciamento sul tracer impostato
-            Debug.Write(string.Format("[{0}] RESPONSE: {1}", GetType().Name, value));
+            Debug.Write($"[{GetType().Name}] RESPONSE: {value}");
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             {
                 //Set values
                 content.Value = ok.StatusCode.ToString();
-                content.Type = typeof(OkResult).Name;                
+                content.Type = nameof(OkResult);                
                 return content;
             }
 
@@ -186,7 +186,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             if (result is OkObjectResult okobj)
             {
                 //Set values
-                content.Value = okobj.Value == null ? "null" : JsonConvert.SerializeObject(okobj.Value, Formatting.Indented);
+                content.Value = okobj.Value == null ? "null" : JsonSerializer.Serialize(okobj.Value,new JsonSerializerOptions{WriteIndented = true});
                 content.Type = okobj.Value == null ? null : okobj.Value.GetType().Name;
                 return content;
             }
@@ -196,7 +196,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             {
                 //Set values
                 content.Value = "";
-                content.Type = typeof(EmptyResult).Name;
+                content.Type = nameof(EmptyResult);
                 return content;
             }
 
@@ -205,7 +205,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             {
                 //Set name of file
                 content.Value = fr.FileDownloadName;
-                content.Type = typeof(FileResult).Name;
+                content.Type = nameof(FileResult);
                 return content;
             }
 
@@ -214,7 +214,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             {
                 //Set url 
                 content.Value = rr.Url;
-                content.Type = typeof(RedirectResult).Name;
+                content.Type = nameof(RedirectResult);
                 return content;
             }
 
@@ -223,7 +223,7 @@ namespace ZenProgramming.Chakra.WebApi.Filters
             {
                 //Set route name
                 content.Value = rtr.RouteName;
-                content.Type = typeof(RedirectToRouteResult).Name;
+                content.Type = nameof(RedirectToRouteResult);
                 return content;
             }
 

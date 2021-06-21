@@ -89,8 +89,8 @@ namespace ZenProgramming.Chakra.Core.Tuning
 
                 //Se non è stato possibile istanziare, emetto eccezione
                 if (processorInstance == null)
-                    throw new InvalidProgramException(string.Format("Unable to create " + 
-                        "instance of processor of type '{0}'.", processorType));
+                    throw new InvalidProgramException("Unable to create " +
+                                                      $"instance of processor of type '{processorType}'.");
 
                 //Ritorno in uscita l'istanza
                 return processorInstance;

@@ -41,16 +41,16 @@ namespace ZenProgramming.Chakra.Core.Diagnostic
             ITracer instance = value as ITracer;
 
             //Se l'oggetto è nullo, emetto eccezione
-            if (instance == null) throw new NullReferenceException(string.Format("Unable to generate a valid " +
-                "instance of type '{0}' that implements interface '{1}'.", tracerType.FullName, typeof(ITracer).FullName));
+            if (instance == null) throw new NullReferenceException("Unable to generate a valid " +
+                                                                   $"instance of type '{tracerType.FullName}' that implements interface '{typeof(ITracer).FullName}'.");
 
             //Ricerco un tracer dello stesso tipo nella lista
             ITracer duplicateTracer = _Tracers.SingleOrDefault(t => t.GetType() == instance.GetType());
 
             //Se già esiste un tracer dello stesso tipo, emetto eccezione
             if (duplicateTracer != null)
-                throw new InvalidProgramException(string.Format("Found " +
-                    "another tracer of the same type of '{0}'.", tracerType.FullName));
+                throw new InvalidProgramException("Found " +
+                                                  $"another tracer of the same type of '{tracerType.FullName}'.");
 
             //Aggiungo il tracer alla lista
             _Tracers.Add(instance);
@@ -113,8 +113,7 @@ namespace ZenProgramming.Chakra.Core.Diagnostic
                     type = ReflectionUtils.GenerateType(tracerName);
 
                     //Se il tipo non è stato generato emetto eccezione
-                    if (type == null) throw new TypeLoadException(string.
-                        Format("Unable to generate type '{0}'.", tracerName));
+                    if (type == null) throw new TypeLoadException($"Unable to generate type '{tracerName}'.");
 
                     break;
             }

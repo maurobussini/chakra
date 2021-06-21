@@ -25,8 +25,8 @@ namespace ZenProgramming.Chakra.Core.Utilities.Server.Redirectors
             DateTime registrationDate = DateTime.Now;
 
             //Compongo la stringa di uscita comprensiva di data, ora e messaggio da tracciare
-            string result = string.Format("[{0} {1}.{2}] {3}", registrationDate.ToString("yyyy/MM/dd"),
-                registrationDate.ToString("HH:mm:ss"), registrationDate.Millisecond.ToString().PadLeft(3,'0'), message);
+            string result =
+                $"[{registrationDate.ToString("yyyy/MM/dd")} {registrationDate.ToString("HH:mm:ss")}.{registrationDate.Millisecond.ToString().PadLeft(3, '0')}] {message}";
 
             //Ritorno il messaggio formattato
             return result;

@@ -40,8 +40,8 @@ namespace ZenProgramming.Chakra.Core.Persistences
 
                 //Se l'istanza non è convertibile a Ipers, emetto eccezione
                 if (!(instance is IPersistenceInitializer))
-                    throw new InvalidCastException(string.Format("Unable to cast type of '{0}' to " +
-                        "interface '{1}'.", instance.GetType().FullName, typeof(IPersistenceInitializer).FullName));
+                    throw new InvalidCastException($"Unable to cast type of '{instance.GetType().FullName}' to " +
+                                                   $"interface '{typeof(IPersistenceInitializer).FullName}'.");
 
                 //Accodo in lista
                 initializers.Add(instance as IPersistenceInitializer);
@@ -86,10 +86,9 @@ namespace ZenProgramming.Chakra.Core.Persistences
             }
 
             //Se l'inizializzatore non è stato trovato, emetto eccezione
-            if (initializer == null) throw new InvalidProgramException(String.Format(
-                "Unable to find a persistence initializer for type '{0}'. Please verify that " +
-				"the initializer (if exists) has been marked with attribute " +
-                "[PersistenceInitializer].", typeof(TElement).FullName));
+            if (initializer == null) throw new InvalidProgramException(
+                $"Unable to find a persistence initializer for type '{typeof(TElement).FullName}'. Please verify that " +
+                "the initializer (if exists) has been marked with attribute " + "[PersistenceInitializer].");
 
             //Ritorno il valore
             return initializer.Fetch<TElement>();

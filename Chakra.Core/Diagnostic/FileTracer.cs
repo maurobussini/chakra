@@ -90,16 +90,16 @@ namespace ZenProgramming.Chakra.Core.Diagnostic
 
             //Recupero le informazioni del file di default
             FileInfo info = new FileInfo(filename);
-            if (info == null) throw new NullReferenceException(string.
-                Format("Unable to retrieve information about file '{0}'.", filename));
+            if (info == null) throw new NullReferenceException(
+                $"Unable to retrieve information about file '{filename}'.");
 
             //Eseguo l'operazione finchè esiste il file
             while (File.Exists(filename))
             {
                 //Se non ho informazioni sulla directory, emetto eccezione
                 if (info.Directory == null)
-                    throw new NullReferenceException(string.
-                        Format("Unable to retrieve information of directory of file '{0}'.", filename));
+                    throw new NullReferenceException(
+                        $"Unable to retrieve information of directory of file '{filename}'.");
 
                 //Compongo il nuovo file utilizzando la directory del default
                 //inserendo il progressivo e alla fine l'estensione
@@ -124,7 +124,7 @@ namespace ZenProgramming.Chakra.Core.Diagnostic
             string assemblyName = Assembly.GetCallingAssembly().GetName().Name;
 
             //Compongo il nome del file di trace da emettere
-            string traceFileName = string.Format("{0}.log", assemblyName);
+            string traceFileName = $"{assemblyName}.log";
 
             //Utilizzo come percorso base la cartella di esecuzione
             string path = AppDomain.CurrentDomain.BaseDirectory;

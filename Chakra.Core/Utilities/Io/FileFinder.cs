@@ -80,7 +80,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Io
 
             //Se la directory non esiste, emetto eccezione
             if (!Directory.Exists(folderPath)) 
-                throw new DirectoryNotFoundException(string.Format("Unable to find directory '{0}'.", folderPath));
+                throw new DirectoryNotFoundException($"Unable to find directory '{folderPath}'.");
 
             //Recupero le informazioni della folder
             DirectoryInfo directory = new DirectoryInfo(folderPath);

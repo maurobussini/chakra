@@ -67,7 +67,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
 
             //Verifico che la base specificata sia valida
             if (baseN > AllowedChars.Length) throw new InvalidProgramException(
-                string.Format("Base-N value must be greater then zero and lower or equals to {0}.", AllowedChars.Length));
+                $"Base-N value must be greater then zero and lower or equals to {AllowedChars.Length}.");
 
             //Eseguo l'uppercase della stringa
             string elaboratedSource = sourceValue.ToUpper();            
