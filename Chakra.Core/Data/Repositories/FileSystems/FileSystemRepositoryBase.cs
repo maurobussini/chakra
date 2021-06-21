@@ -93,7 +93,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         }        
 
         /// <summary>
-        /// FetchAndProject list of all entities on repository
+        /// Fetch and project list of all entities on repository
         /// </summary>
         /// <param name="startRowIndex">Start row index</param>
         /// <param name="maximumRows">Maximum rows</param>
@@ -107,7 +107,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch and project list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -145,7 +145,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch and project list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>

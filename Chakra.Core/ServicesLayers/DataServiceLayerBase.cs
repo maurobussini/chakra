@@ -189,7 +189,7 @@ namespace ZenProgramming.Chakra.Core.ServicesLayers
 		}
 
         /// <summary>
-        /// FetchAndProject list of entities of provided type
+        /// Fetch and project list of entities of provided type
         /// </summary>
         /// <typeparam name="TEntity">Type of entity</typeparam>
         /// <param name="filter">Filter</param>

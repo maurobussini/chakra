@@ -21,7 +21,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
         TEntity GetSingle(Expression<Func<TEntity, bool>> expression);
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch and project list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -33,7 +33,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
             int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false);
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch and project list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>

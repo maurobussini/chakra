@@ -35,7 +35,7 @@ namespace ZenProgramming.Chakra.Core.ServicesLayers
         }
 
         /// <summary>
-        /// FetchAndProject list of all entities
+        /// Fetch and project list of all entities
         /// </summary>
         /// <typeparam name="TEntity">Type of entity</typeparam>
         /// <typeparam name="TRepository">Type of repository</typeparam>
