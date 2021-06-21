@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.OAuth</RootNamespace>
-    <Version>3.0.3</Version>
-    <AssemblyVersion>3.0.3</AssemblyVersion>
-    <FileVersion>3.0.3</FileVersion>
+    <Version>3.0.4</Version>
+    <AssemblyVersion>3.0.4</AssemblyVersion>
+    <FileVersion>3.0.4</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Guidelines for build OAuth2 identity server</Description>
