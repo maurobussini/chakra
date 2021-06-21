@@ -1,9 +1,9 @@
-﻿using CSDetermineOSAndBrowserASPNETCore.UserAgent;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
+using ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections;
 
-namespace ZenProgramming.Chakra.WebApi.Helpers
+namespace ZenProgramming.Chakra.Core.WebApi.Helpers
 {
     /// <summary>
     /// Contains utilities for API service

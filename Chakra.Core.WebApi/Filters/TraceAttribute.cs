@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Diagnostics;
-using ZenProgramming.Chakra.WebApi.Filters.Helpers;
-using ZenProgramming.Chakra.WebApi.Filters.Models;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using System.Linq;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using ZenProgramming.Chakra.Core.WebApi.Filters.Helpers;
+using ZenProgramming.Chakra.Core.WebApi.Filters.Models;
+using ZenProgramming.Chakra.Core.WebApi.Filters;
 
-namespace ZenProgramming.Chakra.WebApi.Filters
+namespace ZenProgramming.Chakra.Core.WebApi.Filters
 {
     /// <summary>
     /// Traces requests and responses on action or controller API

@@ -2,9 +2,10 @@
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
-using ZenProgramming.Chakra.Core.Mocks.Tests.Scenarios;
+using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
+using ZenProgramming.Chakra.Core.Tests;
 
-namespace ZenProgramming.Chakra.Core.Tests
+namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
     public class MockDataSessionTests
     {

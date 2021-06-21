@@ -1,5 +1,4 @@
-﻿using Chakra.Core.Tests.Environment.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts

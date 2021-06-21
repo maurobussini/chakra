@@ -148,7 +148,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public IList<TProjection> Fetch<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
+        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
             Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
         {

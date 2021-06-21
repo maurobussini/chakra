@@ -1,15 +1,15 @@
-﻿using Chakra.Core.Tests.Environment.Entities;
-using System;
+﻿using System;
 using System.Linq;
 using Xunit;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
-using ZenProgramming.Chakra.Core.Mocks.Tests.Scenarios;
 using ZenProgramming.Chakra.Core.Tests.Environment.Repositories;
+using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
+using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
 
-namespace Chakra.Core.Mocks.Tests
+namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
     public class MockDepartmentRepositoryTests : IDisposable
     {
@@ -51,13 +51,13 @@ namespace Chakra.Core.Mocks.Tests
         }
 
         [Fact]
-        public void ShouldFetchAndProjectAtLeastOneElement()
+        public void ShouldFetchWithProjectionReturnsAtLeastOneElement()
         {
             //Resolve repo
             var repository = _DataSession.ResolveRepository<IDepartmentRepository>();
 
             //Execute operation
-            var result = repository.Fetch(x=>new{x.Name});
+            var result = repository.FetchWithProjection(x=>new{x.Name});
 
             //Assert
             Assert.NotNull(result);
