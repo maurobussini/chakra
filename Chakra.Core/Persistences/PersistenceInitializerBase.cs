@@ -36,7 +36,7 @@ namespace ZenProgramming.Chakra.Core.Persistences
         protected abstract void Initialize(IList<TElement> elements);
 
         /// <summary>
-        /// FetchAndProject list of elements using initializer
+        /// Fetch list of elements using initializer
         /// </summary>
         /// <typeparam name="TOutput">Type of output element</typeparam>
         /// <returns>Returns list of elements</returns>

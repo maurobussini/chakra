@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using ZenProgramming.Chakra.Core.Entities;
 
 namespace ZenProgramming.Chakra.Core.Data.Repositories
@@ -10,15 +11,14 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
     /// Interface for generic repository of entity
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public partial interface IRepository<TEntity> : IRepository
-        where TEntity : class, IEntity, new()
+    public partial interface IRepository<TEntity>
     {
         /// <summary>
         /// Get single entity using expression
         /// </summary>
         /// <param name="expression">Search expression</param>
         /// <returns>Returns list of all available entities</returns>
-        TEntity GetSingle(Expression<Func<TEntity, bool>> expression);
+        Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> expression);
 
         /// <summary>
         /// Fetch list of entities matching criteria on repository
@@ -29,7 +29,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        IList<TEntity> Fetch(Expression<Func<TEntity, bool>> filterExpression = null, int? startRowIndex = null,
+        Task<List<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> filterExpression = null, int? startRowIndex = null,
             int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false);
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
+        Task<List<TProjection>> FetchWithProjectionAsync<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
             int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false);
 
         /// <summary>
@@ -51,33 +51,33 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <returns>Returns count</returns>
-        int Count(Expression<Func<TEntity, bool>> filterExpression = null);
+        Task<int> CountAsync(Expression<Func<TEntity, bool>> filterExpression = null);
 
         /// <summary>
         /// Executes save of entity on database
         /// </summary>
         /// <param name="entity">Entity to save</param>
-        void Save(TEntity entity);
+        Task SaveAsync(TEntity entity);
 
-        /// <summary>
-        /// Execute validation on the specified entity and
-        /// returns a boolean result for the operation
-        /// </summary>
-        /// <param name="entity">Entity to validate</param>
-        /// <returns>If valid, returns true</returns>
-        bool IsValid(TEntity entity);
+        ///// <summary>
+        ///// Execute validation on the specified entity and
+        ///// returns a boolean result for the operation
+        ///// </summary>
+        ///// <param name="entity">Entity to validate</param>
+        ///// <returns>If valid, returns true</returns>
+        //bool IsValid(TEntity entity);
 
-        /// <summary>
-        /// Execute a validation on properties of the entity specified
-        /// </summary>
-        /// <param name="entity">Entity to validate</param>
-        /// <returns>Returns a list of validaton results</returns>
-        IList<ValidationResult> Validate(TEntity entity);
+        ///// <summary>
+        ///// Execute a validation on properties of the entity specified
+        ///// </summary>
+        ///// <param name="entity">Entity to validate</param>
+        ///// <returns>Returns a list of validaton results</returns>
+        //IList<ValidationResult> Validate(TEntity entity);
 
         /// <summary>
         /// Executes delete of entity
         /// </summary>
         /// <param name="entity">Entity to delete</param>
-        void Delete(TEntity entity);
+        Task DeleteAsync(TEntity entity);
     }
 }

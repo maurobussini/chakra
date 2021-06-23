@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using ZenProgramming.Chakra.Core.Data;
@@ -17,7 +18,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TMongoDbOptions">Type of options</typeparam>
-    public abstract class MongoDbRepositoryBase<TEntity, TMongoDbOptions> : IRepository<TEntity>, IMongoDbRepository
+    public abstract partial class MongoDbRepositoryBase<TEntity, TMongoDbOptions> : IRepository<TEntity>, IMongoDbRepository
         where TEntity : class, IEntity, new()
         where TMongoDbOptions: class, IMongoDbOptions, new()
     {
@@ -75,7 +76,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -117,7 +118,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
@@ -300,7 +301,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
 
             //Se l'elemento non esiste, ritorno il default
             if (elementWithMaxValue == null)
-                return default(TOutput);
+                return default;
 
             //Recupero il valore della proprietà            
             return (TOutput) elementWithMaxValue.GetId();

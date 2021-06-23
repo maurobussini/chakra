@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using ZenProgramming.Chakra.Core.DataAnnotations;
 using ZenProgramming.Chakra.Core.DataAnnotations.Extensions;
 using ZenProgramming.Chakra.Core.Entities;
@@ -41,23 +42,16 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
 
             //Mando in uscita la lista
             return validationResults;
-        }        
+        }
 
         /// <summary>
-        /// Execute create or update of specified entity
+        /// validate and rectify specified entity
         /// </summary>
         /// <typeparam name="TEntity">Type of entity</typeparam>
         /// <param name="entity">Entity to save</param>
         /// <param name="dataSession">Data session</param>
-        /// <param name="saveMethod">Save method</param>
-        public static void Save<TEntity>(TEntity entity, IDataSession dataSession, Action<IDataSession> saveMethod)
-            where TEntity : class, IEntity
+        private static void ValidateAndRectify<TEntity>(TEntity entity, IDataSession dataSession) where TEntity : class, IEntity
         {
-            //Se non è passato un dato valido, emetto eccezione
-            if (entity == null) throw new ArgumentNullException(nameof(entity));
-            if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
-            if (saveMethod == null) throw new ArgumentNullException(nameof(saveMethod));
-
             //Eseguo la validazione dell'entità da salvare
             IList<ValidationResult> validationResults = Validate(entity, dataSession);
 
@@ -102,9 +96,50 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
                 if (string.IsNullOrEmpty(richEntity.LastUpdateBy))
                     richEntity.LastUpdateBy = principalName;
             }
+        }
+
+        /// <summary>
+        /// Execute create or update of specified entity
+        /// </summary>
+        /// <typeparam name="TEntity">Type of entity</typeparam>
+        /// <param name="entity">Entity to save</param>
+        /// <param name="dataSession">Data session</param>
+        /// <param name="saveMethod">Save method</param>
+        public static void Save<TEntity>(TEntity entity, IDataSession dataSession, Action<IDataSession> saveMethod)
+            where TEntity : class, IEntity
+        {
+            //Se non è passato un dato valido, emetto eccezione
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
+            if (saveMethod == null) throw new ArgumentNullException(nameof(saveMethod));
+
+            // check/update entity values and properties
+            ValidateAndRectify(entity, dataSession);
 
             //Mando in esecuzione il metodo di salvataggio
             saveMethod(dataSession);
+        }
+
+        /// <summary>
+        /// Execute create or update of specified entity
+        /// </summary>
+        /// <typeparam name="TEntity">Type of entity</typeparam>
+        /// <param name="entity">Entity to save</param>
+        /// <param name="dataSession">Data session</param>
+        /// <param name="saveMethod">Save method</param>
+        public static Task SaveAsync<TEntity>(TEntity entity, IDataSession dataSession, Func<IDataSession,Task> saveMethod)
+            where TEntity : class, IEntity
+        {
+            //Se non è passato un dato valido, emetto eccezione
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
+            if (saveMethod == null) throw new ArgumentNullException(nameof(saveMethod));
+
+            // check/update entity values and properties
+            ValidateAndRectify(entity, dataSession);
+
+            //Mando in esecuzione il metodo di salvataggio
+            return saveMethod(dataSession);
         }
 
         /// <summary>

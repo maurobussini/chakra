@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
@@ -49,6 +50,21 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             Assert.NotNull(result);
             Assert.True(result.Count > 0);
         }
+
+        [Fact]
+        public async Task ShouldFetchAtLeastOneElementAsync()
+        {
+            //Resolve repo
+            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+
+            //Execute operation
+            var result = await repository.FetchAsync();
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.True(result.Count > 0);
+        }
+
 
         [Fact]
         public void ShouldFetchWithProjectionReturnsAtLeastOneElement()

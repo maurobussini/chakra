@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
@@ -18,7 +19,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TScenarioInterface">Type of scenario interface (ex: IChakraScenario)</typeparam>
-    public class MockRepositoryBase<TEntity, TScenarioInterface> : IRepository<TEntity>, IMockRepository
+    public abstract partial class MockRepositoryBase<TEntity, TScenarioInterface> : IRepository<TEntity>, IMockRepository
         where TEntity : class, IEntity, new()
         where TScenarioInterface: IScenario
     {
@@ -92,7 +93,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
         }        
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -138,7 +139,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>

@@ -14,7 +14,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
     /// Repository base implementation for filesystem
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public class FileSystemRepositoryBase<TEntity> : IRepository<TEntity>, IFileSystemRepository
+    public abstract partial class FileSystemRepositoryBase<TEntity> : IRepository<TEntity>, IFileSystemRepository
         where TEntity : class, IEntity, new()
     {
         #region Private fields
@@ -63,17 +63,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //se utilizzare NanoDb per eseguire questo tipo di interazione
             MockedEntities = new List<TEntity>();
         }
-
-        /// <summary>
-        /// Count all entities on repository
-        /// </summary>
-        /// <returns>Returns count of all entities</returns>
-        public int CountAll()
-        {
-            //Conteggio tutti gli elementi
-            return MockedEntities.Count;
-        }        
-
+        
         /// <summary>
         /// Get single entity using expression
         /// </summary>
@@ -90,24 +80,10 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //Cerco l'elemento nella lista delle entità mockate
             return MockedEntities
                 .SingleOrDefault(compiled);
-        }        
+        }     
 
         /// <summary>
-        /// FetchAndProject list of all entities on repository
-        /// </summary>
-        /// <param name="startRowIndex">Start row index</param>
-        /// <param name="maximumRows">Maximum rows</param>
-        /// <returns>Returns list of all available entities</returns>
-        public IList<TEntity> FetchAll(int? startRowIndex = null, int? maximumRows = null)
-        {
-            //Recupero tutte le entità
-            return MockedEntities
-                .Paging(startRowIndex, maximumRows)
-                .ToList();
-        }
-
-        /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -145,7 +121,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>

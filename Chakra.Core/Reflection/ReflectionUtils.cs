@@ -172,7 +172,7 @@ namespace ZenProgramming.Chakra.Core.Reflection
         }
 
         /// <summary>
-        /// FetchAndProject list of specified attribute on provided type
+        /// Fetch list of specified attribute on provided type
         /// </summary>
         /// <typeparam name="TAttribute">Type of attribute</typeparam>
         /// <param name="sourceType">Source type</param>

@@ -17,7 +17,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TDbContext">Type of database context</typeparam>
-    public abstract class EntityFrameworkRepositoryBase<TEntity, TDbContext> : IRepository<TEntity>, IEntityFrameworkRepository
+    public abstract partial class EntityFrameworkRepositoryBase<TEntity, TDbContext> : IRepository<TEntity>, IEntityFrameworkRepository
         where TEntity : class, IEntity, new()
         where TDbContext: DbContext, new()
     {
@@ -78,7 +78,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -109,7 +109,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         }
 
         /// <summary>
-        /// FetchAndProject list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
