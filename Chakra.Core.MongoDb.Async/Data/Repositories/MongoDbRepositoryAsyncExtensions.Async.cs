@@ -18,13 +18,16 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TMongoDbOptions">Type of options</typeparam>
-    public abstract partial class MongoDbRepositoryBase<TEntity, TMongoDbOptions>
+    public static class MongoDbRepositoryAsyncExtensions
     {
         /// <summary>
         /// Assign primary identifier to newely created entity
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="entity">Entity instance</param>
-        protected virtual async Task AssignPrimaryIdentifierAsync(TEntity entity)
+        static async Task AssignPrimaryIdentifierAsync<TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, TEntity entity)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Validazione argomenti
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -41,7 +44,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
             if (entity is IEntity<int> classic)
             {
                 //Conteggio gli elementi a database
-                var count = await CountAsync();
+                var count = await repository.CountAsync();
 
                 //Predisposizione al massimo valore
                 int max = 0;
@@ -51,7 +54,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
                 if (count != 0)
                 {
                     //Conteggio il massimo
-                    max = await MaxAsync<int>("Id");
+                    max = await MaxAsync<int,TEntity,TMongoDbOptions>(repository,"Id");
                 }
 
                 //Incremento il massimo di uno ed assegno
@@ -68,9 +71,12 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// Get maximum value on entity
         /// </summary>
         /// <typeparam name="TOutput">Type of output</typeparam>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="fieldName">Field name</param>
         /// <returns>Returns value</returns>
-        protected async Task<TOutput> MaxAsync<TOutput>(string fieldName)
+        static async Task<TOutput> MaxAsync<TOutput,TEntity,TMongoDbOptions>(MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository,string fieldName)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Validazione argomenti
             if (string.IsNullOrEmpty(fieldName)) throw new ArgumentNullException(nameof(fieldName));
@@ -79,7 +85,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
             var idFieldDefinition = new StringFieldDefinition<TEntity, object>(fieldName);
 
             //Recupero il primo elemento con valore massimo
-            var elementWithMaxValue = await Collection
+            var elementWithMaxValue = await repository.Collection
                 .Find(Builders<TEntity>.Filter.Empty)
                 .Sort(Builders<TEntity>.Sort.Descending(idFieldDefinition))
                 .Limit(1)
@@ -96,15 +102,18 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <summary>
         /// Get single entity using expression
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="expression">Search expression</param>
         /// <returns>Returns list of all available entities</returns>
-        public Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> expression)
+        public static Task<TEntity> GetSingleAsync<TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, Expression<Func<TEntity, bool>> expression)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Validazione argomenti
             if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             //Eseguo l'estrazione dell'elemento singolo
-            return Collection
+            return repository.Collection
                 .FindSync(expression)
                 .SingleOrDefaultAsync();
         }
@@ -112,20 +121,23 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <summary>
         /// Fetch list of entities matching criteria on repository
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
         /// <param name="maximumRows">Maximum rows</param>
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public Task<List<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> filterExpression = null, int? startRowIndex = null, int? maximumRows = null,
+        public static Task<List<TEntity>> FetchAsync<TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, Expression<Func<TEntity, bool>> filterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Applico il filtro sulla collezione; se il filtro non è impostato
             //definisco un builder vuoto che ritorna sempre tutti gli elementi
             IFindFluent<TEntity, TEntity> query = filterExpression != null 
-                ? Collection.Find(filterExpression)
-                : Collection.Find(Builders<TEntity>.Filter.Empty);
+                ? repository.Collection.Find(filterExpression)
+                : repository.Collection.Find(Builders<TEntity>.Filter.Empty);
             
             //Se ho un ordinamento
             if (sortExpression != null)
@@ -154,6 +166,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <summary>
         /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="selectFilterExpression">Select filter expression</param>
@@ -162,11 +175,13 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public Task<List<TProjection>> FetchWithProjectionAsync<TProjection>(Expression<Func<TEntity, TProjection>> @select, Expression<Func<TEntity, bool>> filterExpression = null,
+        public static Task<List<TProjection>> FetchWithProjectionAsync<TProjection,TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, Expression<Func<TEntity, TProjection>> @select, Expression<Func<TEntity, bool>> filterExpression = null,
             Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
-            var query = Collection.AsQueryable();
+            var query = repository.Collection.AsQueryable();
 
             if (filterExpression != null)
             {
@@ -205,9 +220,12 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <summary>
         /// Count entities matching criteria on repository
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="filterExpression">Filter expression</param>
         /// <returns>Returns count</returns>
-        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> filterExpression = null)
+        public static async Task<int> CountAsync<TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, Expression<Func<TEntity, bool>> filterExpression = null)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Definizione del valore di uscita
             long countAsLong = 0;
@@ -220,8 +238,8 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
                 //Applico una condizione sulla collezione; se il filtro non è impostato
                 //definisco un builder vuoto che ritorna tutti gli elementi
                 countAsLong = await (filterExpression != null
-                    ? Collection.CountDocumentsAsync(filterExpression)
-                    : Collection.CountDocumentsAsync(Builders<TEntity>.Filter.Empty));
+                    ? repository.Collection.CountDocumentsAsync(filterExpression)
+                    : repository.Collection.CountDocumentsAsync(Builders<TEntity>.Filter.Empty));
 
                 //Tento il cast ad intero
                 return (int) countAsLong;
@@ -237,23 +255,26 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         /// <summary>
         /// Executes save of entity on database
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="entity">Entity to save</param>
-        public Task SaveAsync(TEntity entity)
+        public static Task SaveAsync<TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, TEntity entity)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Se non è passato un dato valido, emetto eccezione
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             //Utilizzo l'helper per il salvataggio
-            return RepositoryHelper.SaveAsync(entity, DataSession, async s =>
+            return RepositoryHelper.SaveAsync(entity, repository.DataSession, async s =>
             {
                 //Se l'entità ha un identificatore nullo, aggiungo
                 if (entity.GetId() == null)
                 {
                     //Eseguo l'assegnazione dell'identificatore primario
-                    await AssignPrimaryIdentifierAsync(entity);
+                    await repository.AssignPrimaryIdentifierAsync(entity);
 
                     //Inserisco ed esco
-                    await Collection.InsertOneAsync(entity);
+                    await repository.Collection.InsertOneAsync(entity);
                     return;
                 }
 
@@ -263,15 +284,18 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
                 var uniqueFilter = Builders<TEntity>.Filter.Eq(idFieldDefinition, entity.GetId());
 
                 //Eseguo il replace
-                await Collection.FindOneAndReplaceAsync(uniqueFilter, entity);
+                await repository.Collection.FindOneAndReplaceAsync(uniqueFilter, entity);
             });
         }
 
         /// <summary>
         /// Executes delete of entity
         /// </summary>
+        /// <param name="repository">MongoDb repository</param>
         /// <param name="entity">Entity to delete</param>
-        public Task DeleteAsync(TEntity entity)
+        public static Task DeleteAsync<TEntity,TMongoDbOptions>(this MongoDbRepositoryBase<TEntity, TMongoDbOptions> repository, TEntity entity)
+            where TEntity : class, IEntity, new()
+            where TMongoDbOptions: class, IMongoDbOptions, new()
         {
             //Se non è passato un dato valido, emetto eccezione
             if (entity == null) throw new ArgumentNullException(nameof(entity));
@@ -285,7 +309,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
             var uniqueFilter = Builders<TEntity>.Filter.Eq(idFieldDefinition, entity.GetId());
 
             //Eseguo il remove dell'elemento
-            return Collection.DeleteOneAsync(uniqueFilter);
+            return repository.Collection.DeleteOneAsync(uniqueFilter);
         }
     }
 }

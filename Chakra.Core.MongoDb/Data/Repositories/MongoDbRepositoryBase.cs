@@ -18,7 +18,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TMongoDbOptions">Type of options</typeparam>
-    public abstract partial class MongoDbRepositoryBase<TEntity, TMongoDbOptions> : IRepository<TEntity>, IMongoDbRepository
+    public abstract class MongoDbRepositoryBase<TEntity, TMongoDbOptions> : IRepository<TEntity>, IMongoDbRepository
         where TEntity : class, IEntity, new()
         where TMongoDbOptions: class, IMongoDbOptions, new()
     {
@@ -26,16 +26,16 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         private bool _IsDisposed;
         #endregion
 
-        #region Protected properties
+        #region Public properties
         /// <summary>
         /// Get entity framework data session
         /// </summary>
-        protected MongoDbDataSession<TMongoDbOptions> DataSession { get; }
+        public MongoDbDataSession<TMongoDbOptions> DataSession { get; }
 
         /// <summary>
         /// Collection of elements managed by repository
         /// </summary>
-        protected IMongoCollection<TEntity> Collection { get; }
+        public IMongoCollection<TEntity> Collection { get; }
         #endregion
 
         /// <summary>

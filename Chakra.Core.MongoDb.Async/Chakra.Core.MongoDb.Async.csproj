@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,13 +6,13 @@
     <Version>5.0.0</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
-    <Description>Provider for MongoDB in Chakra.Core framework</Description>
+    <Description>Async provider for MongoDB in Chakra.Core framework</Description>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
-    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra.MongoDb</PackageProjectUrl>
+    <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra.Core.MongoDb.Async</PackageProjectUrl>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <FileVersion>5.0.0</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.MongoDb</RepositoryUrl>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.MongoDb.Async</RepositoryUrl>
     <PackageTags>mongo, repository, driver, chakra, data</PackageTags>
     <RootNamespace>ZenProgramming.Chakra.Core.MongoDb</RootNamespace>
   </PropertyGroup>
@@ -23,10 +23,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
+    <ProjectReference Include="..\Chakra.Core.MongoDb\Chakra.Core.MongoDb.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="README.md" />
   </ItemGroup>
 
 </Project>

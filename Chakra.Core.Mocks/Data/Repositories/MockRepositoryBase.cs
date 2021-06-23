@@ -19,7 +19,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TScenarioInterface">Type of scenario interface (ex: IChakraScenario)</typeparam>
-    public abstract partial class MockRepositoryBase<TEntity, TScenarioInterface> : IRepository<TEntity>, IMockRepository
+    public abstract class MockRepositoryBase<TEntity, TScenarioInterface> : IRepository<TEntity>, IMockRepository
         where TEntity : class, IEntity, new()
         where TScenarioInterface: IScenario
     {

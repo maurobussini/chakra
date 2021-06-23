@@ -17,7 +17,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
     /// <typeparam name="TDbContext">Type of database context</typeparam>
-    public abstract partial class EntityFrameworkRepositoryBase<TEntity, TDbContext> : IRepository<TEntity>, IEntityFrameworkRepository
+    public abstract class EntityFrameworkRepositoryBase<TEntity, TDbContext> : IRepository<TEntity>, IEntityFrameworkRepository
         where TEntity : class, IEntity, new()
         where TDbContext: DbContext, new()
     {
@@ -25,16 +25,16 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         private bool _IsDisposed;
         #endregion
 
-        #region Protected properties
+        #region Public properties
         /// <summary>
         /// Get entity framework data session
         /// </summary>
-        protected EntityFrameworkDataSession<TDbContext> DataSession { get; }
+        public EntityFrameworkDataSession<TDbContext> DataSession { get; }
 
         /// <summary>
         /// Collection of entities
         /// </summary>
-        protected DbSet<TEntity> Collection { get; }
+        public  DbSet<TEntity> Collection { get; }
         #endregion
 
         /// <summary>

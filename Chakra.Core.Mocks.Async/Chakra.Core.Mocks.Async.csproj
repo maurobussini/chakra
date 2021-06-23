@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>ZenProgramming.Chakra.Core.Mocks.Async</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>5.0.0</Version>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
+    <FileVersion>5.0.0</FileVersion>
+    <Company>ZenProgramming.it</Company>
+    <Authors>Mauro Bussini</Authors>
+    <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Mocks.Async</PackageProjectUrl>
+    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <Description>Async data providers and structures for mock data and scenarios</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Mocks.Async</RepositoryUrl>
+    <PackageTags>.net, core, mock, scenario, data, test, bdd</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chakra.Core.Mocks\Chakra.Core.Mocks.csproj" />
+  </ItemGroup>
+
+</Project>
