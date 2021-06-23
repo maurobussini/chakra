@@ -9,27 +9,23 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
     /// <summary>
     /// Implementation of simple scenario that implements ICharkaScenario
     /// </summary>
-    public class SimpleScenario: IChakraScenario
+    public class SimpleScenario : IChakraScenario
     {
         /// <summary>
         /// Persons
         /// </summary>
-        public IList<Person> Persons { get; set; }
+        public IList<Person> Persons { get; set; } = new List<Person>();
 
         /// <summary>
         /// Departments
         /// </summary>
-        public IList<Department> Departments { get; set; }
+        public IList<Department> Departments { get; set; } = new List<Department>();
 
         /// <summary>
-        /// Constructor (should be parameterless)
+        /// Cars
         /// </summary>
-        public SimpleScenario()
-        {
-            //Initialize lists
-            Persons = new List<Person>();
-            Departments = new List<Department>();
-        }
+        public IList<Car> Cars { get; set; } = new List<Car>();
+
 
         /// <summary>
         /// Executes initialization and loading 
@@ -40,9 +36,9 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
             //Create a person and add to list
             var john = new Person
             {
-                Id = Persons.Count + 1, 
-                IsMale = true, 
-                Name = "John", 
+                Id = Persons.Count + 1,
+                IsMale = true,
+                Name = "John",
                 Surname = "Doe"
             };
             Persons.Add(john);
@@ -70,6 +66,30 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
             //...and use "Push" extension method for push and create
             //auto-magically primary Id if they are missing
             this.Push(s => s.Departments, fin, rd, hr);
+
+            //Create few departments
+            var car1 = new Car
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Brand = "WV",
+                Name = "Golf"
+            };
+            var car2 = new Car
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Brand = "Fiat",
+                Name = "Panda"
+            };
+            var car3 = new Car
+            {
+                Id = Guid.NewGuid().ToString("D"),
+                Brand = "Alfa",
+                Name = "Quadrifoglio"
+            };
+
+            //...and use "Push" extension method for push and create
+            //auto-magically primary Id if they are missing
+            this.Push(s => s.Cars, car1, car2, car3);
         }
 
         /// <summary>
@@ -77,7 +97,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
         /// (files, folders, configurations) on scenario
         /// </summary>
         public void InitializeAssets()
-        {            
+        {
             //None in this case
         }
     }

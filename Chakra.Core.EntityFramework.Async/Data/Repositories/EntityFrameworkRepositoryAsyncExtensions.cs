@@ -4,6 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ZenProgramming.Chakra.Core.Async.Data.Repositories;
+using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
 using ZenProgramming.Chakra.Core.Entities;
@@ -12,27 +14,27 @@ using ZenProgramming.Chakra.Core.EntityFramework.Extensions;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Async.Data.Repositories
 {
-    /// <summary>
-    /// Represents base repository for access to storage based on EntityFramework
-    /// </summary>
-    /// <typeparam name="TEntity">Type of entity</typeparam>
-    /// <typeparam name="TDbContext">Type of database context</typeparam>
-    public static class EntityFrameworkRepositoryAsyncExtensions
+    public abstract class EntityFrameworkRepositoryBaseAsync<TEntity, TDbContext> :
+        EntityFrameworkRepositoryBase<TEntity, TDbContext>,
+        IRepositoryAsync<TEntity>
+        where TEntity : class, IEntity, new()
+        where TDbContext: DbContext, new()
     {
+        
+        protected EntityFrameworkRepositoryBaseAsync(IDataSession dataSession, Func<TDbContext, DbSet<TEntity>> collectionReference) : base(dataSession, collectionReference) { }
+
         /// <summary>
         /// Get single entity using expression
         /// </summary>
         /// <param name="expression">Search expression</param>
         /// <returns>Returns list of all available entities</returns>
-        public static Task<TEntity> GetSingleAsync<TEntity,TDbContext>(this EntityFrameworkRepositoryBase<TEntity, TDbContext> repository, Expression<Func<TEntity, bool>> expression)
-            where TEntity : class, IEntity, new()
-            where TDbContext: DbContext, new()
+        public Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> expression)
         {
             //Validazione argomenti
             if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             //Eseguo l'estrazione dell'elemento singolo
-            return repository.Collection
+            return Collection
                 .Where(expression)
                 .SingleOrDefaultAsync();
         }
@@ -46,13 +48,11 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Async.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public static Task<List<TEntity>> FetchAsync<TEntity,TDbContext>(this EntityFrameworkRepositoryBase<TEntity, TDbContext> repository, Expression<Func<TEntity, bool>> filterExpression = null, int? startRowIndex = null, int? maximumRows = null,
+        public Task<List<TEntity>> FetchAsync(Expression<Func<TEntity, bool>> filterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
-            where TEntity : class, IEntity, new()
-            where TDbContext: DbContext, new()
         {
             //Query con filtro e paginazione
-            IQueryable<TEntity> query = repository.Collection;
+            IQueryable<TEntity> query = Collection;
 
             //Se ho un filtro, lo imposto
             if (filterExpression != null)
@@ -81,13 +81,11 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Async.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public static Task<List<TProjection>> FetchWithProjectionAsync<TProjection,TEntity,TDbContext>(this EntityFrameworkRepositoryBase<TEntity, TDbContext> repository, Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
+        public Task<List<TProjection>> FetchWithProjectionAsync<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
             int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
-            where TEntity : class, IEntity, new()
-            where TDbContext: DbContext, new()
         {
             //Query con filtro e paginazione
-            IQueryable<TEntity> query = repository.Collection;
+            IQueryable<TEntity> query = Collection;
 
             //Se ho un filtro, lo imposto
             if (filterExpression != null)
@@ -117,12 +115,10 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Async.Data.Repositories
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <returns>Returns count</returns>
-        public static Task<int> CountAsync<TEntity,TDbContext>(this EntityFrameworkRepositoryBase<TEntity, TDbContext> repository, Expression<Func<TEntity, bool>> filterExpression = null)
-            where TEntity : class, IEntity, new()
-            where TDbContext: DbContext, new()
+        public Task<int> CountAsync(Expression<Func<TEntity, bool>> filterExpression = null)
         {
             //Query con filtro e paginazione
-            IQueryable<TEntity> query = repository.Collection;
+            IQueryable<TEntity> query = Collection;
 
             //Se ho un filtro, lo imposto
             if (filterExpression != null)
@@ -136,22 +132,20 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Async.Data.Repositories
         /// Executes save of entity on database
         /// </summary>
         /// <param name="entity">Entity to save</param>
-        public static Task SaveAsync<TEntity,TDbContext>(this EntityFrameworkRepositoryBase<TEntity, TDbContext> repository, TEntity entity)
-            where TEntity : class, IEntity, new()
-            where TDbContext: DbContext, new()
+        public Task SaveAsync(TEntity entity)
         {
             //Se non è passato un dato valido, emetto eccezione
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             //Utilizzo l'helper per il salvataggio
-            return RepositoryHelper.SaveAsync(entity, repository.DataSession,async s =>
+            return RepositoryHelper.SaveAsync(entity, DataSession,async s =>
             {
                 //Se l'entità è in modifica, non cè bisogno di fare nulla
                 if (entity.GetId() != null)
                     return;
 
                 //Aggiungo l'elemento al set
-                await repository.Collection.AddAsync(entity);
+                await Collection.AddAsync(entity);
             });
         }
 
@@ -159,14 +153,14 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Async.Data.Repositories
         /// Executes delete of entity
         /// </summary>
         /// <param name="entity">Entity to delete</param>
-        public static Task DeleteAsync<TEntity,TDbContext>(this EntityFrameworkRepositoryBase<TEntity, TDbContext> repository, TEntity entity)
-            where TEntity : class, IEntity, new()
-            where TDbContext: DbContext, new()
+        public Task DeleteAsync(TEntity entity)
         {
             // Deletion is not an async method
             // Call base method
-            repository.Delete(entity);
+            Delete(entity);
             return Task.CompletedTask;
         }
+
     }
+    
 }

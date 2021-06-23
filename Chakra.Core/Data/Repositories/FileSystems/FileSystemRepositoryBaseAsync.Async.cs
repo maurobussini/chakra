@@ -15,8 +15,11 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
     /// Repository base implementation for filesystem
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public abstract partial class FileSystemRepositoryBase<TEntity>
+    public abstract class FileSystemRepositoryBaseAsync<TEntity> : FileSystemRepositoryBase<TEntity>
+        where TEntity : class, IEntity, new()
     {
+        protected FileSystemRepositoryBaseAsync(IDataSession dataSession, string baseFolder) : base(dataSession, baseFolder) { }
+        
         /// <summary>
         /// Get single entity using expression
         /// </summary>

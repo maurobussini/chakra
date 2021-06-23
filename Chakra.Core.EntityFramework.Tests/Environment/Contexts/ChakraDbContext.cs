@@ -18,6 +18,11 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
         /// </summary>
         public DbSet<Department> Departments { get; set; }
 
+        /// <summary>
+        /// Cars
+        /// </summary>
+        public DbSet<Car> Cars { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Add SQL configuration
@@ -32,6 +37,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
             //Map of entities
             modelBuilder.Entity<Person>().ToTable("icCHAKRA_Persons");
             modelBuilder.Entity<Department>().ToTable("icCHAKRA_Departments");
+            modelBuilder.Entity<Car>().ToTable("icCHAKRA_Cars");
         }
     }
 }

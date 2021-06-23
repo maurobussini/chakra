@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Chakra.Core.Async\Chakra.Core.Async.csproj" />
     <ProjectReference Include="..\Chakra.Core.EntityFramework\Chakra.Core.EntityFramework.csproj" />
   </ItemGroup>
 

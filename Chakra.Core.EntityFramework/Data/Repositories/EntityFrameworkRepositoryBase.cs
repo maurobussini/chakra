@@ -25,16 +25,16 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         private bool _IsDisposed;
         #endregion
 
-        #region Public properties
+        #region Protected properties
         /// <summary>
         /// Get entity framework data session
         /// </summary>
-        public EntityFrameworkDataSession<TDbContext> DataSession { get; }
+        protected EntityFrameworkDataSession<TDbContext> DataSession { get; }
 
         /// <summary>
         /// Collection of entities
         /// </summary>
-        public  DbSet<TEntity> Collection { get; }
+        protected DbSet<TEntity> Collection { get; }
         #endregion
 
         /// <summary>

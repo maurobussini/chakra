@@ -14,7 +14,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
     /// Repository base implementation for filesystem
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public abstract partial class FileSystemRepositoryBase<TEntity> : IRepository<TEntity>, IFileSystemRepository
+    public abstract class FileSystemRepositoryBase<TEntity> : IRepository<TEntity>, IFileSystemRepository
         where TEntity : class, IEntity, new()
     {
         #region Private fields

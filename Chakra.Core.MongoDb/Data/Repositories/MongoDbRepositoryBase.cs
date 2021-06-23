@@ -26,16 +26,16 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         private bool _IsDisposed;
         #endregion
 
-        #region Public properties
+        #region Protected properties
         /// <summary>
         /// Get entity framework data session
         /// </summary>
-        public MongoDbDataSession<TMongoDbOptions> DataSession { get; }
+        protected MongoDbDataSession<TMongoDbOptions> DataSession { get; }
 
         /// <summary>
         /// Collection of elements managed by repository
         /// </summary>
-        public IMongoCollection<TEntity> Collection { get; }
+        protected IMongoCollection<TEntity> Collection { get; }
         #endregion
 
         /// <summary>

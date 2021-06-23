@@ -6,17 +6,17 @@ using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
+using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
 using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
 using ZenProgramming.Chakra.Core.Tests.Environment.Repositories;
-using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
-using ZenProgramming.Chakra.Core.Mocks.Async.Data.Repositories;
+
 namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
-    public class MockPersonRepositoryTests : IDisposable
+    public class MockCarRepositoryTests : IDisposable
     {
-        private IDataSession _DataSession;
+        private IDataSession _DataSession { get; set; }
 
-        public MockPersonRepositoryTests()
+        public MockCarRepositoryTests() 
         {
             //Register default session and open
             _DataSession = SessionFactory.OpenSession<MockDataSession<
@@ -25,26 +25,26 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         }
 
         [Fact]
-        public void ShouldCountAtLeastOneElement()
+        public async Task ShouldCountAtLeastOneElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Execute operation
-            var result = repository.Count();
+            var result = await repository.CountAsync();
 
             //Assert
             Assert.True(result > 0);
         }
 
         [Fact]
-        public void ShouldFetchAtLeastOneElement()
+        public async Task ShouldFetchAtLeastOneElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Execute operation
-            var result = repository.Fetch();
+            var result = await repository.FetchAsync();
 
             //Assert
             Assert.NotNull(result);
@@ -52,13 +52,13 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         }
 
         [Fact]
-        public void ShouldFetchWithProjectionReturnsAtLeastOneElement()
+        public async Task ShouldFetchAtLeastOneElementAsync()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Execute operation
-            var result = repository.FetchWithProjection(x=>new{x.Name, x.Surname});
+            var result = await repository.FetchAsync();
 
             //Assert
             Assert.NotNull(result);
@@ -66,36 +66,51 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         }
 
         [Fact]
-        public void ShouldCreateIncrementElements()
+        public async Task ShouldFetchWithProjectionReturnsAtLeastOneElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
+
+            //Execute operation
+            var result = await repository.FetchWithProjectionAsync(x=>new{x.Name});
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.True(result.Count > 0);
+        }
+
+
+        [Fact]
+        public async Task ShouldCreateIncrementElementsAsync()
+        {
+            //Resolve repo
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Get number of elements before create
-            var countBefore = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
+            var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
             //Define new element
-            var element = new Person 
+            var element = new Car 
             {
-                Name = "Jane", 
-                Surname = "Doe"
+                Brand = "Pagani", 
+                Name = "Zonda"
             };
 
             //Execute operation
-            repository.Save(element);
+            await repository.SaveAsync(element);
 
             //Get number of elements after create
-            var countAfter = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
+            var countAfter = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
             //Assert
             Assert.Equal(countBefore + 1, countAfter);
         }
 
         [Fact]
-        public void ShouldUpdateSaveChangedElement()
+        public async Task ShouldUpdateSaveChangedElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Get existing element
             var all = repository.Fetch();
@@ -103,37 +118,37 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
 
             //Change name of existing element
             var existingId = existing.Id;
-            existing.Name = "Jack";
+            existing.Name = existing.Name + " updated!";
 
             //Execute operation of update (using save)
-            repository.Save(existing);
+            await repository.SaveAsync(existing);
 
             //Get element from scenario
             var fromScenario = _DataSession.GetScenario<IChakraScenario>()
-                .Persons.SingleOrDefault(e => e.Id == existingId);
+                .Cars.SingleOrDefault(e => e.Id == existingId);
 
             //Assert
             Assert.Equal(existing.Name, fromScenario.Name);
         }
 
         [Fact]
-        public void ShouldDeleteDecrementElements()
+        public async Task ShouldDeleteDecrementElements()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<IPersonRepository>();
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Get number of elements before create
-            var countBefore = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
+            var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
             //Get existing element
             var all = repository.Fetch();
             var existing = all.First();
 
             //Execute operation
-            repository.Delete(existing);
+            await repository.DeleteAsync(existing);
 
             //Get number of elements after create
-            var countAfter = _DataSession.GetScenario<IChakraScenario>().Persons.Count;
+            var countAfter = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
             //Assert
             Assert.Equal(countBefore - 1, countAfter);
