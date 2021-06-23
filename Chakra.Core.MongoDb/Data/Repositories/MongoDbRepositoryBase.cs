@@ -76,7 +76,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// Fetch and project list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>

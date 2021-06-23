@@ -12,7 +12,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
     public static class AppDomainUtils
     {
         /// <summary>
-        /// Fetch list of deployed assemblies in "bin" folder for current 
+        /// Fetch and project list of deployed assemblies in "bin" folder for current 
         /// app domain; the methods uses a new app domain in order to 
         /// avoid unwanted loading of assemblies on current domain
         /// </summary>
@@ -58,11 +58,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Fetch list of assembly names contained in specified folder
-=======
-        /// Fetch and project list of assembly names contained in specified folder
->>>>>>> 02b6da9... description typo
         /// </summary>
         /// <param name="path">Source folder</param>
         /// <returns>Returns list of assembly names</returns>
@@ -90,11 +86,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
         }
 
         /// <summary>
-<<<<<<< HEAD
         /// Fetch list of "bin" folders of current application domain
-=======
-        /// Fetch and project list of "bin" folders of current application domain
->>>>>>> 02b6da9... description typo
         /// </summary>
         /// <returns>Returns list of bin folders</returns>
         public static IList<string> FetchBinFolders()

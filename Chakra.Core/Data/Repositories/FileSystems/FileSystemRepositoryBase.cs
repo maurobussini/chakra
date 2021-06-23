@@ -80,31 +80,8 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //Cerco l'elemento nella lista delle entità mockate
             return MockedEntities
                 .SingleOrDefault(compiled);
-<<<<<<< HEAD
         }     
-
-        /// <summary>
-        /// Fetch list of entities matching criteria on repository
-=======
-        }        
-
-        /// <summary>
-        /// Fetch and project list of all entities on repository
-        /// </summary>
-        /// <param name="startRowIndex">Start row index</param>
-        /// <param name="maximumRows">Maximum rows</param>
-        /// <returns>Returns list of all available entities</returns>
-        public IList<TEntity> FetchAll(int? startRowIndex = null, int? maximumRows = null)
-        {
-            //Recupero tutte le entità
-            return MockedEntities
-                .Paging(startRowIndex, maximumRows)
-                .ToList();
-        }
-
-        /// <summary>
-        /// Fetch and project list of entities matching criteria on repository
->>>>>>> 02b6da9... description typo
+        
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -152,8 +129,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
-            Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
+        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null, Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
         {
             //Validazione argomenti

@@ -209,7 +209,7 @@ namespace ZenProgramming.Chakra.Core.Reflection
         }
 
         /// <summary>
-        /// Fetch list of exported types implementing interface
+        /// Fetch and project list of exported types implementing interface
         /// </summary>
         /// <typeparam name="TInterface">Type of interface</typeparam>
         /// <returns></returns>
