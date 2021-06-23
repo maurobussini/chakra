@@ -21,7 +21,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
         TEntity GetSingle(Expression<Func<TEntity, bool>> expression);
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// FetchAndProject list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>

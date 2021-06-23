@@ -78,7 +78,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// FetchAndProject list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -109,7 +109,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// FetchAndProject list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
