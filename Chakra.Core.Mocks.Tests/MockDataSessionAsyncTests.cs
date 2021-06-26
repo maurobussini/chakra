@@ -1,13 +1,12 @@
 ﻿using Xunit;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Async.Data;
-using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
 using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
-    public class MockDataSessionTests
+    public class MockDataSessionAsyncTests
     {
         [Fact]
         public void ShouldMockDataSessionBeOpenedWithRegisterDefaultUsingImplicitScopedMode()
@@ -52,11 +51,11 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public void ShouldMockDataSessionBeOpenedDirectlyUsingExplicitScopedMode() 
         {
             //Open session directly
-            IDataSession session = SessionFactory.OpenSession<MockDataSession<SimpleScenario, ScopedScenarioOption<SimpleScenario>>>();
+            IDataSession session = SessionFactory.OpenSession<MockDataSessionAsync<SimpleScenario, ScopedScenarioOption<SimpleScenario>>>();
 
             //Check that session is created and is valid
             Assert.NotNull(session);
-            Assert.True(session is IMockDataSession);
+            Assert.True(session is IMockDataSessionAsync);
         }
     }
 }

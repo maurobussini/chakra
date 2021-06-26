@@ -18,39 +18,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
         where TScenarioOption : class, IScenarioOption<TScenarioImplementation>, new()
     {
    
-        #region Public properties
-
-        /// <summary>
-        /// Active transaction on session
-        /// </summary>
-        public IDataTransactionAsync TransactionAsync { get; private set; }
-
-        
-        #endregion
-
        
-        /// <summary>
-        /// Execute resolution of repository interface using specified clas
-        /// </summary>
-        /// <typeparam name="TRepositoryInterface">Type of repository interface</typeparam>
-        /// <returns>Returns repository instance</returns>
-        public TRepositoryInterface ResolveRepositoryAsync<TRepositoryInterface>()
-            where TRepositoryInterface : IRepositoryAsync
-        {
-            //Utilizzo il metodo presente sull'helper
-            return Core.Async.Data.Repositories.Helpers.RepositoryHelper.Resolve<TRepositoryInterface, IMockRepositoryAsync>(this);
-        }
-
-        ///// <summary>
-        ///// Begin new transaction on active session
-        ///// </summary>
-        ///// <returns>Returns data transaction instance</returns>
-        //public IDataTransactionAsync BeginTransactionAsync()
-        //{
-        //    //Cast to interface, then generate data transaction
-        //    var castedDataSession = this as IMockDataSessionAsync;
-        //    return new MockDataTransactionAsync(castedDataSession);
-        //}
         public override IDataTransaction BeginTransaction()
         {
             //Cast to interface, then generate data transaction
@@ -72,7 +40,8 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
             // cast
             if (dataTransaction is IDataTransactionAsync dt)
             {
-                TransactionAsync = dt;
+                Transaction = dt;
+                return;
             }
             throw new InvalidCastException($"Unable to cast type of '{dataTransaction.GetType().FullName}' to " +
                                            $"interface '{typeof(IDataTransactionAsync).FullName}'.");

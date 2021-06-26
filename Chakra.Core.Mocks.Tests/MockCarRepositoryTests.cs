@@ -120,6 +120,15 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         }
 
         [Fact]
+        public async Task ShouldCreateTransactionAndRollBackAsync()
+        {
+            
+            using var transaction = _DataSession.BeginTransaction();
+
+            await transaction.RollBackAsync();
+        }
+
+        [Fact]
         public async Task ShouldCreateIncrementElementsAsync()
         {
             //Resolve repo

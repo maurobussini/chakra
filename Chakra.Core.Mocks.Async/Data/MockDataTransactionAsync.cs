@@ -27,6 +27,13 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
             throw new InvalidCastException($"Unable to cast type of '{dataTransaction.GetType().FullName}' to " +
                                            $"interface '{typeof(IDataTransactionAsync).FullName}'.");
         }
+
+        //public static Task CommitAsync(this MockDataTransaction mockDataTransaction)
+        //{
+        //    // Call base method
+        //    this.Commit();
+        //    return Task.CompletedTask;
+        //}
     }
 
     /// <summary>
@@ -34,48 +41,18 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
     /// </summary>
     public class MockDataTransactionAsync : MockDataTransaction, IDataTransactionAsync
     {
-        #region Private fields
-        private IMockDataSessionAsync _DataSession;
-        #endregion
-
         /// <summary>
         /// Constructor
         /// </summary>
-        public MockDataTransactionAsync(IMockDataSessionAsync dataSession): base(dataSession)
-        {
-            //Imposto la data session
-            _DataSession = dataSession ?? throw new ArgumentNullException(nameof(dataSession));
-
-            //Imposto lo stato iniziale
-            IsActive = true;
-            IsTransactionOwner = true;
-            WasCommitted = false;
-            WasRolledBack = false;
-            
-            //Se già esiste una transanzione sull'holder, esco
-            if (_DataSession.TransactionAsync != null)
-                return;
-
-            //Imposto l'istanza corrente
-            _DataSession.SetActiveTransaction(this);
-        }
+        public MockDataTransactionAsync(IMockDataSessionAsync dataSession): base(dataSession) {}
 
         /// <summary>
         /// Executes commit of transaction
         /// </summary>
         public Task CommitAsync()
         {
-            //Se l'istanza è la proprietaria della transazione
-            if (IsTransactionOwner)
-            {
-                //Imposto i flag per commit
-                IsActive = false;
-                WasCommitted = true;
-                WasRolledBack = false;
-
-                //Rimuovo il riferimento alla transazione
-                _DataSession.SetActiveTransaction(this);
-            }
+            // Call base method
+            this.Commit();
             return Task.CompletedTask;
         }
 
@@ -84,17 +61,8 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
         /// </summary>
         public Task RollBackAsync()
         {
-            //Se l'istanza è la proprietaria della transazione
-            if (IsTransactionOwner)
-            {
-                //Imposto i flag per rollbak
-                IsActive = false;
-                WasCommitted = false;
-                WasRolledBack = true;
-
-                //Rimuovo il riferimento alla transazione
-                _DataSession.SetActiveTransaction(this);
-            }
+            // Call base method
+            this.Rollback();
             return Task.CompletedTask;
         }
 

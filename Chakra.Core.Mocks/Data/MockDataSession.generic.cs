@@ -28,7 +28,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// <summary>
         /// Active transaction on session
         /// </summary>
-        public IDataTransaction Transaction { get; private set; }
+        public IDataTransaction Transaction { get; protected set; }
 
         /// <summary>
         /// Option for scenario
