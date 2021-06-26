@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 using ZenProgramming.Chakra.Core.Data;
+using ZenProgramming.Chakra.Core.Mocks.Async.Data;
+using ZenProgramming.Chakra.Core.Mocks.Async.Scenarios.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
@@ -14,12 +16,12 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
     public class MockCarRepositoryTests : IDisposable
     {
-        private IDataSession _DataSession { get; set; }
+        private IDataSessionAsync _DataSession { get; set; }
 
         public MockCarRepositoryTests() 
         {
             //Register default session and open
-            _DataSession = SessionFactory.OpenSession<MockDataSession<
+            _DataSession = SessionFactoryAsync.OpenSession<MockDataSessionAsync<
                 SimpleScenario,
                 TransientScenarioOption<SimpleScenario>>>();
         }
@@ -38,13 +40,13 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         }
 
         [Fact]
-        public async Task ShouldFetchAtLeastOneElement()
+        public void ShouldFetchAtLeastOneElement()
         {
             //Resolve repo
             var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Execute operation
-            var result = await repository.FetchAsync();
+            var result = repository.Fetch();
 
             //Assert
             Assert.NotNull(result);
@@ -65,6 +67,8 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             Assert.True(result.Count > 0);
         }
 
+
+
         [Fact]
         public async Task ShouldFetchWithProjectionReturnsAtLeastOneElement()
         {
@@ -78,14 +82,39 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             Assert.NotNull(result);
             Assert.True(result.Count > 0);
         }
+        
+        [Fact]
+        public void ShouldCreateIncrementElements()
+        {
+            //Resolve repo
+            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            
+            //Get number of elements before create
+            var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
+            //Define new element
+            var element = new Car 
+            {
+                Brand = "Pagani", 
+                Name = "Zonda"
+            };
+
+            //Execute operation
+            repository.Save(element);
+
+            //Get number of elements after create
+            var countAfter = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
+
+            //Assert
+            Assert.Equal(countBefore + 1, countAfter);
+        }
 
         [Fact]
         public async Task ShouldCreateIncrementElementsAsync()
         {
             //Resolve repo
             var repository = _DataSession.ResolveRepository<ICarRepository>();
-
+            
             //Get number of elements before create
             var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
@@ -113,7 +142,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             var repository = _DataSession.ResolveRepository<ICarRepository>();
 
             //Get existing element
-            var all = repository.Fetch();
+            var all = await repository.FetchAsync();
             var existing = all.First();
 
             //Change name of existing element
@@ -141,7 +170,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
 
             //Get existing element
-            var all = repository.Fetch();
+            var all = await repository.FetchAsync();
             var existing = all.First();
 
             //Execute operation

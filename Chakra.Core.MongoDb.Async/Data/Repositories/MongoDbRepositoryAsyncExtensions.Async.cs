@@ -258,7 +258,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             //Utilizzo l'helper per il salvataggio
-            return RepositoryHelper.SaveAsync(entity, DataSession, async s =>
+            return  Async.Data.Repositories.Helpers.RepositoryHelper.SaveAsync(entity, DataSession, async s =>
             {
                 //Se l'entità ha un identificatore nullo, aggiungo
                 if (entity.GetId() == null)

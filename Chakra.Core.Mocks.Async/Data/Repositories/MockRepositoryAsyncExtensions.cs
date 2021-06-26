@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 using ZenProgramming.Chakra.Core.Async.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Entities;
+using ZenProgramming.Chakra.Core.Mocks.Async.Data.Extensions;
 using ZenProgramming.Chakra.Core.Mocks.Data.Repositories;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Async.Data.Repositories
 {
-    public abstract class MockRepositoryBaseAsync<TEntity, TScenarioInterface> : MockRepositoryBase<TEntity, TScenarioInterface>,
-        IRepositoryAsync<TEntity>
+    public abstract class MockRepositoryBaseAsync<TEntity, TScenarioInterface> : MockRepositoryRoot<TEntity,TScenarioInterface>,
+        IMockRepositoryAsync
         where TEntity : class, IEntity, new()
         where TScenarioInterface: IScenario
     {
-        protected MockRepositoryBaseAsync(IDataSession dataSession,
-            Func<TScenarioInterface, IList<TEntity>> entitiesExpression) : base(dataSession, entitiesExpression){}
+        protected MockRepositoryBaseAsync(IDataSessionAsync dataSession,
+            Func<TScenarioInterface, IList<TEntity>> entitiesExpression) : base(dataSession.AsMockDataSessionAsync,
+                entitiesExpression)
+        {
+        }
 
         /// <summary>
         /// Get single entity using expression

@@ -8,10 +8,16 @@ using ZenProgramming.Chakra.Core.Entities;
 namespace ZenProgramming.Chakra.Core.Async.Data.Repositories
 {
     /// <summary>
+    /// Interface for repository
+    /// </summary>
+    public interface IRepositoryAsync : IRepository
+    {        
+    }
+    /// <summary>
     /// Interface for generic repository of entity
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public interface IRepositoryAsync<TEntity> : IRepository<TEntity>
+    public interface IRepositoryAsync<TEntity> : IRepositoryAsync, IRepository<TEntity>
         where TEntity : class, IEntity, new()
     {
         /// <summary>
