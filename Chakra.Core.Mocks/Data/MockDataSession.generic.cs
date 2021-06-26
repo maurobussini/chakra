@@ -90,7 +90,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// Begin new transaction on active session
         /// </summary>
         /// <returns>Returns data transaction instance</returns>
-        public IDataTransaction BeginTransaction()
+        public virtual IDataTransaction BeginTransaction()
         {
             //Cast to interface, then generate data transaction
             var castedDataSession = this as IMockDataSession;
@@ -119,7 +119,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// Set active transaction on current data session
         /// </summary>
         /// <param name="dataTransaction">Data transaction</param>
-        public void SetActiveTransaction(IDataTransaction dataTransaction)
+        public virtual void SetActiveTransaction(IDataTransaction dataTransaction)
         {
             //Arguments validation
             if (dataTransaction == null) throw new ArgumentNullException(nameof(dataTransaction));

@@ -9,11 +9,11 @@ namespace ZenProgramming.Chakra.Core.Data
     /// </summary>
     public interface IDataSessionAsync : IDataSession
     {
-        /// <summary>
-        /// Begin new transaction on active session
-        /// </summary>
-        /// <returns>Returns data transaction instance</returns>
-        IDataTransactionAsync BeginTransactionAsync();
+        ///// <summary>
+        ///// Begin new transaction on active session
+        ///// </summary>
+        ///// <returns>Returns data transaction instance</returns>
+        //IDataTransactionAsync BeginTransactionAsync();
         
         /// <summary>
         /// Execute resolve of repository interface on concrete

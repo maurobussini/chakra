@@ -5,6 +5,30 @@ using ZenProgramming.Chakra.Core.Mocks.Data;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
 {
+
+    public static class MockDataTransactionAsyncExtension
+    {
+        public static Task CommitAsync(this IDataTransaction dataTransaction)
+        {
+            if (dataTransaction is IDataTransactionAsync _dt)
+            {
+                return _dt.CommitAsync();
+            }
+            throw new InvalidCastException($"Unable to cast type of '{dataTransaction.GetType().FullName}' to " +
+                                           $"interface '{typeof(IDataTransactionAsync).FullName}'.");
+        }
+
+        public static Task RollBackAsync(this IDataTransaction dataTransaction)
+        {
+            if (dataTransaction is IDataTransactionAsync _dt)
+            {
+                return _dt.RollBackAsync();
+            }
+            throw new InvalidCastException($"Unable to cast type of '{dataTransaction.GetType().FullName}' to " +
+                                           $"interface '{typeof(IDataTransactionAsync).FullName}'.");
+        }
+    }
+
     /// <summary>
     /// Data transaction implementation for mockup
     /// </summary>
@@ -33,7 +57,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
                 return;
 
             //Imposto l'istanza corrente
-            _DataSession.SetActiveTransactionAsync(this);
+            _DataSession.SetActiveTransaction(this);
         }
 
         /// <summary>
@@ -50,7 +74,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
                 WasRolledBack = false;
 
                 //Rimuovo il riferimento alla transazione
-                _DataSession.SetActiveTransactionAsync(this);
+                _DataSession.SetActiveTransaction(this);
             }
             return Task.CompletedTask;
         }
@@ -69,7 +93,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
                 WasRolledBack = true;
 
                 //Rimuovo il riferimento alla transazione
-                _DataSession.SetActiveTransactionAsync(this);
+                _DataSession.SetActiveTransaction(this);
             }
             return Task.CompletedTask;
         }

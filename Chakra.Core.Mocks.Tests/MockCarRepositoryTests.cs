@@ -109,6 +109,16 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             Assert.Equal(countBefore + 1, countAfter);
         }
 
+
+        [Fact]
+        public async Task ShouldCreateTransactionAndCommitAsync()
+        {
+            
+            using var transaction = _DataSession.BeginTransaction();
+
+            await transaction.CommitAsync();
+        }
+
         [Fact]
         public async Task ShouldCreateIncrementElementsAsync()
         {

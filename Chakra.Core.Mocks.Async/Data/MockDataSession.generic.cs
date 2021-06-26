@@ -41,26 +41,41 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
             return Core.Async.Data.Repositories.Helpers.RepositoryHelper.Resolve<TRepositoryInterface, IMockRepositoryAsync>(this);
         }
 
-        /// <summary>
-        /// Begin new transaction on active session
-        /// </summary>
-        /// <returns>Returns data transaction instance</returns>
-        public IDataTransactionAsync BeginTransactionAsync()
+        ///// <summary>
+        ///// Begin new transaction on active session
+        ///// </summary>
+        ///// <returns>Returns data transaction instance</returns>
+        //public IDataTransactionAsync BeginTransactionAsync()
+        //{
+        //    //Cast to interface, then generate data transaction
+        //    var castedDataSession = this as IMockDataSessionAsync;
+        //    return new MockDataTransactionAsync(castedDataSession);
+        //}
+        public override IDataTransaction BeginTransaction()
         {
             //Cast to interface, then generate data transaction
-            var castedDataSession = this as IMockDataSessionAsync;
-            return new MockDataTransactionAsync(castedDataSession);
+            
+            if (this is IMockDataSessionAsync castedDataSession)
+            {
+                return new MockDataTransactionAsync(castedDataSession);
+            }
+            throw new InvalidCastException($"Unable to cast type of '{this.GetType().FullName}' to " +
+                                           $"interface '{typeof(IMockDataSessionAsync).FullName}'.");
         }
-        
-        
+
         /// <summary>
         /// Set active transaction on current data session
         /// </summary>
         /// <param name="dataTransaction">Data transaction</param>
-        public void SetActiveTransactionAsync(IDataTransactionAsync dataTransaction)
+        public override void SetActiveTransaction(IDataTransaction dataTransaction)
         {
-            //Set transaction
-            TransactionAsync = dataTransaction ?? throw new ArgumentNullException(nameof(dataTransaction));
+            // cast
+            if (dataTransaction is IDataTransactionAsync dt)
+            {
+                TransactionAsync = dt;
+            }
+            throw new InvalidCastException($"Unable to cast type of '{dataTransaction.GetType().FullName}' to " +
+                                           $"interface '{typeof(IDataTransactionAsync).FullName}'.");
         }
 
         /// <summary>

@@ -8,10 +8,6 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
     /// </summary>
     public interface IMockDataSessionAsync : IMockDataSession, IDataSessionAsync
     {   
-        /// <summary>
-        /// Set active transation on data session
-        /// </summary>
-        /// <param name="dataTransaction">Data transaction</param>
-        void SetActiveTransactionAsync(IDataTransactionAsync dataTransaction);
+        
     }
 }

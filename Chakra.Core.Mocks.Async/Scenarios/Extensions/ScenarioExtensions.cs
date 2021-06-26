@@ -2,6 +2,7 @@
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Mocks.Async.Data;
 using ZenProgramming.Chakra.Core.Mocks.Async.Data.Extensions;
+using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Async.Scenarios.Extensions
