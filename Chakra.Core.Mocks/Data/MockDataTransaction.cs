@@ -19,17 +19,17 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// <summary>
         /// Transaction is active
         /// </summary>
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; protected set; }
 
         /// <summary>
         /// Transaction was rolled back
         /// </summary>
-        public bool WasRolledBack { get; private set; }
+        public bool WasRolledBack { get; protected set; }
 
         /// <summary>
         /// Transaction was committed
         /// </summary>
-        public bool WasCommitted { get; private set; }
+        public bool WasCommitted { get; protected set; }
 
         /// <summary>
         /// Specify that current instance is transaction owner

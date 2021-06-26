@@ -4,7 +4,7 @@ using ZenProgramming.Chakra.Core.Data.Repositories;
 namespace ZenProgramming.Chakra.Core.Data
 {
 
-    public interface IDataSessionBase
+    public interface IDataSessionBase : IDisposable
     {
         /// <summary>
         /// Executes convert of session instance on specified type
@@ -13,11 +13,12 @@ namespace ZenProgramming.Chakra.Core.Data
         /// <returns>Returns converted instance</returns>
         TOutput As<TOutput>()
             where TOutput : class;
+
     }
     /// <summary>
     /// Represents inteface for session of data
     /// </summary>
-    public interface IDataSession : IDataSessionBase,IDisposable
+    public interface IDataSession : IDataSessionBase
     {
         /// <summary>
         /// Begin new transaction on active session

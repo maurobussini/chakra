@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using ZenProgramming.Chakra.Core.Async.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Entities;
 using ZenProgramming.Chakra.Core.Mocks.Async.Data.Extensions;

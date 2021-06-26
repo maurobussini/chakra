@@ -159,7 +159,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
             //Assert
             Assert.Equal(existing.Name, fromScenario.Name);
         }
-
+        
         [Fact]
         public async Task ShouldDeleteDecrementElements()
         {

@@ -6,31 +6,16 @@ namespace ZenProgramming.Chakra.Core.Data
     /// <summary>
     /// Represents interface for data transaction
     /// </summary>
-    public interface IDataTransactionAsync : IDisposable
+    public interface IDataTransactionAsync : IDataTransaction
     {
         /// <summary>
-        /// Identifies if transaction is active
+        /// Executes commit async on transaction
         /// </summary>
-        bool IsActive { get; }
+        Task CommitAsync();
 
         /// <summary>
-        /// Specifies if transaction was rolled back
+        /// Executes commit async on transaction
         /// </summary>
-        bool WasRolledBack { get; }
-
-        /// <summary>
-        /// Specifies if transaction was committed
-        /// </summary>
-        bool WasCommitted { get; }
-
-        /// <summary>
-        /// Executes commit on transaction
-        /// </summary>
-        Task Commit();
-
-        /// <summary>
-        /// Executes rollback on transaction
-        /// </summary>
-        void Rollback();
+        Task RollBackAsync();
     }
 }
