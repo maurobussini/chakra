@@ -18,7 +18,7 @@ namespace ZenProgramming.Chakra.Core.Data
         /// </summary>
         /// <typeparam name="TDataSession">Type of data session</typeparam>
         public static void RegisterDefaultDataSession<TDataSession>()
-            where TDataSession : class, IDataSessionAsync, new()
+            where TDataSession : class, IDataSession, new()
         {
             lock (lockObj) 
             {
@@ -32,7 +32,7 @@ namespace ZenProgramming.Chakra.Core.Data
         /// </summary>
         /// <returns>Returns an open, usable session</returns>
         public static TDataSession OpenSession<TDataSession>()
-            where TDataSession : class, IDataSessionAsync, new()
+            where TDataSession : class, IDataSession, new()
         {
             //Eseguo la creazione di una istanza di data session
             var instance = new TDataSession();
@@ -45,7 +45,7 @@ namespace ZenProgramming.Chakra.Core.Data
         /// Open data session configured as default
         /// </summary>
         /// <returns>Returns data session instance</returns>
-        public static IDataSessionAsync OpenSession()
+        public static IDataSession OpenSession()
         {
             //Verifica della presenza della sessione di default
             if (DefaultDataSessionType == null)
@@ -53,9 +53,9 @@ namespace ZenProgramming.Chakra.Core.Data
                     "Please register with 'RegisterDefaultDataSession<TDataSession>'");
 
             //Eseguo la creazione dell'istanza
-            var instance = Activator.CreateInstance(DefaultDataSessionType) as IDataSessionAsync;
+            var instance = Activator.CreateInstance(DefaultDataSessionType) as IDataSession;
             if (instance == null) throw new InvalidCastException("Unable to cast " +
-                                                                 $"instance of type '{DefaultDataSessionType.FullName}' to target type '{typeof(IDataSessionAsync).FullName}'.");
+                                                                 $"instance of type '{DefaultDataSessionType.FullName}' to target type '{typeof(IDataSession).FullName}'.");
 
             //Ritorno l'istanza
             return instance;

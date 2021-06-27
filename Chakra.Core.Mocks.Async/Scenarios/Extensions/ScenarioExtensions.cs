@@ -12,31 +12,31 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Scenarios.Extensions
     /// </summary>
     public static class ScenarioExtensions
     {
-        /// <summary>
-        /// Get scenario of specified type from data session
-        /// </summary>
-        /// <typeparam name="TScenario">Type of scenario</typeparam>
-        /// <param name="instance">Instance</param>
-        /// <returns>Returns scenario</returns>
-        public static TScenario GetScenario<TScenario>(this IDataSessionAsync instance) 
-        {
-            //Arguments validation
-            if (instance == null) throw new ArgumentNullException(nameof(instance));
+        ///// <summary>
+        ///// Get scenario of specified type from data session
+        ///// </summary>
+        ///// <typeparam name="TScenario">Type of scenario</typeparam>
+        ///// <param name="instance">Instance</param>
+        ///// <returns>Returns scenario</returns>
+        //public static TScenario GetScenario<TScenario>(this IDataSession instance) 
+        //{
+        //    //Arguments validation
+        //    if (instance == null) throw new ArgumentNullException(nameof(instance));
 
-            //Try to cast to IMockDataSession
-            IMockDataSessionAsync mockupSession = instance.AsMockDataSessionAsync();
+        //    //Try to cast to IMockDataSession
+        //    IMockDataSessionAsync mockupSession = instance.AsMockDataSessionAsync();
 
-            //Get scenario from data session
-            IScenario scenarioFromDataSession = mockupSession.GetScenario();
+        //    //Get scenario from data session
+        //    IScenario scenarioFromDataSession = mockupSession.GetScenario();
 
-            //Try cast of scenario to provided type
-            if (!(scenarioFromDataSession is TScenario castedScenario))
-                throw new InvalidCastException("Scenario contained on data session is of " +
-                    $"type '{scenarioFromDataSession.GetType().FullName}' and cannot be converted " +
-                    $"to type '{typeof(TScenario).FullName}'.");
+        //    //Try cast of scenario to provided type
+        //    if (!(scenarioFromDataSession is TScenario castedScenario))
+        //        throw new InvalidCastException("Scenario contained on data session is of " +
+        //            $"type '{scenarioFromDataSession.GetType().FullName}' and cannot be converted " +
+        //            $"to type '{typeof(TScenario).FullName}'.");
 
-            //Return scenario
-            return castedScenario;
-        }
+        //    //Return scenario
+        //    return castedScenario;
+        //}
     }
 }

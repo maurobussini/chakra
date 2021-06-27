@@ -16,12 +16,12 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
 {
     public class MockCarRepositoryTests : IDisposable
     {
-        private IDataSessionAsync _DataSession { get; set; }
+        private IDataSession _DataSession { get; set; }
 
         public MockCarRepositoryTests() 
         {
             //Register default session and open
-            _DataSession = SessionFactoryAsync.OpenSession<MockDataSessionAsync<
+            _DataSession = SessionFactory.OpenSession<MockDataSession<
                 SimpleScenario,
                 TransientScenarioOption<SimpleScenario>>>();
         }
@@ -30,7 +30,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public async Task ShouldCountAtLeastOneElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
 
             //Execute operation
             var result = await repository.CountAsync();
@@ -43,7 +43,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public void ShouldFetchAtLeastOneElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
 
             //Execute operation
             var result = repository.Fetch();
@@ -57,7 +57,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public async Task ShouldFetchAtLeastOneElementAsync()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
 
             //Execute operation
             var result = await repository.FetchAsync();
@@ -73,7 +73,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public async Task ShouldFetchWithProjectionReturnsAtLeastOneElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
 
             //Execute operation
             var result = await repository.FetchWithProjectionAsync(x=>new{x.Name});
@@ -87,7 +87,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public void ShouldCreateIncrementElements()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
             
             //Get number of elements before create
             var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
@@ -132,7 +132,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public async Task ShouldCreateIncrementElementsAsync()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
             
             //Get number of elements before create
             var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;
@@ -158,7 +158,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public async Task ShouldUpdateSaveChangedElement()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
 
             //Get existing element
             var all = await repository.FetchAsync();
@@ -183,7 +183,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public async Task ShouldDeleteDecrementElements()
         {
             //Resolve repo
-            var repository = _DataSession.ResolveRepository<ICarRepository>();
+            var repository = _DataSession.ResolveRepositoryAsync<ICarRepository>();
 
             //Get number of elements before create
             var countBefore = _DataSession.GetScenario<IChakraScenario>().Cars.Count;

@@ -13,39 +13,39 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
         public void ShouldMockDataSessionBeOpenedWithRegisterDefaultUsingImplicitScopedMode()
         {
             //Register data session using "implicit mode" (scoped)
-            SessionFactory.RegisterDefaultDataSession<MockDataSessionAsync<SimpleScenario>>();
+            SessionFactory.RegisterDefaultDataSession<MockDataSession<SimpleScenario>>();
 
             //Open session
             IDataSession session = SessionFactory.OpenSession();
 
             //Check that session is created and is valid
             Assert.NotNull(session);
-            Assert.True(session is IMockDataSessionAsync);
+            Assert.True(session is IMockDataSession);
         }
 
         [Fact]
         public void ShouldMockDataSessionBeOpenedWithRegisterDefaultUsingExplicitScopedMode()
         {
             //Register data session using "implicit mode" (scoped)
-            SessionFactory.RegisterDefaultDataSession<MockDataSessionAsync<SimpleScenario, ScopedScenarioOption<SimpleScenario>>>();
+            SessionFactory.RegisterDefaultDataSession<MockDataSession<SimpleScenario, ScopedScenarioOption<SimpleScenario>>>();
 
             //Open session
             IDataSession session = SessionFactory.OpenSession();
 
             //Check that session is created and is valid
             Assert.NotNull(session);
-            Assert.True(session is IMockDataSessionAsync);
+            Assert.True(session is IMockDataSession);
         }
 
         [Fact]
         public void ShouldMockDataSessionBeOpenedDirectlyUsingImplicitScopedMode()
         {
             //Open session directly
-            IDataSession session = SessionFactory.OpenSession<MockDataSessionAsync<SimpleScenario>>();
+            IDataSession session = SessionFactory.OpenSession<MockDataSession<SimpleScenario>>();
 
             //Check that session is created and is valid
             Assert.NotNull(session);
-            Assert.True(session is IMockDataSessionAsync);
+            Assert.True(session is IMockDataSession);
         }
 
         [Fact]

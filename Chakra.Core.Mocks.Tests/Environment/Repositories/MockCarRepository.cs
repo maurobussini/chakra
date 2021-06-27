@@ -17,7 +17,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Repositories
         /// Constructor
         /// </summary>
         /// <param name="dataSession">Active data session</param>
-        public MockCarRepository(IDataSessionAsync dataSession) 
+        public MockCarRepository(IDataSession dataSession) 
             : base(dataSession, sc => sc.Cars) { }
     }
 }

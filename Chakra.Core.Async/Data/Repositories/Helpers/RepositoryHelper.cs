@@ -40,7 +40,7 @@ namespace ZenProgramming.Chakra.Core.Async.Data.Repositories.Helpers
         /// <typeparam name="TSpecificDataSessionRepository">Type of interface of repository specific for data session implementation</typeparam>
         /// <param name="dataSession">Active data session</param>
         /// <returns>Returns concrete instance of repository</returns>
-        public static TRepositoryInterface Resolve<TRepositoryInterface, TSpecificDataSessionRepository>(IDataSessionAsync dataSession)
+        public static TRepositoryInterface Resolve<TRepositoryInterface, TSpecificDataSessionRepository>(IDataSession dataSession)
             where TRepositoryInterface : IRepositoryAsync
             where TSpecificDataSessionRepository: IRepositoryAsync
         {

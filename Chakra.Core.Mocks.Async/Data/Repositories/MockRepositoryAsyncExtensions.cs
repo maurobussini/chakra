@@ -16,7 +16,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Async.Data.Repositories
         where TEntity : class, IEntity, new()
         where TScenarioInterface: IScenario
     {
-        protected MockRepositoryBaseAsync(IDataSessionAsync dataSession,
+        protected MockRepositoryBaseAsync(IDataSession dataSession,
             Func<TScenarioInterface, IList<TEntity>> entitiesExpression) : base(dataSession.AsMockDataSessionAsync,
                 entitiesExpression)
         {
