@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections;
 
 namespace ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections
 {

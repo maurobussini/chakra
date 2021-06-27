@@ -21,5 +21,10 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
         /// Departments
         /// </summary>
         IList<Department> Departments { get; set; }
+
+        /// <summary>
+        /// Cars
+        /// </summary>
+        IList<Car> Cars { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories
     /// Interface for generic repository of entity
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public interface IRepository<TEntity> : IRepository
+    public partial interface IRepository<TEntity> : IRepository
         where TEntity : class, IEntity, new()
     {
         /// <summary>

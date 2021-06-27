@@ -4,23 +4,29 @@ using ZenProgramming.Chakra.Core.MongoDb.Data.Options;
 
 namespace ZenProgramming.Chakra.Core.MongoDb.Data
 {
+
+    public interface IMongoDbTransaction<TMongoDbOptions> : IDataTransaction
+        where TMongoDbOptions : class, IMongoDbOptions, new()
+    {
+
+    }
     /// <summary>
     /// Represents MongoDb implementation of data transaction
     /// </summary>
     /// <typeparam name="TMongoDbOptions">Type of MongoDb options</typeparam>
-    public class MongoDbDataTransaction<TMongoDbOptions> : IDataTransaction
+    public class MongoDbDataTransaction<TMongoDbOptions> : IMongoDbTransaction<TMongoDbOptions>
         where TMongoDbOptions : class, IMongoDbOptions, new()
     {
         #region Private field
         private bool _IsDisposed;
-        private readonly IMongoDbDataSession<TMongoDbOptions> _DataSession;
+        protected readonly IMongoDbDataSession<TMongoDbOptions> _DataSession;
         #endregion
 
         #region Public properties
         /// <summary>
         /// Is active
         /// </summary>
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; protected set; }
 
         /// <summary>
         /// Current transaction was rolled back

@@ -22,7 +22,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
         /// <param name="entity">Entity to validate</param>
         /// <param name="dataSession">Session holder used for database validation</param>
         /// <returns>Returns a list of validaton results</returns>
-        public static IList<ValidationResult> Validate<TModelEntity>(TModelEntity entity, IDataSession dataSession)
+        public static IList<ValidationResult> Validate<TModelEntity>(TModelEntity entity, IDataSessionBase dataSession)
             where TModelEntity : class, IEntity
         {
             //Se non è passato un dato valido, emetto eccezione
@@ -41,23 +41,16 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
 
             //Mando in uscita la lista
             return validationResults;
-        }        
+        }
 
         /// <summary>
-        /// Execute create or update of specified entity
+        /// validate and rectify specified entity
         /// </summary>
         /// <typeparam name="TEntity">Type of entity</typeparam>
         /// <param name="entity">Entity to save</param>
         /// <param name="dataSession">Data session</param>
-        /// <param name="saveMethod">Save method</param>
-        public static void Save<TEntity>(TEntity entity, IDataSession dataSession, Action<IDataSession> saveMethod)
-            where TEntity : class, IEntity
+        public static void ValidateAndRectify<TEntity>(TEntity entity, IDataSessionBase dataSession) where TEntity : class, IEntity
         {
-            //Se non è passato un dato valido, emetto eccezione
-            if (entity == null) throw new ArgumentNullException(nameof(entity));
-            if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
-            if (saveMethod == null) throw new ArgumentNullException(nameof(saveMethod));
-
             //Eseguo la validazione dell'entità da salvare
             IList<ValidationResult> validationResults = Validate(entity, dataSession);
 
@@ -102,11 +95,30 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
                 if (string.IsNullOrEmpty(richEntity.LastUpdateBy))
                     richEntity.LastUpdateBy = principalName;
             }
+        }
+
+        /// <summary>
+        /// Execute create or update of specified entity
+        /// </summary>
+        /// <typeparam name="TEntity">Type of entity</typeparam>
+        /// <param name="entity">Entity to save</param>
+        /// <param name="dataSession">Data session</param>
+        /// <param name="saveMethod">Save method</param>
+        public static void Save<TEntity>(TEntity entity, IDataSessionBase dataSession, Action<IDataSessionBase> saveMethod)
+            where TEntity : class, IEntity
+        {
+            //Se non è passato un dato valido, emetto eccezione
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (dataSession == null) throw new ArgumentNullException(nameof(dataSession));
+            if (saveMethod == null) throw new ArgumentNullException(nameof(saveMethod));
+
+            // check/update entity values and properties
+            ValidateAndRectify(entity, dataSession);
 
             //Mando in esecuzione il metodo di salvataggio
             saveMethod(dataSession);
         }
-
+        
         /// <summary>
         /// Repository interface map
         /// </summary>
@@ -235,7 +247,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.Helpers
         /// <typeparam name="TRepositoryInterface">Type of repository interface</typeparam>
         /// <typeparam name="TSpecificDataSessionRepository">Type of interface of repository specific for data session implementation</typeparam>
         /// <returns>Returns implemented type or null</returns>
-        private static Type FindImplementedType<TRepositoryInterface, TSpecificDataSessionRepository>()
+        public static Type FindImplementedType<TRepositoryInterface, TSpecificDataSessionRepository>()
         {
             #region NEW VERSION (2.0.11)
             ////Utilizzo il metodo overloaded

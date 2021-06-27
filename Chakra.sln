@@ -55,7 +55,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\chakra.core.windows-nuget.yml = .github\workflows\chakra.core.windows-nuget.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.WebApi", "Chakra.Core.WebApi\Chakra.Core.WebApi.csproj", "{4AE1AED5-D876-4E05-9949-D139E9939107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.WebApi", "Chakra.Core.WebApi\Chakra.Core.WebApi.csproj", "{4AE1AED5-D876-4E05-9949-D139E9939107}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chakra.Core.Mocks.Async", "Chakra.Core.Mocks.Async\Chakra.Core.Mocks.Async.csproj", "{07D0EA18-1C8F-4575-A9E1-FF55340F0D1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.EntityFramework.Async", "Chakra.Core.EntityFramework.Async\Chakra.Core.EntityFramework.Async.csproj", "{F5E1B18B-24B7-4315-BF7D-EB924584BAB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.MongoDb.Async", "Chakra.Core.MongoDb.Async\Chakra.Core.MongoDb.Async.csproj", "{281C766D-81A6-4AC7-A106-23CEFAD6A616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chakra.Core.Async", "Chakra.Core.Async\Chakra.Core.Async.csproj", "{CB2EC6C7-FCF9-4C6D-93D6-CA52212DF3D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +123,22 @@ Global
 		{4AE1AED5-D876-4E05-9949-D139E9939107}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AE1AED5-D876-4E05-9949-D139E9939107}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AE1AED5-D876-4E05-9949-D139E9939107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D0EA18-1C8F-4575-A9E1-FF55340F0D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D0EA18-1C8F-4575-A9E1-FF55340F0D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D0EA18-1C8F-4575-A9E1-FF55340F0D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D0EA18-1C8F-4575-A9E1-FF55340F0D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E1B18B-24B7-4315-BF7D-EB924584BAB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E1B18B-24B7-4315-BF7D-EB924584BAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E1B18B-24B7-4315-BF7D-EB924584BAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E1B18B-24B7-4315-BF7D-EB924584BAB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281C766D-81A6-4AC7-A106-23CEFAD6A616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281C766D-81A6-4AC7-A106-23CEFAD6A616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281C766D-81A6-4AC7-A106-23CEFAD6A616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281C766D-81A6-4AC7-A106-23CEFAD6A616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB2EC6C7-FCF9-4C6D-93D6-CA52212DF3D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB2EC6C7-FCF9-4C6D-93D6-CA52212DF3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB2EC6C7-FCF9-4C6D-93D6-CA52212DF3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB2EC6C7-FCF9-4C6D-93D6-CA52212DF3D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,6 +158,10 @@ Global
 		{E7F14FD8-E11B-4042-8093-93CB2B849D88} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 		{07C8F1F4-C3C6-4FE7-96D2-55B36178ABCE} = {0DF4848D-C5B7-45BA-BDD1-15DE5DA5AB8A}
 		{4AE1AED5-D876-4E05-9949-D139E9939107} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
+		{07D0EA18-1C8F-4575-A9E1-FF55340F0D1B} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
+		{F5E1B18B-24B7-4315-BF7D-EB924584BAB7} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
+		{281C766D-81A6-4AC7-A106-23CEFAD6A616} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
+		{CB2EC6C7-FCF9-4C6D-93D6-CA52212DF3D0} = {FCE52FD2-C794-4480-8ADE-EAA13FFEFDAC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A54C3E0E-2F55-4712-B617-01BCFB78E2C9}

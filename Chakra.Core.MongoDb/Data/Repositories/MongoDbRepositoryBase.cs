@@ -75,7 +75,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// Fetch and project list of entities matching criteria on repository
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -117,7 +117,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
@@ -300,7 +300,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data.Repositories
 
             //Se l'elemento non esiste, ritorno il default
             if (elementWithMaxValue == null)
-                return default(TOutput);
+                return default;
 
             //Recupero il valore della proprietà            
             return (TOutput) elementWithMaxValue.GetId();

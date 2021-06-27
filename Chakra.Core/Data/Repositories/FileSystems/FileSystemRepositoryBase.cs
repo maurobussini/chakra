@@ -14,7 +14,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
     /// Repository base implementation for filesystem
     /// </summary>
     /// <typeparam name="TEntity">Type of entity</typeparam>
-    public class FileSystemRepositoryBase<TEntity> : IRepository<TEntity>, IFileSystemRepository
+    public abstract class FileSystemRepositoryBase<TEntity> : IRepository<TEntity>, IFileSystemRepository
         where TEntity : class, IEntity, new()
     {
         #region Private fields
@@ -63,17 +63,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //se utilizzare NanoDb per eseguire questo tipo di interazione
             MockedEntities = new List<TEntity>();
         }
-
-        /// <summary>
-        /// Count all entities on repository
-        /// </summary>
-        /// <returns>Returns count of all entities</returns>
-        public int CountAll()
-        {
-            //Conteggio tutti gli elementi
-            return MockedEntities.Count;
-        }        
-
+        
         /// <summary>
         /// Get single entity using expression
         /// </summary>
@@ -90,24 +80,8 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
             //Cerco l'elemento nella lista delle entità mockate
             return MockedEntities
                 .SingleOrDefault(compiled);
-        }        
-
-        /// <summary>
-        /// Fetch list of all entities on repository
-        /// </summary>
-        /// <param name="startRowIndex">Start row index</param>
-        /// <param name="maximumRows">Maximum rows</param>
-        /// <returns>Returns list of all available entities</returns>
-        public IList<TEntity> FetchAll(int? startRowIndex = null, int? maximumRows = null)
-        {
-            //Recupero tutte le entità
-            return MockedEntities
-                .Paging(startRowIndex, maximumRows)
-                .ToList();
-        }
-
-        /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        }     
+        
         /// </summary>
         /// <param name="filterExpression">Filter expression</param>
         /// <param name="startRowIndex">Start row index</param>
@@ -145,7 +119,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
@@ -155,8 +129,7 @@ namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,
-            Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
+        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null, Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null,
             Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
         {
             //Validazione argomenti

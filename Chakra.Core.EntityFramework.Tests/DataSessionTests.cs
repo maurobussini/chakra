@@ -2,7 +2,6 @@
 using Xunit;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.EntityFramework.Data;
-using ZenProgramming.Chakra.Core.Tests;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Tests
 {

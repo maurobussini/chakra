@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chakra.Core.Mocks\Chakra.Core.Mocks.csproj" />
+    <ProjectReference Include="..\Chakra.Core.Mocks.Async\Chakra.Core.Mocks.Async.csproj" />
     <ProjectReference Include="..\Chakra.Core.Tests\Chakra.Core.Tests.csproj" />
   </ItemGroup>
 

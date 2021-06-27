@@ -4,23 +4,28 @@ using ZenProgramming.Chakra.Core.Data;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Data
 {
+    public interface IEntityFrameworkTransaction<TDbContext> : IDataTransaction
+        where TDbContext : DbContext, new()
+    {
+
+    }
     /// <summary>
     /// Represents Entity Framework implementation of data transaction
     /// </summary>
     /// <typeparam name="TDbContext">Type of DBContext used</typeparam>
-    public class EntityFrameworkDataTransaction<TDbContext> : IDataTransaction
+    public class EntityFrameworkDataTransaction<TDbContext> : IEntityFrameworkTransaction<TDbContext>
         where TDbContext : DbContext, new()
     {
         #region Private field
         private bool _IsDisposed;
-        private readonly IEntityFrameworkDataSession<TDbContext> _DataSession;
+        protected readonly IEntityFrameworkDataSession<TDbContext> _DataSession;
         #endregion
 
         #region Public properties
         /// <summary>
         /// Is active
         /// </summary>
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; protected set; }
 
         /// <summary>
         /// Current transaction was rolled back
@@ -82,6 +87,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
             IsActive = false;
             _DataSession.SetActiveTransaction(null);
         }
+
+       
 
         /// <summary>
         /// Execute rollback on active transaction

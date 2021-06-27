@@ -1,9 +1,4 @@
-﻿using System;
-using ZenProgramming.Chakra.Core.Data;
-using ZenProgramming.Chakra.Core.Data.Repositories;
-using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
-using ZenProgramming.Chakra.Core.Mocks.Data.Repositories;
-using ZenProgramming.Chakra.Core.Mocks.Scenarios;
+﻿using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Data

@@ -12,7 +12,7 @@ namespace ZenProgramming.Chakra.Core.Utilities.Data
     public static class AppDomainUtils
     {
         /// <summary>
-        /// Fetch list of deployed assemblies in "bin" folder for current 
+        /// Fetch and project list of deployed assemblies in "bin" folder for current 
         /// app domain; the methods uses a new app domain in order to 
         /// avoid unwanted loading of assemblies on current domain
         /// </summary>

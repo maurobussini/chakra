@@ -3,17 +3,9 @@ using ZenProgramming.Chakra.Core.Data.Repositories;
 
 namespace ZenProgramming.Chakra.Core.Data
 {
-    /// <summary>
-    /// Represents inteface for session of data
-    /// </summary>
-    public interface IDataSession : IDisposable
-    {
-        /// <summary>
-        /// Begin new transaction on active session
-        /// </summary>
-        /// <returns>Returns data transaction instance</returns>
-        IDataTransaction BeginTransaction();
 
+    public interface IDataSessionBase : IDisposable
+    {
         /// <summary>
         /// Executes convert of session instance on specified type
         /// </summary>
@@ -21,6 +13,26 @@ namespace ZenProgramming.Chakra.Core.Data
         /// <returns>Returns converted instance</returns>
         TOutput As<TOutput>()
             where TOutput : class;
+
+    }
+    /// <summary>
+    /// Represents inteface for session of data
+    /// </summary>
+    public interface IDataSession : IDataSessionBase
+    {
+        /// <summary>
+        /// Begin new transaction on active session
+        /// </summary>
+        /// <returns>Returns data transaction instance</returns>
+        IDataTransaction BeginTransaction();
+
+        ///// <summary>
+        ///// Executes convert of session instance on specified type
+        ///// </summary>
+        ///// <typeparam name="TOutput">Target type</typeparam>
+        ///// <returns>Returns converted instance</returns>
+        //TOutput As<TOutput>()
+        //    where TOutput : class;
 
         /// <summary>
         /// Execute resolve of repository interface on concrete

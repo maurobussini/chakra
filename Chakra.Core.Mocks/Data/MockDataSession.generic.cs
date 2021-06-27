@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
@@ -28,7 +26,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// <summary>
         /// Active transaction on session
         /// </summary>
-        public IDataTransaction Transaction { get; private set; }
+        public IDataTransaction Transaction { get; protected set; }
 
         /// <summary>
         /// Option for scenario
@@ -90,7 +88,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// Begin new transaction on active session
         /// </summary>
         /// <returns>Returns data transaction instance</returns>
-        public IDataTransaction BeginTransaction()
+        public virtual IDataTransaction BeginTransaction()
         {
             //Cast to interface, then generate data transaction
             var castedDataSession = this as IMockDataSession;

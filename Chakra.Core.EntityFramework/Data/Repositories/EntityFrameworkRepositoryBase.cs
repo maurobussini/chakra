@@ -109,7 +109,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         }
 
         /// <summary>
-        /// Fetch list of entities matching criteria on repository
+        /// Fetch with projection list of entities matching criteria on repository
         /// </summary>
         /// <param name="select">Select expression</param>
         /// <param name="filterExpression">Filter expression</param>
@@ -119,8 +119,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
         /// <param name="sortExpression">Filter expression</param>
         /// <param name="isDescending">Is descending sorting</param>
         /// <returns>Returns list of all available entities</returns>
-        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null,
-            int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
+        public IList<TProjection> FetchWithProjection<TProjection>(Expression<Func<TEntity, TProjection>> select, Expression<Func<TEntity, bool>> filterExpression = null,Expression<Func<TProjection, bool>> selectFilterExpression = null, int? startRowIndex = null, int? maximumRows = null, Expression<Func<TEntity, object>> sortExpression = null, bool isDescending = false)
         {
             //Query con filtro e paginazione
             IQueryable<TEntity> query = Collection;
