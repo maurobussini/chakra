@@ -1,6 +1,5 @@
 ﻿using Xunit;
 using ZenProgramming.Chakra.Core.Data;
-using ZenProgramming.Chakra.Core.Mocks.Async.Data;
 using ZenProgramming.Chakra.Core.Mocks.Data;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Options;
 using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;

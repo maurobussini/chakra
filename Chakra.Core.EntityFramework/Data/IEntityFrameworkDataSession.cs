@@ -19,6 +19,6 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
         /// Set active transaction in current data session
         /// </summary>
         /// <param name="transaction">Active transaction</param>
-        void SetActiveTransaction(EntityFrameworkDataTransaction<TDbContext> transaction);
+        void SetActiveTransaction(IEntityFrameworkTransaction<TDbContext> transaction);
     }
 }

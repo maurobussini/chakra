@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Principal;
-using System.Threading.Tasks;
 using ZenProgramming.Chakra.Core.DataAnnotations;
 using ZenProgramming.Chakra.Core.DataAnnotations.Extensions;
 using ZenProgramming.Chakra.Core.Entities;

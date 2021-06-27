@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ZenProgramming.Chakra.Core.WebApi.Filters.Models;
 
 namespace ZenProgramming.Chakra.Core.WebApi.Filters.Models
 {

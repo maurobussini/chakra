@@ -82,7 +82,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Tests
 
             //Execute operation
             repository.Save(element);
-
+            
             //Get number of elements after create
             var countAfter = _DataSession.GetScenario<IChakraScenario>().Departments.Count;
 

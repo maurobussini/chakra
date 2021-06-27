@@ -1,27 +1,31 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ZenProgramming.Chakra.Core.Data;
 
 namespace ZenProgramming.Chakra.Core.EntityFramework.Data
 {
+    public interface IEntityFrameworkTransaction<TDbContext> : IDataTransaction
+        where TDbContext : DbContext, new()
+    {
+
+    }
     /// <summary>
     /// Represents Entity Framework implementation of data transaction
     /// </summary>
     /// <typeparam name="TDbContext">Type of DBContext used</typeparam>
-    public class EntityFrameworkDataTransaction<TDbContext> : IDataTransaction
+    public class EntityFrameworkDataTransaction<TDbContext> : IEntityFrameworkTransaction<TDbContext>
         where TDbContext : DbContext, new()
     {
         #region Private field
         private bool _IsDisposed;
-        private readonly IEntityFrameworkDataSession<TDbContext> _DataSession;
+        protected readonly IEntityFrameworkDataSession<TDbContext> _DataSession;
         #endregion
 
         #region Public properties
         /// <summary>
         /// Is active
         /// </summary>
-        public bool IsActive { get; private set; }
+        public bool IsActive { get; protected set; }
 
         /// <summary>
         /// Current transaction was rolled back
@@ -84,34 +88,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data
             _DataSession.SetActiveTransaction(null);
         }
 
-        /// <summary>
-        /// Execute commit or active transaction
-        /// </summary>
-        public async Task CommitAync()
-        {
-            //Se l'istanza della transazione presente nel session holder
-            //non è l'istanza attuale, non eseguo alcuna operazione
-            if (_DataSession.Transaction != this)
-                return;
-
-            //Se è già stato committato, emetto eccezione
-            if (WasCommitted)
-                throw new InvalidOperationException("Current transaction was already committed.");
-
-            //Se è stato rollbackato, emetto eccezione
-            if (WasRolledBack)
-                throw new InvalidOperationException("Current transaction was already rolled back.");
-
-            //Eseguo il commit dei cambiamenti sul context
-            await _DataSession.Context.SaveChangesAsync();
-
-            //Imposto il flag di commit
-            WasCommitted = true;
-
-            //Rimuovo l'istanza di transazione
-            IsActive = false;
-            _DataSession.SetActiveTransaction(null);
-        }
+       
 
         /// <summary>
         /// Execute rollback on active transaction

@@ -19,6 +19,6 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data
         /// Set active transaction in current data session
         /// </summary>
         /// <param name="transaction">Active transaction</param>
-        void SetActiveTransaction(MongoDbDataTransaction<TMongoDbOptions> transaction);
+        void SetActiveTransaction(IMongoDbTransaction<TMongoDbOptions> transaction);
     }
 }

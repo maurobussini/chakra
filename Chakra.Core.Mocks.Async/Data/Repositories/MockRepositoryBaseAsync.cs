@@ -11,6 +11,11 @@ using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Async.Data.Repositories
 {
+    /// <summary>
+    /// Base class for repositories with mock engine
+    /// </summary>
+    /// <typeparam name="TEntity">Type of entity</typeparam>
+    /// <typeparam name="TScenarioInterface">Type of scenario interface (ex: IChakraScenario)</typeparam>
     public abstract class MockRepositoryBaseAsync<TEntity, TScenarioInterface> : MockRepositoryRoot<TEntity, TScenarioInterface>,
         IMockRepositoryAsync
         where TEntity : class, IEntity, new()

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ZenProgramming.Chakra.Core.Mocks.Scenarios.Extensions;
 using ZenProgramming.Chakra.Core.Tests.Environment.Entities;
-using ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Tests.Environment.Scenarios
 {

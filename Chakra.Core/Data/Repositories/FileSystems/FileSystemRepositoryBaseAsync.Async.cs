@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using ZenProgramming.Chakra.Core.Data.FileSystems;
-using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
 using ZenProgramming.Chakra.Core.Entities;
-using ZenProgramming.Chakra.Core.Extensions;
 
 namespace ZenProgramming.Chakra.Core.Data.Repositories.FileSystems
 {

@@ -57,7 +57,7 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data
         /// Set active transaction on current instance
         /// </summary>
         /// <param name="transaction">Transaction instance</param>
-        public void SetActiveTransaction(MongoDbDataTransaction<TMongoDbOptions> transaction)
+        public void SetActiveTransaction(IMongoDbTransaction<TMongoDbOptions> transaction)
         {
             //Imposto la transazione
             Transaction = transaction;
@@ -78,13 +78,13 @@ namespace ZenProgramming.Chakra.Core.MongoDb.Data
         /// <summary>
         /// Active transaction on data session
         /// </summary>
-        public IDataTransaction Transaction { get; private set; }
+        public IDataTransaction Transaction { get; protected set; }
 
         /// <summary>
         /// Begin new transaction on active session
         /// </summary>
         /// <returns>Returns data transaction instance</returns>
-        public IDataTransaction BeginTransaction()
+        public virtual IDataTransaction BeginTransaction()
         {
             //Ritorno un'istanza della transazone di Entity Framework
             return new MongoDbDataTransaction<TMongoDbOptions>(this);

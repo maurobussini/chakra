@@ -1,5 +1,4 @@
 ﻿using System;
-using ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections;
 
 namespace ZenProgramming.Chakra.Core.WebApi.Helpers.ClientDetections
 {

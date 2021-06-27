@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using ZenProgramming.Chakra.Core.WebApi.Filters.Helpers;
 using ZenProgramming.Chakra.Core.WebApi.Filters.Models;
-using ZenProgramming.Chakra.Core.WebApi.Filters;
 
 namespace ZenProgramming.Chakra.Core.WebApi.Filters
 {

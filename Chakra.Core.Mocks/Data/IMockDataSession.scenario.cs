@@ -1,5 +1,4 @@
-﻿using ZenProgramming.Chakra.Core.Data;
-using ZenProgramming.Chakra.Core.Mocks.Scenarios;
+﻿using ZenProgramming.Chakra.Core.Mocks.Scenarios;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Data
 {

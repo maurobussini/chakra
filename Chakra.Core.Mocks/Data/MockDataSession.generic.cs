@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
@@ -119,7 +117,7 @@ namespace ZenProgramming.Chakra.Core.Mocks.Data
         /// Set active transaction on current data session
         /// </summary>
         /// <param name="dataTransaction">Data transaction</param>
-        public virtual void SetActiveTransaction(IDataTransaction dataTransaction)
+        public void SetActiveTransaction(IDataTransaction dataTransaction)
         {
             //Arguments validation
             if (dataTransaction == null) throw new ArgumentNullException(nameof(dataTransaction));

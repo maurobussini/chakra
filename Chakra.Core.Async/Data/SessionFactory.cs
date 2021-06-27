@@ -1,6 +1,7 @@
 ﻿using System;
+using ZenProgramming.Chakra.Core.Data;
 
-namespace ZenProgramming.Chakra.Core.Data
+namespace ZenProgramming.Chakra.Core.Async.Data
 {
     /// <summary>
     /// Represents factory class for 
