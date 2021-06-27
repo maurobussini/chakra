@@ -1,29 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ZenProgramming.Chakra.Core.Async.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data;
 using ZenProgramming.Chakra.Core.Data.Repositories;
 using ZenProgramming.Chakra.Core.Data.Repositories.Helpers;
-using ZenProgramming.Chakra.Core.Mocks.Data.Repositories;
 
 namespace ZenProgramming.Chakra.Core.Mocks.Async.Data
 {
-    public static class DataSessionExtension
-    {
-        /// <summary>
-        /// Execute resolution of repository interface using specified clas
-        /// </summary>
-        /// <typeparam name="TRepositoryInterface">Type of repository interface</typeparam>
-        /// <returns>Returns repository instance</returns>
-        public static TRepositoryInterface ResolveRepositoryAsync<TRepositoryInterface>(this IDataSession dataSession)
-            where TRepositoryInterface : IRepositoryAsync
-        {
-            //Utilizzo il metodo presente sull'helper
-            return Core.Async.Data.Repositories.Helpers.RepositoryHelper
-                .Resolve<TRepositoryInterface, IMockRepositoryAsync>(dataSession);
-        }
-    }
-
     public static class MockDataTransactionAsyncExtension
     {
         // TIPS: customizzare classe dataTransaction
