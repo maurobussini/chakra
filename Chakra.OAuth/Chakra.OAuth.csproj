@@ -3,13 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.OAuth</RootNamespace>
-    <Version>5.0.1</Version>
-    <AssemblyVersion>5.0.1</AssemblyVersion>
-    <FileVersion>5.0.1</FileVersion>
+    <Version>5.0.2</Version>
+    <AssemblyVersion>5.0.2</AssemblyVersion>
+    <FileVersion>5.0.2</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Guidelines for build OAuth2 identity server</Description>
-    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <Copyright>© 2021 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
