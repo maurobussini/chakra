@@ -21,7 +21,7 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Add SQL configuration
-            optionsBuilder.UseSqlServer("Data Source=MYSERVER;Initial Catalog=CHAKRA;User ID=sa;Password=password;Pooling=True");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=CHAKRA;User ID=sa;Password=password;Pooling=True");
 
             //Base configuration
             base.OnConfiguring(optionsBuilder);
@@ -30,8 +30,8 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests.Environment.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Map of entities
-            modelBuilder.Entity<Person>().ToTable("icCHAKRA_Persons");
-            modelBuilder.Entity<Department>().ToTable("icCHAKRA_Departments");
+            modelBuilder.Entity<Person>().ToTable("Persons");
+            modelBuilder.Entity<Department>().ToTable("Departments");
         }
     }
 }
