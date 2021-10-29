@@ -21,33 +21,33 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Tests
             Assert.True(repository is EfPersonRepository);
         }
 
-        [Fact]
-        public void VerifyThatModernEntityBaseGeneratesAutomaticallyIdentifierOnCreate() 
-        {
-            SessionFactory.RegisterDefaultDataSession<EntityFrameworkDataSession<ChakraDbContext>>();
-            var DataSession = SessionFactory.OpenSession();
+        //[Fact]
+        //public void VerifyThatModernEntityBaseGeneratesAutomaticallyIdentifierOnCreate() 
+        //{
+        //    SessionFactory.RegisterDefaultDataSession<EntityFrameworkDataSession<ChakraDbContext>>();
+        //    var DataSession = SessionFactory.OpenSession();
 
-            var repository = DataSession.ResolveRepository<IDepartmentRepository>();
+        //    var repository = DataSession.ResolveRepository<IDepartmentRepository>();
 
-            //Creation of new entity with data but no Identifier
-            Department entity = new Department
-            {
-                Code = "001",
-                Name = "Department 001"
-            };
+        //    //Creation of new entity with data but no Identifier
+        //    Department entity = new Department
+        //    {
+        //        Code = "001",
+        //        Name = "Department 001"
+        //    };
 
-            //Executes in transation
-            using (var t = DataSession.BeginTransaction()) 
-            {
-                //Save of entity
-                repository.Save(entity);
+        //    //Executes in transation
+        //    using (var t = DataSession.BeginTransaction()) 
+        //    {
+        //        //Save of entity
+        //        repository.Save(entity);
 
-                //Commit on transation
-                t.Commit();
-            }
+        //        //Commit on transation
+        //        t.Commit();
+        //    }
 
-            //Identifier should be generate
-            Assert.True(!string.IsNullOrEmpty(entity.Id));
-        }
+        //    //Identifier should be generate
+        //    Assert.True(!string.IsNullOrEmpty(entity.Id));
+        //}
     }
 }
