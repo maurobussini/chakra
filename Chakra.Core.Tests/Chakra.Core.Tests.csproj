@@ -5,11 +5,11 @@
 
     <IsPackable>false</IsPackable>
 
-    <Version>5.0.2</Version>
+    <Version>5.0.3</Version>
 
-    <FileVersion>5.0.2</FileVersion>
+    <FileVersion>5.0.3</FileVersion>
 
-    <AssemblyVersion>5.0.2</AssemblyVersion>
+    <AssemblyVersion>5.0.3</AssemblyVersion>
 
     <RootNamespace>ZenProgramming.Chakra.Core.Tests</RootNamespace>
     <IncludeSymbols>true</IncludeSymbols>

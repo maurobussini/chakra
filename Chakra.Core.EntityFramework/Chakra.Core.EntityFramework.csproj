@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core.EntityFramework</RootNamespace>
-    <Version>5.0.2</Version>
-    <AssemblyVersion>5.0.2</AssemblyVersion>
-    <FileVersion>5.0.2</FileVersion>
+    <Version>5.0.3</Version>
+    <AssemblyVersion>5.0.3</AssemblyVersion>
+    <FileVersion>5.0.3</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>ZenProgramming.it</Company>
