@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core.EntityFramework</RootNamespace>
-    <Version>5.0.1</Version>
-    <AssemblyVersion>5.0.1</AssemblyVersion>
-    <FileVersion>5.0.1</FileVersion>
+    <Version>5.0.2</Version>
+    <AssemblyVersion>5.0.2</AssemblyVersion>
+    <FileVersion>5.0.2</FileVersion>
     <Authors>Mauro Bussini</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Company>ZenProgramming.it</Company>
     <Description>Provider for Microsoft EntityFramework Core in Chakra.Core framework</Description>
-    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <Copyright>© 2021 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.EntityFramework</RepositoryUrl>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
   </ItemGroup>
 
   <ItemGroup>

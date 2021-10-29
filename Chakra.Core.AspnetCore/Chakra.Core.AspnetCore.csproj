@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>ZenProgramming.Chakra.Core</RootNamespace>
-    <Version>5.0.1</Version>
-    <FileVersion>5.0.1</FileVersion>
-    <AssemblyVersion>5.0.1</AssemblyVersion>
+    <Version>5.0.2</Version>
+    <FileVersion>5.0.2</FileVersion>
+    <AssemblyVersion>5.0.2</AssemblyVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Company>ZenProgramming.it</Company>
     <Authors>Mauro Bussini</Authors>
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
-    <Copyright>© 2020 - ZenProgramming.it</Copyright>
+    <Copyright>© 2021 - ZenProgramming.it</Copyright>
     <Description>Extensions and adapters for Chakra framework for ASP.NET Core</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.AspnetCore</RepositoryUrl>
