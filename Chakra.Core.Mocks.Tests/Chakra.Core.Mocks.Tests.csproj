@@ -12,6 +12,8 @@
     <AssemblyVersion>5.0.2</AssemblyVersion>
 
     <RootNamespace>ZenProgramming.Chakra.Core.Mocks.Tests</RootNamespace>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

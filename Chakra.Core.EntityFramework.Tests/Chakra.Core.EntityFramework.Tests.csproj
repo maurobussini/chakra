@@ -2,16 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-
     <IsPackable>false</IsPackable>
-
     <Version>5.0.2</Version>
-
     <FileVersion>5.0.2</FileVersion>
-
     <AssemblyVersion>5.0.2</AssemblyVersion>
-
     <RootNamespace>ZenProgramming.Chakra.Core.EntityFramework.Tests</RootNamespace>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

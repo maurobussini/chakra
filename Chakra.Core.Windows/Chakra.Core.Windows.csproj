@@ -12,6 +12,8 @@
     <PackageProjectUrl>http://zenprogramming-it.blogspot.it/search/label/Chakra</PackageProjectUrl>
     <FileVersion>5.0.2</FileVersion>
     <RootNamespace>ZenProgramming.Chakra.Core.Windows</RootNamespace>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

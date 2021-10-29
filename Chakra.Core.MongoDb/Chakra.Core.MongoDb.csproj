@@ -13,8 +13,10 @@
     <FileVersion>5.0.2</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.MongoDb</RepositoryUrl>
-    <PackageTags>mongo, repository, driver, chakra, data</PackageTags>
+    <PackageTags>mongo, repository, driver, chakra, data</PackageTags>    
     <RootNamespace>ZenProgramming.Chakra.Core.MongoDb</RootNamespace>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>

@@ -13,7 +13,8 @@
     <Copyright>© 2021 - ZenProgramming.it</Copyright>
     <Description>Framework and guidelines for build .NET enterprise applications using .NET Standard</Description>
     <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
-	<IncludeSymbols>true</IncludeSymbols>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core</RepositoryUrl>
     <PackageTags>architecture, core, repository, database, agnostic, pattern</PackageTags>
   </PropertyGroup>
