@@ -178,13 +178,44 @@ namespace ZenProgramming.Chakra.Core.EntityFramework.Data.Repositories
             //Utilizzo l'helper per il salvataggio
             RepositoryHelper.Save(entity, DataSession, s =>
             {
-                //Se l'entità è in modifica, non cè bisogno di fare nulla
-                if (entity.GetId() != null)
-                    return;
-
-                //Aggiungo l'elemento al set
-                Collection.Add(entity);
+                //Se l'id primario è vuoto, siamo in Create
+                bool isCreate = entity.GetId() == null;
+                
+                //Se l'entità è appena stata creata
+                if (entity.GetId() == null)
+                {
+                    //Eseguo l'assegnazione dell'identificatore primario
+                    AssignPrimaryIdentifier(entity);
+                }
+               
+                //Aggiungo l'elemento al set solo se siamo in Create
+                if (isCreate)
+                    Collection.Add(entity);
             });
+        }
+
+        /// <summary>
+        /// Assign primary identifier to newely created entity
+        /// </summary>
+        /// <param name="entity">Entity instance</param>
+        protected virtual void AssignPrimaryIdentifier(TEntity entity)
+        {
+            //Validazione argomenti
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+
+            //Se è un'entità moderna, genero un GUID
+            IModernEntity modern = entity as IModernEntity;
+            if (modern != null)
+            {
+                //Assegno il guid generato
+                modern.Id = Guid.NewGuid().ToString("D");
+                return;
+            }
+
+            //Se è un identificatore con chiave numerica
+            //non faccio nulla perchè sarà il database
+            //ad assicurarsi di generare l'id e idratare l'entità
+            return;
         }
 
         /// <summary>

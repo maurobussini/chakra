@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>5.0.0</Version>
+    <Version>5.0.1</Version>
     <Authors>Mauro Bussini</Authors>
     <Company>ZenProgramming.it</Company>
     <Description>Configuration extensions for Chakra.Core</Description>
     <Copyright>© 2020 - ZenProgramming.it</Copyright>
     <PackageProjectUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Configurations</PackageProjectUrl>
-    <AssemblyVersion>5.0.0</AssemblyVersion>
-    <FileVersion>5.0.0</FileVersion>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssemblyVersion>5.0.1</AssemblyVersion>
+    <FileVersion>5.0.1</FileVersion>
+    <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
     <RepositoryUrl>https://github.com/maurobussini/chakra/tree/master/Chakra.Core.Configurations</RepositoryUrl>
     <PackageTags>configuration, core, appsettings</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -34,8 +34,10 @@
     <ProjectReference Include="..\Chakra.Core\Chakra.Core.csproj" />
   </ItemGroup>
 
+
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+
 
 </Project>
